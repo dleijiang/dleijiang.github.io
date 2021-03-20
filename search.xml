@@ -271,6 +271,7 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
 <h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo s</span></span><br></pre></td></tr></table></figure>
 <p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color=green><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
 <h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span></span><br></pre></td></tr></table></figure>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
