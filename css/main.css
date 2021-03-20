@@ -1174,7 +1174,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffb3ba;
+  background: #ffbb08;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2399,17 +2399,4 @@ embed {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.content {
-  padding-top: 0px;
-}
-.post-body p a {
-  color: #0645ad;
-  border-bottom: none;
-  border-bottom: 1px solid #0645ad;
-}
-.post-body p a:hover {
-  color: #0b0080;
-  border-bottom: none;
-  border-bottom: 1px solid #0b0080;
 }
