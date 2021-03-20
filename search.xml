@@ -3,7 +3,9 @@
   <entry>
     <title>冒泡排序</title>
     <url>/2020/10/25/BubbleSort/</url>
-    <content><![CDATA[<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+    <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
 </blockquote>
 <p>原数据：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
@@ -39,7 +41,9 @@
   <entry>
     <title>希尔排序</title>
     <url>/2020/10/28/HillSort/</url>
-    <content><![CDATA[<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+    <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>假定步长为h，则把数组分为h组，从前往后间隔h的元素为一组。先在组内进行插入排序，保证每个组内是有序的，再按照步长为1进行一次全面插入排序，从而得到有序数组。</p>
 </blockquote>
 <p>原数据：</p>
@@ -60,7 +64,8 @@
 <p>希尔排序是一个不稳定的排序算法，其最好情况下时间复杂度为<code>O(n)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>2^n</code>，空间复杂度为<code>O(!)</code>。时间复杂度计算公式如下。</p>
 </blockquote>
 <script type="math/tex; mode=display">
-待补充</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shell</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h &lt; N / <span class="number">3</span>)&#123;</span><br><span class="line">        h = <span class="number">3</span> * h + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;</span><br><span class="line">                exch(c, j, j-h);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        h = h / <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+待补充</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shell</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h &lt; N / <span class="number">3</span>)&#123;</span><br><span class="line">        h = <span class="number">3</span> * h + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;</span><br><span class="line">                exch(c, j, j-h);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        h = h / <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>排序算法</category>
       </categories>
@@ -74,7 +79,9 @@
   <entry>
     <title>插入排序</title>
     <url>/2020/10/25/InsertSort/</url>
-    <content><![CDATA[<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+    <content><![CDATA[<p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐&gt;步向后挪位，为最新元素提供插入空间。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>每次从剩余的未排序的元素中选取一个元素插入到前面已排序的元素中，使整体有序。下面以正序为例说明整个过程。</p>
 </blockquote>
 <p>原数据：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
@@ -107,7 +114,8 @@
 <p>插入排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到插入排序最好的情况时间复杂度为n，最坏的情况下时间复杂度均为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
 </blockquote>
 <script type="math/tex; mode=display">
-k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>排序算法</category>
       </categories>
@@ -121,7 +129,9 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
   <entry>
     <title>快速排序</title>
     <url>/2020/10/26/QuickSort/</url>
-    <content><![CDATA[<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+    <content><![CDATA[<p>快速排序（英语：Quicksort），又称分区交换排序（partition-exchange sort），简称快排，一种排序算法，最早由东尼·霍尔提出。通常明显比其&gt;他算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地达成。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>是一种分治的思想。它将一个数组分成两个子数组，两部分独立的排序。</p>
 </blockquote>
 <p>原数据：</p>
@@ -173,7 +183,9 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
   <entry>
     <title>选择排序</title>
     <url>/2020/10/26/SelectionSort/</url>
-    <content><![CDATA[<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+    <content><![CDATA[<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
 </blockquote>
 <p>原数据：</p>
@@ -198,7 +210,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
 (n-1) + (n-2) + ... + 1 = \frac{n * (n-1)}{2}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
 <p>less函数与exch函数参见文章排序算法序言。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>排序算法</category>
       </categories>
@@ -212,9 +225,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
   <entry>
     <title>排序算法引言</title>
     <url>/2020/10/25/SortIntroduction/</url>
-    <content><![CDATA[<h2 id="排序算法介绍"><a href="#排序算法介绍" class="headerlink" title="排序算法介绍"></a>排序算法介绍</h2><blockquote>
-<p>排序算法是最常见的算法之一，常见的排序算法有<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>希尔排序</code>、<code>归并排序</code>、<code>堆排序</code>、<code>快速排序</code>。其目的是为了实现对数组中元素的排序。通常排序分为正序和倒序。</p>
-</blockquote>
+    <content><![CDATA[<p>排序算法是最常见的算法之一，常见的排序算法有<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>希尔排序</code>、<code>归并排序</code>、<code>堆排序</code>、<code>快速排序</code>。其目的是为了实现&gt;对数组中元素的排序。通常排序分为正序和倒序。</p>
+<a id="more"></a>
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><blockquote>
 <ul>
 <li>最好、最坏、平均时间复杂度</li>
@@ -235,7 +247,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[3][4][9] .... [i] ... [j] ...</span><br></pre></td></tr></table></figure>
 <h2 id="公共函数"><a href="#公共函数" class="headerlink" title="公共函数"></a>公共函数</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*比较两个元素大小*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> v.compareTo(w) &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*交换两个元素*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    Comparable t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*交换两个元素*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    Comparable t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>排序算法</category>
       </categories>
@@ -250,7 +263,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
   <entry>
     <title>hexo简单使用</title>
     <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><font color=green><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color=green><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
+    <content><![CDATA[<p><font color=green><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color=green><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
+<a id="more"></a>
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color=green><strong>Hexo</strong></font>使用命令介绍。</p>
 <h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo new <span class="string">&#x27;title&#x27;</span></span></span><br></pre></td></tr></table></figure>
 <p>创建完博客之后，会自动在<font color=blue> <strong>source/_posts</strong>/</font>目录下面创建一个同名的md结尾的<font color=green><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
@@ -268,7 +282,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
   <entry>
     <title>旅途的起点</title>
     <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
+    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。<br><a id="more"></a></p>
+<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
 <h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
 ]]></content>
       <categories>
