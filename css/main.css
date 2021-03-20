@@ -1174,7 +1174,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff94ff;
+  background: #a2ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2392,4 +2392,30 @@ embed {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+博客背景配置,
+body {
+  background: url("/images/background.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.main-inner {
+  margin-top: 60px;
+  padding: 10px 60px 10px 60px;
+  background: #fff;
+  min-height: 500px;
+}
+.content {
+  padding-top: 0px;
+}
+.post-body p a {
+  color: #0645ad;
+  border-bottom: none;
+  border-bottom: 1px solid #0645ad;
+}
+.post-body p a:hover {
+  color: #0b0080;
+  border-bottom: none;
+  border-bottom: 1px solid #0b0080;
 }
