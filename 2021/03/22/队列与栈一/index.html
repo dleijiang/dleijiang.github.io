@@ -20,19 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://example.com/tags/index.html">
+  <meta name="description" content="线性表是最基本的数据结构之一，其最终的物理结构不外乎两种，顺序表与链表。队列与栈都是线性表，只是其外在的逻辑表现形式不同而已。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="队列与栈一">
+<meta property="og:url" content="http://example.com/2021/03/22/%E9%98%9F%E5%88%97%E4%B8%8E%E6%A0%88%E4%B8%80/index.html">
 <meta property="og:site_name" content="如沐春风">
-<meta property="og:description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
+<meta property="og:description" content="线性表是最基本的数据结构之一，其最终的物理结构不外乎两种，顺序表与链表。队列与栈都是线性表，只是其外在的逻辑表现形式不同而已。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-10-23T14:06:44.000Z">
-<meta property="article:modified_time" content="2020-10-25T06:23:53.823Z">
+<meta property="article:published_time" content="2021-03-21T16:00:18.000Z">
+<meta property="article:modified_time" content="2021-03-21T16:26:19.142Z">
 <meta property="article:author" content="jiang lei">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="线性表">
+<meta property="article:tag" content="队列">
+<meta property="article:tag" content="栈">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/">
+<link rel="canonical" href="http://example.com/2021/03/22/%E9%98%9F%E5%88%97%E4%B8%8E%E6%A0%88%E4%B8%80/">
 
 
 <script id="page-configurations">
@@ -40,13 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签 | 如沐春风
-</title>
+  <title>队列与栈一 | 如沐春风</title>
   
 
 
@@ -183,51 +187,123 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/22/%E9%98%9F%E5%88%97%E4%B8%8E%E6%A0%88%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/title_luoxiaohei.jpeg">
+      <meta itemprop="name" content="jiang lei">
+      <meta itemprop="description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="如沐春风">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          队列与栈一
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2021-03-22 00:00:18 / 修改时间：00:26:19" itemprop="dateCreated datePublished" datetime="2021-03-22T00:00:18+08:00">2021-03-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>939</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>线性表是最基本的数据结构之一，其最终的物理结构不外乎两种，顺序表与链表。队列与栈都是线性表，只是其外在的逻辑表现形式不同而已。</p>
+<a id="more"></a>
+<h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><p>顺序表是一种在物理上连续存储的结构，也即顺序表的元素在内存空间里是物理上连续的。</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表是一种在逻辑空间上连续，但是物理空间上离散的线性表。链表前后节点使用指针相连，因此与线性表相比，链表需要更多的存储空间，但是却能更有效的利用空间，因为顺序表对存储要求必须是物理上一整块的空间。</p>
+<h2 id="线性表接口"><a href="#线性表接口" class="headerlink" title="线性表接口"></a>线性表接口</h2><p>线性表的基本接口，主要定义常见的几种方法，弹出元素、添加元素、线性表大小、获取线性表第一个元素、获取线性表最后一个元素以及对线性表进行判空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.payment.java.base.algorithm.list.queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 弹出元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 弹出元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 添加元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(T t)</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回线性表大小</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 线性表大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回第一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 第一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">fist</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回最后一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 最后一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">last</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是否是空线性表</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否是空线性表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> AlgorithmException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 数据结构与算法</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag"><i class="fa fa-tag"></i> 线性表</a>
+              <a href="/tags/%E9%98%9F%E5%88%97/" rel="tag"><i class="fa fa-tag"></i> 队列</a>
+              <a href="/tags/%E6%A0%88/" rel="tag"><i class="fa fa-tag"></i> 栈</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/21/%E7%AE%97%E6%B3%95%E5%BA%8F%E8%A8%80/" rel="prev" title="算法序言">
+      <i class="fa fa-chevron-left"></i> 算法序言
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 18 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/Java/" style="font-size: 30px; color: #111">Java</a> <a href="/tags/%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/" style="font-size: 24px; color: #4f4f4f">不稳定排序</a> <a href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" style="font-size: 12px; color: #ccc">冒泡排序</a> <a href="/tags/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/" style="font-size: 12px; color: #ccc">希尔排序</a> <a href="/tags/%E5%BA%8F%E8%A8%80/" style="font-size: 12px; color: #ccc">序言</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" style="font-size: 12px; color: #ccc">快速排序</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #ccc">排序算法</a> <a href="/tags/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" style="font-size: 12px; color: #ccc">插入排序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 30px; color: #111">数据结构与算法</a> <a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 12px; color: #ccc">时间复杂度</a> <a href="/tags/%E6%A0%88/" style="font-size: 12px; color: #ccc">栈</a> <a href="/tags/%E7%A8%B3%E5%AE%9A%E4%B8%8E%E4%B8%8D%E7%A8%B3%E5%AE%9A/" style="font-size: 12px; color: #ccc">稳定与不稳定</a> <a href="/tags/%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F/" style="font-size: 18px; color: #8e8e8e">稳定排序</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" style="font-size: 12px; color: #ccc">线性表</a> <a href="/tags/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" style="font-size: 12px; color: #ccc">选择排序</a> <a href="/tags/%E9%98%9F%E5%88%97/" style="font-size: 12px; color: #ccc">队列</a> <a href="/tags/%E9%9A%8F%E8%AE%B0/" style="font-size: 12px; color: #ccc">随记</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -280,6 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">线性表接口</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +595,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'dleijiang.github.io',
       owner       : 'dleijiang',
       admin       : ['dleijiang'],
-      id          : 'f47af1d1eda4d807b02bba32be15120b',
+      id          : '8e7610881fb26eee91cb6ba1feda01c0',
         language: 'zh-CN',
       distractionFreeMode: true
     });
