@@ -349,6 +349,9 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
 
 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表是一种在逻辑空间上连续，但是物理空间上离散的线性表。链表前后节点使用指针相连，因此与线性表相比，链表需要更多的存储空间，但是却能更有效的利用空间，因为顺序表对存储要求必须是物理上一整块的空间。</p>
 <div><div class="graphviz">digraph list_linked {
+
+    bgcolor="#f7f7f7"
+
     rankdir=LR
     subgraph cluster_name {
         n0 [label="{<data>A[0]|<next>}" shape=record,color=blue,fillcolor=lightblue,style=filled]
