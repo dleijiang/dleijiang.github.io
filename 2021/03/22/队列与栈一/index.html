@@ -325,7 +325,30 @@
 <h2 id="线性表接口"><a href="#线性表接口" class="headerlink" title="线性表接口"></a>线性表接口</h2><p>线性表的基本接口，主要定义常见的几种方法，弹出元素、添加元素、线性表大小、获取线性表第一个元素、获取线性表最后一个元素以及对线性表进行判空。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.payment.java.base.algorithm.list.queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 弹出元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 弹出元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 添加元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(T t)</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回线性表大小</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 线性表大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回第一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 第一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">fist</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回最后一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 最后一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">last</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是否是空线性表</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否是空线性表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> AlgorithmException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="抽象实现类"><a href="#抽象实现类" class="headerlink" title="抽象实现类"></a>抽象实现类</h2><p>统一处理异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.payment.java.base.algorithm.list;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.ErrorCode4Algorithm;</span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.list.queue.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T t)</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">fist</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">last</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>```java<br>package com.lei.payment.java.base.algorithm.list;</p>
+<p>import com.lei.payment.java.base.algorithm.exception.AlgorithmException;<br>import com.lei.payment.java.base.algorithm.exception.ErrorCode4Algorithm;<br>import com.lei.payment.java.base.algorithm.list.queue.List;</p>
+<p>public class AbstractList<T> implements List<T> {<br>    public T pop() throws AlgorithmException {<br>        throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    }</p>
+<pre><code>public void push(T t) throws AlgorithmException &#123;
+    throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);
+&#125;
+
+public int size() throws AlgorithmException &#123;
+    throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);
+&#125;
+
+public T fist() throws AlgorithmException &#123;
+    throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);
+&#125;
+
+public T last() throws AlgorithmException &#123;
+    throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);
+&#125;
+
+public boolean isEmpty() throws AlgorithmException &#123;
+    throw new AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);
+&#125;
+</code></pre><p>}<br>```</p>
+
     </div>
 
     
@@ -536,6 +559,28 @@
 
 
 
+	
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
+  <script>
+    String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.split(search).join(replacement);
+    };
+
+    let vizObjects = document.querySelectorAll('.graphviz')
+
+    for (let item of vizObjects) {
+      let svg = undefined
+      try {
+        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
+      } catch(e) {
+        svg = `<pre class="error">${e}</pre>`
+      }
+      item.outerHTML = svg
+    }
+  </script>
+
+
       </div>
     </footer>
   </div>
@@ -639,28 +684,6 @@
     
 
   
-
-  
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
-  <script>
-    String.prototype.replaceAll = function(search, replacement) {
-      var target = this;
-      return target.split(search).join(replacement);
-    };
-
-    let vizObjects = document.querySelectorAll('.graphviz')
-
-    for (let item of vizObjects) {
-      let svg = undefined
-      try {
-        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
-      } catch(e) {
-        svg = `<pre class="error">${e}</pre>`
-      }
-      item.outerHTML = svg
-    }
-  </script>
-
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
