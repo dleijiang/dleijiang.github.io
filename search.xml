@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>冒泡排序</title>
-    <url>/2020/10/25/BubbleSort/</url>
-    <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
-<a id="more"></a>
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
-</blockquote>
-<p>原数据：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
-<p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-<p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [7] [9] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-<p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [7] [1] [3] [5] [9]</span><br></pre></td></tr></table></figure>
-<p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[7] [1] [3] [5] [8] [9]</span><br></pre></td></tr></table></figure>
-<p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
-</blockquote>
-<script type="math/tex; mode=display">
-(n-1) + (n-2) + (n-3) + ... + 1 = ((n-1) + 1) * (n-1) / 2 = \frac{n * (n-1)}{2}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
-<p>less函数与exch函数参见文章排序算法序言。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubble</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N-i-<span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(less(c[j+<span class="number">1</span>], c[j]))&#123;</span><br><span class="line">                exch(c, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>冒泡排序</tag>
-        <tag>数据结构与算法</tag>
-        <tag>稳定排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>希尔排序</title>
     <url>/2020/10/28/HillSort/</url>
     <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
@@ -71,8 +33,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>数据结构与算法</tag>
         <tag>希尔排序</tag>
+        <tag>数据结构与算法</tag>
         <tag>不稳定排序</tag>
       </tags>
   </entry>
@@ -122,8 +84,8 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       <tags>
         <tag>Java</tag>
         <tag>数据结构与算法</tag>
-        <tag>稳定排序</tag>
         <tag>插入排序</tag>
+        <tag>稳定排序</tag>
       </tags>
   </entry>
   <entry>
@@ -223,6 +185,44 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       </tags>
   </entry>
   <entry>
+    <title>冒泡排序</title>
+    <url>/2020/10/25/BubbleSort/</url>
+    <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
+</blockquote>
+<p>原数据：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
+<p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+<p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [7] [9] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+<p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[8] [7] [1] [3] [5] [9]</span><br></pre></td></tr></table></figure>
+<p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[7] [1] [3] [5] [8] [9]</span><br></pre></td></tr></table></figure>
+<p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+(n-1) + (n-2) + (n-3) + ... + 1 = ((n-1) + 1) * (n-1) / 2 = \frac{n * (n-1)}{2}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>less函数与exch函数参见文章排序算法序言。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubble</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N-i-<span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(less(c[j+<span class="number">1</span>], c[j]))&#123;</span><br><span class="line">                exch(c, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构与算法</tag>
+        <tag>稳定排序</tag>
+        <tag>冒泡排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>排序算法引言</title>
     <url>/2020/10/25/SortIntroduction/</url>
     <content><![CDATA[<p>排序算法是最常见的算法之一，常见的排序算法有<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>希尔排序</code>、<code>归并排序</code>、<code>堆排序</code>、<code>快速排序</code>。其目的是为了实现&gt;对数组中元素的排序。通常排序分为正序和倒序。</p>
@@ -281,6 +281,20 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       </tags>
   </entry>
   <entry>
+    <title>旅途的起点</title>
+    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
+    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。<br><a id="more"></a></p>
+<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
+<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法序言</title>
     <url>/2021/03/21/%E7%AE%97%E6%B3%95%E5%BA%8F%E8%A8%80/</url>
     <content><![CDATA[<p>有一种观点认为，程序等于数据结构加算法，但是懂得了数据结构与算法并不一定能写出好的程序。本文主要介绍后面文章会用到的一些基本数据结构。</p>
@@ -299,20 +313,6 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>Java</tag>
         <tag>数据结构与算法</tag>
         <tag>序言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>旅途的起点</title>
-    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。<br><a id="more"></a></p>
-<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
-<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
       </tags>
   </entry>
   <entry>
