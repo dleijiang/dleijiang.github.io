@@ -263,29 +263,64 @@
       
         <p>kafka是一款优秀且常见的MQ，具有安装方便，使用方便，应用场景广泛等一系列优点，个人认为是最好用的MQ之一。</p>
 <a id="more"></a>
+
 <h2 id="基本变量"><a href="#基本变量" class="headerlink" title="基本变量"></a>基本变量</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kafka version</span></span><br><span class="line">version=kafka_2.12-1.1.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># kafka topic</span></span><br><span class="line">topic=ChristmasEvent</span><br><span class="line"></span><br><span class="line"><span class="comment"># kafka bootstrap server</span></span><br><span class="line">Kafka_server=19.94.08.13:19092</span><br><span class="line"></span><br><span class="line"><span class="comment"># kafka zookeeper server</span></span><br><span class="line">zk_server=19.14.08.13:21810</span><br><span class="line"></span><br><span class="line"><span class="comment"># kafka consumer group</span></span><br><span class="line">consumer_group=bless-server</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="创建Topic"><a href="#创建Topic" class="headerlink" title="创建Topic"></a>创建Topic</h2><p>创建kafka topic，其中replication-factor代表副本数，partitions代表分区数。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-topics.sh --create --zookeeper <span class="variable">$&#123;zk_server&#125;</span> --replication-factor 1 --partitions 1 --topic <span class="variable">$&#123;topic&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看Topic内容（当前开始）"><a href="#查看Topic内容（当前开始）" class="headerlink" title="查看Topic内容（当前开始）"></a>查看Topic内容（当前开始）</h2><p>从当前时刻开始，用于实时查看kafka的消息。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-console-consumer.sh --bootstrap-server <span class="variable">$&#123;kafka_server&#125;</span> --topic <span class="variable">$&#123;topic&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看Topic内容（从头开始）"><a href="#查看Topic内容（从头开始）" class="headerlink" title="查看Topic内容（从头开始）"></a>查看Topic内容（从头开始）</h2><p>从头开始，用于实时查看kafka消息，仅限开发调测环境使用，当kafka消息过多时可能会导致异常问题。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-console-consumer.sh --bootstrap-server $&#123;kafka_server&#125; --topic $&#123;topic&#125; --from-beginning</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看消费组（旧版本）"><a href="#查看消费组（旧版本）" class="headerlink" title="查看消费组（旧版本）"></a>查看消费组（旧版本）</h2><p>查看消费者组情况，适用于用于旧版本kafka客户端。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-consumer-groups.sh --list --bootstrap-server <span class="variable">$&#123;kafka_server&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看消费组（新版本）"><a href="#查看消费组（新版本）" class="headerlink" title="查看消费组（新版本）"></a>查看消费组（新版本）</h2><p>查看消费者组情况，适用于用于新版本kafka客户端。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-consumer-groups.sh --new-consumer --bootstrap-server <span class="variable">$&#123;kafka_server&#125;</span> --list</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看消费组（使用ZK连接而非Java-Api）"><a href="#查看消费组（使用ZK连接而非Java-Api）" class="headerlink" title="查看消费组（使用ZK连接而非Java Api）"></a>查看消费组（使用ZK连接而非Java Api）</h2><p>查看消费者组情况，仅限于使用zk连接的消费者。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-consumer-groups.sh --zookeeper <span class="variable">$&#123;zk_server&#125;</span> --list</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看单个消费组详情（Java-Api）"><a href="#查看单个消费组详情（Java-Api）" class="headerlink" title="查看单个消费组详情（Java Api）"></a>查看单个消费组详情（Java Api）</h2><p>查看单个消费者组情况，使用Java Api连接的消费者。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-consumer-groups.sh --new-consumer --bootstrap-server <span class="variable">$&#123;kafka_server&#125;</span> --group <span class="variable">$&#123;consumer_group&#125;</span> --describe</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看单个消费组详情（ZK）"><a href="#查看单个消费组详情（ZK）" class="headerlink" title="查看单个消费组详情（ZK）"></a>查看单个消费组详情（ZK）</h2><p>查看单个消费者组情况，使用zk连接的消费者。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-consumer-groups.sh --zookeeper <span class="variable">$&#123;zk_server&#125;</span> --group <span class="variable">$&#123;consumer_group&#125;</span> --describe</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><p>直接在命令行发布一条消息，可以用于开发环境调测，重放消息等。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-console-producer.sh --broker-list <span class="variable">$&#123;kafka_server&#125;</span> --topic <span class="variable">$&#123;topic&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看Topic列表"><a href="#查看Topic列表" class="headerlink" title="查看Topic列表"></a>查看Topic列表</h2><p>查看kafka当前Topic列表。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-topics.sh --zookeeper <span class="variable">$&#123;zk_server&#125;</span> --list</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="查看单个Topic详情"><a href="#查看单个Topic详情" class="headerlink" title="查看单个Topic详情"></a>查看单个Topic详情</h2><p>查看单个Topic详情。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/bin/kafka-topics.sh --zookeeper <span class="variable">$&#123;zk_server&#125;</span> --topic <span class="variable">$&#123;topic&#125;</span> --describe</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -458,12 +493,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">22k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">20 分钟</span>
 </div>
 
         
