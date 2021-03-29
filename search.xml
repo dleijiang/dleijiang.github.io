@@ -380,23 +380,6 @@
       </tags>
   </entry>
   <entry>
-    <title>旅途的起点</title>
-    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
-<a id="more"></a>
-
-
-<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
-<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kafka命令</title>
     <url>/2021/03/27/kafka%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>kafka是一款优秀且常见的MQ，具有安装方便，使用方便，应用场景广泛等一系列优点，个人认为是最好用的MQ之一。</p>
@@ -467,6 +450,170 @@
         <tag>Java</tag>
         <tag>MQ</tag>
         <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode_92</title>
+    <url>/2021/03/29/leetcode-92-1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>leetcode 92 反转链表 II</title>
+    <url>/2021/03/28/leetcode-92/</url>
+    <content><![CDATA[<p>题目描述：给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。</p>
+<a id="more"></a>
+
+
+
+<h2 id="原题介绍"><a href="#原题介绍" class="headerlink" title="原题介绍"></a>原题介绍</h2><h3 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h3><div><div class="graphviz">digraph leetcode_92_1 {
+    
+    bgcolor="#f7f7f7"
+
+<pre><code>rankdir=LR
+subgraph cluster_name &#123;
+    
+    subgraph cluster_1 &#123;
+        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled]
+        n1 [label=&quot;2&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        n2 [label=&quot;3&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        n3 [label=&quot;4&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        n4 [label=&quot;5&quot; shape=circle,color=blue,fillcolor=white,style=filled]
+        rank=same;
+        n0 -&gt; n1 -&gt; n2 -&gt; n3 -&gt; n4 
+        style=invis
+    &#125;
+
+    subgraph cluster_2 &#123;
+        r0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled]
+        r1 [label=&quot;4&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        r2 [label=&quot;3&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        r3 [label=&quot;2&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
+        r4 [label=&quot;5&quot; shape=circle,color=blue,fillcolor=white,style=filled]
+
+        rank=same;
+        r0 -&gt; r1 -&gt; r2 -&gt; r3 -&gt; r4 
+        style=invis
+    &#125;    
+
+    n2 -&gt; r2[constraint=false,color=&quot;red&quot;,pad=30]    
+
+&#125;
+
+label=&lt;&lt;B&gt;图 1.1 算法示意图&lt;/B&gt;&gt;
+</code></pre>
+<p>}</div></div></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">输入：head</span> <span class="string">=</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]<span class="string">,</span> <span class="string">left</span> <span class="string">=</span> <span class="number">2</span><span class="string">,</span> <span class="string">right</span> <span class="string">=</span> <span class="number">4</span></span><br><span class="line"><span class="string">输出：[1,4,3,2,5]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">输入：head</span> <span class="string">=</span> [<span class="number">5</span>]<span class="string">,</span> <span class="string">left</span> <span class="string">=</span> <span class="number">1</span><span class="string">,</span> <span class="string">right</span> <span class="string">=</span> <span class="number">1</span></span><br><span class="line"><span class="string">输出：[5]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="遍历拆分链表"><a href="#遍历拆分链表" class="headerlink" title="遍历拆分链表"></a>遍历拆分链表</h3><p>如下图所示，通过遍历以 <code>[left，right]</code>作为分界，把链表分为三个字表。</p>
+<div><div class="graphviz">digraph leetcode_92_1 {
+    
+    bgcolor="#f7f7f7"
+
+<pre><code>rankdir=LR
+subgraph cluster_name &#123;
+    subgraph cluster_1 &#123;
+        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n2 [label=&quot;left-1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n3 [label=&quot;left&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n4 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n5 [label=&quot;right&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n6 [label=&quot;right+1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n7 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n8 [label=&quot;n&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        rank=same;
+        n0 -&gt; n1 -&gt; n2
+        n2 -&gt; n3[style=dashed,color=red]
+        n3 -&gt; n4 -&gt; n5
+        n5 -&gt; n6[style=dashed,color=red]
+        n6 -&gt; n7 -&gt; n8
+        style=invis
+    &#125;
+
+&#125;
+label=&lt;&lt;B&gt;图 2.1 遍历拆分链表&lt;/B&gt;&gt;
+</code></pre>
+<p>}</div></div></p>
+<h3 id="分别处理三个子表"><a href="#分别处理三个子表" class="headerlink" title="分别处理三个子表"></a>分别处理三个子表</h3><blockquote>
+<ul>
+<li>记录左边链表的head与end，记录右边链表的head。</li>
+<li>遍历中间链表存入到栈当中，然后依次弹出栈中节点并链接为一个新的链表，根据栈后进先出的特性，新链表必定顺序是反过来的。</li>
+<li>然后再依次按照左中右顺序拼接合并三个链表，得到最终结果。</li>
+</ul>
+</blockquote>
+<div><div class="graphviz">digraph leetcode_92_1 {
+    
+    bgcolor="#f7f7f7"
+
+<pre><code>rankdir=LR
+subgraph cluster_name &#123;
+    subgraph cluster_1 &#123;
+        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n2 [label=&quot;left-1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n3 [label=&quot;right&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n4 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n5 [label=&quot;left&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n6 [label=&quot;right+1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n7 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n8 [label=&quot;n&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        rank=same;
+        n0 -&gt; n1 -&gt; n2
+        n2 -&gt; n3[style=dashed,color=red]
+        n3 -&gt; n4 -&gt; n5
+        n5 -&gt; n6[style=dashed,color=red]
+        n6 -&gt; n7 -&gt; n8
+        style=invis
+    &#125;
+
+&#125;
+label=&lt;&lt;B&gt;图 2.2 最终结果&lt;/B&gt;&gt;
+</code></pre>
+<p>}</div></div></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 如果链表为空或者是单节点链表直接返回即可</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 初始化节点栈</span></span><br><span class="line">        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 初始化左链表的end节点</span></span><br><span class="line">        ListNode leftLinkedListEnd = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 初始化右链表的start节点</span></span><br><span class="line">        ListNode rightLinkedListStart = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 定义链表索引，并初始化为1</span></span><br><span class="line">        <span class="keyword">int</span> idx = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 循环遍历链表</span></span><br><span class="line">        <span class="keyword">for</span> (ListNode it = head; it != <span class="keyword">null</span>; it = it.next,idx++)&#123;</span><br><span class="line">            <span class="comment">//6.1 如果是处于[left,right]之间的节点，则存入栈中</span></span><br><span class="line">            <span class="keyword">if</span> ( idx &gt;= left &amp;&amp; idx &lt;= right)&#123;</span><br><span class="line">                stack.push(it);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//6.2 如果是处于[1,left)之间的节点，则记录其end节点</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (idx &lt; left)&#123;</span><br><span class="line">                leftLinkedListEnd = it;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//6.3 如果是处于(right,n]之间的节点，则记录其start节点，并跳出循环结束遍历</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                rightLinkedListStart = it;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7. 依次弹出栈中元素反转中间链表</span></span><br><span class="line">        ListNode midLinkedListHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode midLinkedListEnd = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stack.empty())&#123;</span><br><span class="line">            <span class="keyword">if</span> (midLinkedListHead == <span class="keyword">null</span>) &#123;</span><br><span class="line">                midLinkedListHead = stack.pop();</span><br><span class="line">                midLinkedListEnd = midLinkedListHead;</span><br><span class="line">                midLinkedListEnd.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                midLinkedListEnd.next = stack.pop();</span><br><span class="line">                midLinkedListEnd = midLinkedListEnd.next;</span><br><span class="line">                midLinkedListEnd.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//8. 合并左链表</span></span><br><span class="line">        <span class="keyword">if</span> (leftLinkedListEnd != <span class="keyword">null</span>)&#123;</span><br><span class="line">            leftLinkedListEnd.next = midLinkedListHead;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            head = midLinkedListHead;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//9. 合并右链表</span></span><br><span class="line">        <span class="keyword">if</span> (rightLinkedListStart != <span class="keyword">null</span>)&#123;</span><br><span class="line">            midLinkedListEnd.next = rightLinkedListStart;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//10. 返回最终链表head节点</span></span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1. 临时节点</span></span><br><span class="line">    <span class="keyword">private</span> ListNode node;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//2. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 递归处理</span></span><br><span class="line">        <span class="keyword">return</span> reverse(head, left, right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * reverse 前n个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head 表头</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> n    前n个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 新表节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. n==1表示一个元素直接返回，并记录后区节点</span></span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.node = head.next;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 递归得到head.next后面的反转</span></span><br><span class="line">        ListNode end = reverse(head.next, n - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 反转 head 和 end</span></span><br><span class="line">        head.next.next = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 新的尾节点指向保存的后驱节点</span></span><br><span class="line">        head.next = <span class="keyword">this</span>.node;</span><br><span class="line">        <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * reverse 中间n个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head  表头</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left  左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right 有边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 新表节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 如果left == 1 递归反转前n个元素</span></span><br><span class="line">        <span class="keyword">if</span> (left == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> reverse(head, right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 递归找到待反转起始位置</span></span><br><span class="line">        head.next = reverse(head.next, left - <span class="number">1</span>, right - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/" title="原题地址">原题地址</a></p>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
+        <tag>难度中等</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旅途的起点</title>
+    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
+    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
+<a id="more"></a>
+
+
+<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
+<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
       </tags>
   </entry>
   <entry>
