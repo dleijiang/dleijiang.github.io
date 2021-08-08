@@ -34,8 +34,8 @@
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="oj">
 <meta property="article:tag" content="二叉树">
-<meta property="article:tag" content="难度中等">
 <meta property="article:tag" content="中序、后序">
+<meta property="article:tag" content="难度中等">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2021/08/03/leetcode-106/">
@@ -272,7 +272,9 @@
       
         <p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
 <a id="more"></a>
+
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> buildTree(inorder, <span class="number">0</span>, inorder.length, postorder, postorder.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span>[] postorder, <span class="keyword">int</span> rootIdx)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 单个节点直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (start == end - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(inorder[start]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 后续最后一个节点为二叉树根节点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(postorder[rootIdx]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 寻找根节点在中序序列中的索引值</span></span><br><span class="line">        <span class="keyword">int</span> rootIdxInOrder = start;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> idx = start; idx &lt; end; idx++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inorder[idx] == root.val) &#123;</span><br><span class="line">                rootIdxInOrder = idx;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 中序序列中根节点左部分节点构成左子树</span></span><br><span class="line">        TreeNode leftNode = buildTree(inorder, start, rootIdxInOrder, postorder, rootIdx - (end - rootIdxInOrder));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 中序序列中根节点右部分节点构成右子树</span></span><br><span class="line">        TreeNode rightNode = buildTree(inorder, rootIdxInOrder + <span class="number">1</span>, end, postorder, rootIdx - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7. 连接左右子树</span></span><br><span class="line">        root.left = leftNode;</span><br><span class="line">        root.right = rightNode;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -287,8 +289,8 @@
               <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
               <a href="/tags/oj/" rel="tag"><i class="fa fa-tag"></i> oj</a>
               <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 二叉树</a>
-              <a href="/tags/%E9%9A%BE%E5%BA%A6%E4%B8%AD%E7%AD%89/" rel="tag"><i class="fa fa-tag"></i> 难度中等</a>
               <a href="/tags/%E4%B8%AD%E5%BA%8F%E3%80%81%E5%90%8E%E5%BA%8F/" rel="tag"><i class="fa fa-tag"></i> 中序、后序</a>
+              <a href="/tags/%E9%9A%BE%E5%BA%A6%E4%B8%AD%E7%AD%89/" rel="tag"><i class="fa fa-tag"></i> 难度中等</a>
           </div>
 
         
@@ -451,12 +453,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">44k</span>
+    <span title="站点总字数">46k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">42 分钟</span>
 </div>
 
         
