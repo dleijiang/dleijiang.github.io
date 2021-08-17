@@ -1459,7 +1459,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
   </entry>
   <entry>
     <title>leetcode-130 被围绕的区域</title>
-    <url>/2021/08/17/leetcode-130/</url>
+    <url>/2021/08/19/leetcode-130/</url>
     <content><![CDATA[<p>题目描述：给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符 <code>&#39;X&#39;</code> 和 <code>&#39;O&#39;</code> ，找到所有被 <code>&#39;X&#39;</code> 围绕的区域，并将这些区域里所有的 <code>&#39;O&#39;</code> 用 <code>&#39;X&#39;</code> 填充。</p>
 <a id="more"></a>
 
@@ -1484,7 +1484,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
   </entry>
   <entry>
     <title>leetcode-236 二叉树的最近公共祖先</title>
-    <url>/2021/08/16/leetcode-236/</url>
+    <url>/2021/08/17/leetcode-236/</url>
     <content><![CDATA[<p>题目描述：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
 <a id="more"></a>
@@ -1506,7 +1506,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
   </entry>
   <entry>
     <title>leetcode-146 LRU 缓存机制</title>
-    <url>/2021/08/18/leetcode-146/</url>
+    <url>/2021/08/20/leetcode-146/</url>
     <content><![CDATA[<p>题目描述：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。<br>实现 LRUCache 类：</p>
 <ul>
 <li>LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存</li>
@@ -1531,7 +1531,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
   </entry>
   <entry>
     <title>leetcode-295 数据流的中位数</title>
-    <url>/2021/08/16/leetcode-295/</url>
+    <url>/2021/08/18/leetcode-295/</url>
     <content><![CDATA[<p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
 <p>例如，</p>
 <p>[2,3,4] 的中位数是 3</p>
@@ -1556,7 +1556,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
   </entry>
   <entry>
     <title>leetcode-895 最大频率栈</title>
-    <url>/2021/08/19/leetcode-895/</url>
+    <url>/2021/08/21/leetcode-895/</url>
     <content><![CDATA[<p>题目描述：实现 FreqStack，模拟类似栈的数据结构的操作的一个类。</p>
 <p>FreqStack 有两个函数：</p>
 <ul>
