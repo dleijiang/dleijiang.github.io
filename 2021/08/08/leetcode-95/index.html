@@ -265,9 +265,7 @@
 <li><code>1 &lt;= n &lt;= 8</code></li>
 </ul>
 <a id="more"></a>
-
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;TreeNode&gt; <span class="hljs-title">generateTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        &#125;<br>        <span class="hljs-keyword">return</span> generateTrees(<span class="hljs-number">1</span>, n);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;TreeNode&gt; <span class="hljs-title">generateTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        List&lt;TreeNode&gt; root = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">if</span> (end &gt; start) &#123;<br>            root.add(<span class="hljs-keyword">null</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt;= end; idx++) &#123;<br>            List&lt;TreeNode&gt; leftTree = generateTrees(start, idx - <span class="hljs-number">1</span>);<br>            List&lt;TreeNode&gt; rightTree = generateTrees(idx + <span class="hljs-number">1</span>, end);<br>            <span class="hljs-keyword">for</span> (TreeNode leftNode : leftTree) &#123;<br>                <span class="hljs-keyword">for</span> (TreeNode rightNode : rightTree) &#123;<br>                    TreeNode rootNode = <span class="hljs-keyword">new</span> TreeNode(idx);<br>                    rootNode.left = leftNode;<br>                    rootNode.right = rightNode;<br>                    root.add(rootNode);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -445,12 +443,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:30</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         
