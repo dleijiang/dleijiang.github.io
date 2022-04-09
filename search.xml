@@ -513,27 +513,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-105 从前序与中序遍历序列构造二叉树</title>
-    <url>/2021/08/02/leetcode-105/</url>
-    <content><![CDATA[<p>题目描述：给定一棵树的前序遍历 <code>preorder</code> 与中序遍历 <code>inorder</code>。请构造二叉树并返回其根节点。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] preorder, <span class="hljs-keyword">int</span>[] inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> buildTree(preorder, <span class="hljs-number">0</span>, inorder, <span class="hljs-number">0</span>, inorder.length);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] preorder, <span class="hljs-keyword">int</span> rootIdx, <span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空</span><br>        <span class="hljs-keyword">if</span> (start &gt;= end) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 单个节点直接返回</span><br>        <span class="hljs-keyword">if</span> (start == end - <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[start]);<br>        &#125;<br><br>        <span class="hljs-comment">//3. 前序第一个节点为二叉树根节点</span><br>        TreeNode root = <span class="hljs-keyword">new</span> TreeNode(preorder[rootIdx]);<br><br>        <span class="hljs-comment">//4. 寻找根节点在中序序列中的索引值</span><br>        <span class="hljs-keyword">int</span> rootIdxInOrder = start;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt; end; idx++) &#123;<br>            <span class="hljs-keyword">if</span> (inorder[idx] == root.val) &#123;<br>                rootIdxInOrder = idx;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//5. 中序序列中根节点左部分节点构成左子树</span><br>        TreeNode leftNode = buildTree(preorder, rootIdx + <span class="hljs-number">1</span>, inorder, start, rootIdxInOrder);<br><br>        <span class="hljs-comment">//6. 中序序列中根节点右部分节点构成右子树</span><br>        TreeNode rightNode = buildTree(preorder, rootIdx + <span class="hljs-number">1</span> + rootIdxInOrder - start, inorder, rootIdxInOrder + <span class="hljs-number">1</span>, end);<br><br>        <span class="hljs-comment">//7. 连接左右子树</span><br>        root.left = leftNode;<br>        root.right = rightNode;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>前序、中序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-106 从中序与后续遍历序列构造二叉树</title>
     <url>/2021/08/03/leetcode-106/</url>
     <content><![CDATA[<p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
@@ -552,6 +531,27 @@
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>中序、后序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-105 从前序与中序遍历序列构造二叉树</title>
+    <url>/2021/08/02/leetcode-105/</url>
+    <content><![CDATA[<p>题目描述：给定一棵树的前序遍历 <code>preorder</code> 与中序遍历 <code>inorder</code>。请构造二叉树并返回其根节点。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] preorder, <span class="hljs-keyword">int</span>[] inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> buildTree(preorder, <span class="hljs-number">0</span>, inorder, <span class="hljs-number">0</span>, inorder.length);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] preorder, <span class="hljs-keyword">int</span> rootIdx, <span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空</span><br>        <span class="hljs-keyword">if</span> (start &gt;= end) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 单个节点直接返回</span><br>        <span class="hljs-keyword">if</span> (start == end - <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[start]);<br>        &#125;<br><br>        <span class="hljs-comment">//3. 前序第一个节点为二叉树根节点</span><br>        TreeNode root = <span class="hljs-keyword">new</span> TreeNode(preorder[rootIdx]);<br><br>        <span class="hljs-comment">//4. 寻找根节点在中序序列中的索引值</span><br>        <span class="hljs-keyword">int</span> rootIdxInOrder = start;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt; end; idx++) &#123;<br>            <span class="hljs-keyword">if</span> (inorder[idx] == root.val) &#123;<br>                rootIdxInOrder = idx;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//5. 中序序列中根节点左部分节点构成左子树</span><br>        TreeNode leftNode = buildTree(preorder, rootIdx + <span class="hljs-number">1</span>, inorder, start, rootIdxInOrder);<br><br>        <span class="hljs-comment">//6. 中序序列中根节点右部分节点构成右子树</span><br>        TreeNode rightNode = buildTree(preorder, rootIdx + <span class="hljs-number">1</span> + rootIdxInOrder - start, inorder, rootIdxInOrder + <span class="hljs-number">1</span>, end);<br><br>        <span class="hljs-comment">//7. 连接左右子树</span><br>        root.left = leftNode;<br>        root.right = rightNode;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>前序、中序</tag>
       </tags>
   </entry>
   <entry>
@@ -1718,6 +1718,29 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-875 爱吃香蕉的珂珂</title>
+    <url>/2021/08/27/leetcode-875/</url>
+    <content><![CDATA[<p>题目描述：珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。</p>
+<p>珂珂可以决定她吃香蕉的速度 K （单位：根&#x2F;小时）。每个小时，她将会选择一堆香蕉，从中吃掉 K 根。如果这堆香蕉少于 K 根，她将吃掉这堆的所有香蕉，然后这一小时内不会再吃更多的香蕉。  </p>
+<p>珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。</p>
+<p>返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minEatingSpeed</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] piles, <span class="hljs-keyword">int</span> h)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> len = piles.length;<br>        <span class="hljs-keyword">int</span> maxSpeed = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">if</span> (piles[i] &gt; maxSpeed) &#123;<br>                maxSpeed = piles[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> right = maxSpeed + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> hour = calculateHour(piles, mid);<br>            <span class="hljs-keyword">if</span> (hour == h) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hour &lt; h) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hour &gt; h) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateHour</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] piles, <span class="hljs-keyword">int</span> speed)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> hours = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; piles.length; i++) &#123;<br>            hours += (piles[i] / speed + (piles[i] % speed != <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>));<br>        &#125;<br>        <span class="hljs-keyword">return</span> hours;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-870 优势洗牌</title>
     <url>/2021/08/26/leetcode-870/</url>
     <content><![CDATA[<p>题目描述：给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
@@ -1739,29 +1762,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>优势洗牌</tag>
         <tag>田忌赛马</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-875 爱吃香蕉的珂珂</title>
-    <url>/2021/08/27/leetcode-875/</url>
-    <content><![CDATA[<p>题目描述：珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。</p>
-<p>珂珂可以决定她吃香蕉的速度 K （单位：根&#x2F;小时）。每个小时，她将会选择一堆香蕉，从中吃掉 K 根。如果这堆香蕉少于 K 根，她将吃掉这堆的所有香蕉，然后这一小时内不会再吃更多的香蕉。  </p>
-<p>珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。</p>
-<p>返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minEatingSpeed</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] piles, <span class="hljs-keyword">int</span> h)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> len = piles.length;<br>        <span class="hljs-keyword">int</span> maxSpeed = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            <span class="hljs-keyword">if</span> (piles[i] &gt; maxSpeed) &#123;<br>                maxSpeed = piles[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> right = maxSpeed + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> hour = calculateHour(piles, mid);<br>            <span class="hljs-keyword">if</span> (hour == h) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hour &lt; h) &#123;<br>                right = mid;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hour &gt; h) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateHour</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] piles, <span class="hljs-keyword">int</span> speed)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> hours = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; piles.length; i++) &#123;<br>            hours += (piles[i] / speed + (piles[i] % speed != <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>));<br>        &#125;<br>        <span class="hljs-keyword">return</span> hours;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
       </tags>
   </entry>
   <entry>
