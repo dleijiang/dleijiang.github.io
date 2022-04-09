@@ -17,19 +17,19 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.dleis.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"CZWDHDIUGM","apiKey":"0ebcb93e4a9c46337b17888365cd3afa","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。 例如， [2,3,4] 的中位数是 3 [2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5 设计一个支持以下两种操作的数据结构： void addNum(int num) - 从数据流中添加一个整数到数据结构中。double findMedian() - 返回目前所有元素的中位数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode-295 数据流的中位数">
-<meta property="og:url" content="http://example.com/2021/08/18/leetcode-295/index.html">
-<meta property="og:site_name" content="如沐春风">
+<meta property="og:url" content="https://www.dleis.com/2021/08/18/leetcode-295/index.html">
+<meta property="og:site_name" content="是熊是猫溜溜">
 <meta property="og:description" content="题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。 例如， [2,3,4] 的中位数是 3 [2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5 设计一个支持以下两种操作的数据结构： void addNum(int num) - 从数据流中添加一个整数到数据结构中。double findMedian() - 返回目前所有元素的中位数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-18T15:42:40.000Z">
 <meta property="article:modified_time" content="2021-08-17T15:13:53.217Z">
-<meta property="article:author" content="jiang lei">
+<meta property="article:author" content="lei">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="oj">
@@ -37,7 +37,7 @@
 <meta property="article:tag" content="中位数">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/08/18/leetcode-295/">
+<link rel="canonical" href="https://www.dleis.com/2021/08/18/leetcode-295/">
 
 
 <script id="page-configurations">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>leetcode-295 数据流的中位数 | 如沐春风</title>
+  <title>leetcode-295 数据流的中位数 | 是熊是猫溜溜</title>
   
 
 
@@ -101,7 +101,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">如沐春风</h1>
+      <h1 class="site-title">是熊是猫溜溜</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">子非鱼，焉知鱼之乐</p>
@@ -159,21 +159,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -195,16 +192,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/18/leetcode-295/">
+    <link itemprop="mainEntityOfPage" href="https://www.dleis.com/2021/08/18/leetcode-295/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/title_luoxiaohei.jpeg">
-      <meta itemprop="name" content="jiang lei">
-      <meta itemprop="description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
+      <meta itemprop="name" content="lei">
+      <meta itemprop="description" content="去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="如沐春风">
+      <meta itemprop="name" content="是熊是猫溜溜">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -250,7 +247,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>927</span>
+              <span>937</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -272,12 +269,12 @@
         <p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
 <p>例如，</p>
 <p>[2,3,4] 的中位数是 3</p>
-<p>[2,3] 的中位数是 (2 + 3) / 2 = 2.5</p>
+<p>[2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5</p>
 <p>设计一个支持以下两种操作的数据结构：</p>
 <p>void addNum(int num) - 从数据流中添加一个整数到数据结构中。<br>double findMedian() - 返回目前所有元素的中位数。</p>
 <a id="more"></a>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MedianFinder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> PriorityQueue&lt;Integer&gt; small;</span><br><span class="line">    <span class="keyword">private</span> PriorityQueue&lt;Integer&gt; large;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MedianFinder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.large = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        <span class="keyword">this</span>.small = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNum</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.small.size() &gt;= <span class="keyword">this</span>.large.size()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.small.add(num);</span><br><span class="line">            <span class="keyword">this</span>.large.add(<span class="keyword">this</span>.small.poll());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.large.add(num);</span><br><span class="line">            <span class="keyword">this</span>.small.add(<span class="keyword">this</span>.large.poll());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedian</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.small.size() &gt; <span class="keyword">this</span>.large.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.small.peek();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.small.size() &lt; <span class="keyword">this</span>.large.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.large.peek();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">this</span>.large.peek() + <span class="keyword">this</span>.small.peek()) / <span class="number">2.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MedianFinder</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; small;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; large;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MedianFinder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.large = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;();<br>        <span class="hljs-keyword">this</span>.small = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt;= <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">this</span>.small.add(num);<br>            <span class="hljs-keyword">this</span>.large.add(<span class="hljs-keyword">this</span>.small.poll());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">this</span>.large.add(num);<br>            <span class="hljs-keyword">this</span>.small.add(<span class="hljs-keyword">this</span>.large.poll());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedian</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.small.peek();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &lt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.large.peek();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.large.peek() + <span class="hljs-keyword">this</span>.small.peek()) / <span class="hljs-number">2.0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
     </div>
@@ -375,10 +372,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="jiang lei"
+    <img class="site-author-image" itemprop="image" alt="lei"
       src="/images/title_luoxiaohei.jpeg">
-  <p class="site-author-name" itemprop="name">jiang lei</p>
-  <div class="site-description" itemprop="description">碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀</div>
+  <p class="site-author-name" itemprop="name">lei</p>
+  <div class="site-description" itemprop="description">去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -446,17 +443,17 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2021 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">jiang lei</span>
+  <span class="author" itemprop="copyrightHolder">lei</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -520,7 +517,6 @@
   </div>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -536,8 +532,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
 
 
   
@@ -546,7 +540,10 @@
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 

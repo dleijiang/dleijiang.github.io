@@ -17,24 +17,24 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.dleis.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"CZWDHDIUGM","apiKey":"0ebcb93e4a9c46337b17888365cd3afa","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="hexo博客搭建好之后，如何调整样式对于没有前端基础的人来说是一件很困难的事情，下面分享我样式调整过程中的一些经验，由于我使用的是Next主题，所以如果是其它的主题的仅做参考，有可能细节之处不太一样。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo样式个性化配置">
-<meta property="og:url" content="http://example.com/2021/03/31/hexo-preference/index.html">
-<meta property="og:site_name" content="如沐春风">
+<meta property="og:url" content="https://www.dleis.com/2021/03/31/hexo-preference/index.html">
+<meta property="og:site_name" content="是熊是猫溜溜">
 <meta property="og:description" content="hexo博客搭建好之后，如何调整样式对于没有前端基础的人来说是一件很困难的事情，下面分享我样式调整过程中的一些经验，由于我使用的是Next主题，所以如果是其它的主题的仅做参考，有可能细节之处不太一样。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-31T15:33:21.000Z">
 <meta property="article:modified_time" content="2021-03-31T16:11:41.100Z">
-<meta property="article:author" content="jiang lei">
+<meta property="article:author" content="lei">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Next">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/03/31/hexo-preference/">
+<link rel="canonical" href="https://www.dleis.com/2021/03/31/hexo-preference/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>hexo样式个性化配置 | 如沐春风</title>
+  <title>hexo样式个性化配置 | 是熊是猫溜溜</title>
   
 
 
@@ -98,7 +98,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">如沐春风</h1>
+      <h1 class="site-title">是熊是猫溜溜</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">子非鱼，焉知鱼之乐</p>
@@ -156,21 +156,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -192,16 +189,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/31/hexo-preference/">
+    <link itemprop="mainEntityOfPage" href="https://www.dleis.com/2021/03/31/hexo-preference/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/title_luoxiaohei.jpeg">
-      <meta itemprop="name" content="jiang lei">
-      <meta itemprop="description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
+      <meta itemprop="name" content="lei">
+      <meta itemprop="description" content="去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="如沐春风">
+      <meta itemprop="name" content="是熊是猫溜溜">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -271,27 +268,27 @@
 
 
 
-<h2 id="变量说明"><a href="#变量说明" class="headerlink" title="变量说明"></a>变量说明</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># blog home dir</span></span><br><span class="line">BLOG_HOME=/Users/lei/workspace/MyBlog</span><br></pre></td></tr></table></figure>
+<h2 id="变量说明"><a href="#变量说明" class="headerlink" title="变量说明"></a>变量说明</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># blog home dir</span><br>BLOG_HOME=/Users/lei/workspace/MyBlog<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="解锁样式定制配置"><a href="#解锁样式定制配置" class="headerlink" title="解锁样式定制配置"></a>解锁样式定制配置</h2><p>（1）打开next主题配置文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim <span class="variable">$&#123;BLOG_HOME&#125;</span>/themes/next/_config.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vim <span class="hljs-variable">$&#123;BLOG_HOME&#125;</span>/themes/next/_config.yml<br></code></pre></td></tr></table></figure>
 
 
 
 <p>（2）搜索<code>custom_file_path</code>可以看到如下配置，把反注释掉<code>style: source/_data/styles.styl</code>配置，记住去掉<code>#</code>号即可。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="comment">#variable: source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">custom_file_path:</span><br>  <span class="hljs-comment">#head: source/_data/head.swig</span><br>  <span class="hljs-comment">#header: source/_data/header.swig</span><br>  <span class="hljs-comment">#sidebar: source/_data/sidebar.swig</span><br>  <span class="hljs-comment">#postMeta: source/_data/post-meta.swig</span><br>  <span class="hljs-comment">#postBodyEnd: source/_data/post-body-end.swig</span><br>  <span class="hljs-comment">#footer: source/_data/footer.swig</span><br>  <span class="hljs-comment">#bodyEnd: source/_data/body-end.swig</span><br>  <span class="hljs-comment">#variable: source/_data/variables.styl</span><br>  <span class="hljs-comment">#mixin: source/_data/mixins.styl</span><br>  <span class="hljs-attr">style:</span> <span class="hljs-string">source/_data/styles.styl</span><br></code></pre></td></tr></table></figure>
 
 
 
 <p>（3）注意上面的<code>source/_data</code>目录指的是博客<code>home</code>目录下的<code>source/_data</code>目录，首先创建<code>_data</code>目录，然后创建<code>styles.style</code>文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create _data directory</span></span><br><span class="line">mkdir -p <span class="variable">$&#123;BLOG_HOME&#125;</span>/<span class="built_in">source</span>/_data</span><br><span class="line"></span><br><span class="line"><span class="comment"># create _data file</span></span><br><span class="line">touch <span class="variable">$&#123;BLOG_HOME&#125;</span>/<span class="built_in">source</span>/_data/styles.styl</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># create _data directory</span><br>mkdir -p <span class="hljs-variable">$&#123;BLOG_HOME&#125;</span>/<span class="hljs-built_in">source</span>/_data<br><br><span class="hljs-comment"># create _data file</span><br>touch <span class="hljs-variable">$&#123;BLOG_HOME&#125;</span>/<span class="hljs-built_in">source</span>/_data/styles.styl<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="自定义样式配置"><a href="#自定义样式配置" class="headerlink" title="自定义样式配置"></a>自定义样式配置</h2><p>下面直接晒出我的配置，自己可以打开<code>Chrome</code>浏览器的检查功能，慢慢对照样式进行调整，其实主要是为了<code>PC</code>端与移动端的适配，保证<code>PC</code>端简洁大方，移动端不至于空白太多。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//背景图片配置</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    background:url(/images/background.jpeg);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed;</span><br><span class="line">    <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//文章部分配置</span></span><br><span class="line"><span class="selector-class">.main-inner</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1px</span> <span class="number">3%</span> <span class="number">1px</span> <span class="number">3%</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">80%</span>;</span><br><span class="line">    +mobile() &#123;</span><br><span class="line">   	<span class="attribute">padding</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">1px</span> <span class="number">1px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//移动端自适应</span></span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">   +mobile() &#123;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">0px</span> <span class="number">1%</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//移动端自适应</span></span><br><span class="line"><span class="selector-class">.use-motion</span> .post-block&#123;</span><br><span class="line">   +mobile() &#123;</span><br><span class="line">      <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">      <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//移动端自适应</span></span><br><span class="line"><span class="selector-class">.comments</span> &#123;</span><br><span class="line">   +mobile() &#123;</span><br><span class="line">      <span class="attribute">margin-top</span>: <span class="number">0px</span>;</span><br><span class="line">      <span class="attribute">overflow</span>: hidden;   </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//移动端自适应</span></span><br><span class="line"><span class="selector-class">.gt-container</span> <span class="selector-class">.gt-meta</span> &#123;</span><br><span class="line">   +mobile() &#123;</span><br><span class="line">      <span class="attribute">margin</span>: <span class="number">1.25em</span> <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//内容最上面留白配置</span></span><br><span class="line">.<span class="attribute">content</span>&#123;</span><br><span class="line">   <span class="attribute">padding-top</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//超链接配置</span></span><br><span class="line"><span class="selector-class">.post-body</span> <span class="selector-tag">p</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">   <span class="attribute">color</span>: <span class="number">#0645AD</span>;</span><br><span class="line">   <span class="attribute">border-bottom</span>: none;</span><br><span class="line">   <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#0645AD</span>;</span><br><span class="line">   &amp;:hover &#123;</span><br><span class="line">      <span class="attribute">color</span>: <span class="number">#0B0080</span>;</span><br><span class="line">      <span class="attribute">border-bottom</span>: none;</span><br><span class="line">      <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#0B0080</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//graphviz图片自适应</span></span><br><span class="line"><span class="selector-class">.post-body</span> svg &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//多级目录自动展开</span></span><br><span class="line"><span class="selector-class">.post-toc</span> <span class="selector-class">.nav</span> <span class="selector-class">.nav-child</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">//背景图片配置</span><br><span class="hljs-selector-tag">body</span> &#123;<br>    background:url(/images/background.jpeg);<br>    <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>    <span class="hljs-attribute">background-attachment</span>:fixed;<br>    <span class="hljs-attribute">background-position</span>:<span class="hljs-number">50%</span> <span class="hljs-number">50%</span>;<br>&#125;<br><br><span class="hljs-comment">//文章部分配置</span><br><span class="hljs-selector-class">.main-inner</span> &#123;<br>    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">20px</span>;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">3%</span> <span class="hljs-number">1px</span> <span class="hljs-number">3%</span>;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;<br>    <span class="hljs-attribute">min-height</span>: <span class="hljs-number">80%</span>;<br>    +mobile() &#123;<br>   	<span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">1px</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//移动端自适应</span><br><span class="hljs-selector-class">.content-wrap</span> &#123;<br>   +mobile() &#123;<br>      <span class="hljs-attribute">padding</span>: <span class="hljs-number">0px</span> <span class="hljs-number">1%</span>;<br>   &#125;<br>&#125;<br><br><span class="hljs-comment">//移动端自适应</span><br><span class="hljs-selector-class">.use-motion</span> .post-block&#123;<br>   +mobile() &#123;<br>      <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;<br>      <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;<br>      <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;<br>   &#125;<br>&#125;<br><br><span class="hljs-comment">//移动端自适应</span><br><span class="hljs-selector-class">.comments</span> &#123;<br>   +mobile() &#123;<br>      <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0px</span>;<br>      <span class="hljs-attribute">overflow</span>: hidden;   <br>   &#125;<br>&#125;<br><br><span class="hljs-comment">//移动端自适应</span><br><span class="hljs-selector-class">.gt-container</span> <span class="hljs-selector-class">.gt-meta</span> &#123;<br>   +mobile() &#123;<br>      <span class="hljs-attribute">margin</span>: <span class="hljs-number">1.25em</span> <span class="hljs-number">0</span>;<br>   &#125;<br>&#125;<br><br><span class="hljs-comment">//内容最上面留白配置</span><br>.<span class="hljs-attribute">content</span>&#123;<br>   <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">0px</span>;<br>&#125;<br><br><span class="hljs-comment">//超链接配置</span><br><span class="hljs-selector-class">.post-body</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">a</span> &#123;<br>   <span class="hljs-attribute">color</span>: <span class="hljs-number">#0645AD</span>;<br>   <span class="hljs-attribute">border-bottom</span>: none;<br>   <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#0645AD</span>;<br>   <span class="hljs-selector-pseudo">&amp;:hover</span> &#123;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-number">#0B0080</span>;<br>      <span class="hljs-attribute">border-bottom</span>: none;<br>      <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#0B0080</span>;<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">//graphviz图片自适应</span><br><span class="hljs-selector-class">.post-body</span> svg &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><br><span class="hljs-comment">//多级目录自动展开</span><br><span class="hljs-selector-class">.post-toc</span> <span class="hljs-selector-class">.nav</span> <span class="hljs-selector-class">.nav-child</span> &#123;<br>    <span class="hljs-attribute">display</span>: block;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
     </div>
@@ -386,10 +383,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="jiang lei"
+    <img class="site-author-image" itemprop="image" alt="lei"
       src="/images/title_luoxiaohei.jpeg">
-  <p class="site-author-name" itemprop="name">jiang lei</p>
-  <div class="site-description" itemprop="description">碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀</div>
+  <p class="site-author-name" itemprop="name">lei</p>
+  <div class="site-description" itemprop="description">去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -457,17 +454,17 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2021 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">jiang lei</span>
+  <span class="author" itemprop="copyrightHolder">lei</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -531,7 +528,6 @@
   </div>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -547,8 +543,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
 
 
   
@@ -557,7 +551,10 @@
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 

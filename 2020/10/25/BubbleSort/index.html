@@ -17,26 +17,26 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.dleis.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"CZWDHDIUGM","apiKey":"0ebcb93e4a9c46337b17888365cd3afa","indexName":"my-hexo-blog","hits":{"per_page":8},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="冒泡排序">
-<meta property="og:url" content="http://example.com/2020/10/25/BubbleSort/index.html">
-<meta property="og:site_name" content="如沐春风">
+<meta property="og:url" content="https://www.dleis.com/2020/10/25/BubbleSort/index.html">
+<meta property="og:site_name" content="是熊是猫溜溜">
 <meta property="og:description" content="冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-25T06:37:54.000Z">
 <meta property="article:modified_time" content="2021-03-21T10:30:32.201Z">
-<meta property="article:author" content="jiang lei">
+<meta property="article:author" content="lei">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="冒泡排序">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="稳定排序">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/10/25/BubbleSort/">
+<link rel="canonical" href="https://www.dleis.com/2020/10/25/BubbleSort/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>冒泡排序 | 如沐春风</title>
+  <title>冒泡排序 | 是熊是猫溜溜</title>
   
 
 
@@ -100,7 +100,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">如沐春风</h1>
+      <h1 class="site-title">是熊是猫溜溜</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">子非鱼，焉知鱼之乐</p>
@@ -158,21 +158,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -194,16 +191,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/25/BubbleSort/">
+    <link itemprop="mainEntityOfPage" href="https://www.dleis.com/2020/10/25/BubbleSort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/title_luoxiaohei.jpeg">
-      <meta itemprop="name" content="jiang lei">
-      <meta itemprop="description" content="碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀">
+      <meta itemprop="name" content="lei">
+      <meta itemprop="description" content="去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="如沐春风">
+      <meta itemprop="name" content="是熊是猫溜溜">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -249,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -276,33 +273,33 @@
 <p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
 </blockquote>
 <p>原数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">9</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
 
 <p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
 
 <p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [7] [9] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
 
 <p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [7] [1] [3] [5] [9]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
 
 <p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [1] [3] [5] [8] [9]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
 
 <p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
 <p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
 </blockquote>
-<p>$$<br>(n-1) + (n-2) + (n-3) + … + 1 = ((n-1) + 1) * (n-1) / 2 = \frac{n * (n-1)}{2}<br>$$</p>
+<p>$$<br>(n-1) + (n-2) + (n-3) + … + 1 &#x3D; ((n-1) + 1) * (n-1) &#x2F; 2 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
 <p>less函数与exch函数参见文章排序算法序言。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubble</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N-i-<span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(less(c[j+<span class="number">1</span>], c[j]))&#123;</span><br><span class="line">                exch(c, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubble</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N-<span class="hljs-number">1</span>; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; N-i-<span class="hljs-number">1</span>; j++)&#123;<br>            <span class="hljs-keyword">if</span>(less(c[j+<span class="hljs-number">1</span>], c[j]))&#123;<br>                exch(c, j, j+<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
     </div>
 
@@ -398,10 +395,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="jiang lei"
+    <img class="site-author-image" itemprop="image" alt="lei"
       src="/images/title_luoxiaohei.jpeg">
-  <p class="site-author-name" itemprop="name">jiang lei</p>
-  <div class="site-description" itemprop="description">碧玉妆成一树高，万条垂下绿丝绦，不知细叶谁裁出，二月春风似剪刀</div>
+  <p class="site-author-name" itemprop="name">lei</p>
+  <div class="site-description" itemprop="description">去年今日柴门中，人面桃花相映红，人面不知何处去，桃花依旧笑春风</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -469,17 +466,17 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2021 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">jiang lei</span>
+  <span class="author" itemprop="copyrightHolder">lei</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -543,7 +540,6 @@
   </div>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -559,8 +555,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
 
 
   
@@ -569,7 +563,10 @@
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 
