@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #2804ff;
+  background: #f2ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2147,6 +2147,15 @@ ul.breadcrumb li + li:last-child {
 .gt-container .gt-popup .gt-action.is--active::before {
   top: 0.7em;
 }
+.gt-container .gt-ico-text {
+  color: #fff;
+}
+.gt-container .gt-svg svg {
+  fill: #fff;
+}
+.gt-container .gt-comments-null {
+  color: #fff;
+}
 .search-pop-overlay {
   background: rgba(0,0,0,0);
   height: 100%;
@@ -2629,4 +2638,9 @@ article: {
 .gt-container .gt-header-controls .gt-btn {
   background: transparent;
   color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+.gt-container .gt-meta {
+  border-bottom: 1px solid #fff;
 }
