@@ -63,7 +63,7 @@
 <p><code>China UnionPay</code>的安全码叫做CVN2（Card Validation Number 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处之后。</p>
 <p><code>Japan Credit Bureau</code>的安全码叫做CAV2（ Card Authentication Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
 </blockquote>
-<p><img src="/./CVN2%E6%98%AF%E4%BB%80%E4%B9%88/visa.png" alt="visa"></p>
+<p><img src="/.com//visa.png" alt="visa"></p>
 ]]></content>
       <categories>
         <category>支付</category>
@@ -423,16 +423,16 @@
   <entry>
     <title>hexo简单使用</title>
     <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><font color=green><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color=green><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
+    <content><![CDATA[<p><font color="green"><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color="green"><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
 <a id="more"></a>
 
 
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color=green><strong>Hexo</strong></font>使用命令介绍。</p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color="green"><strong>Hexo</strong></font>使用命令介绍。</p>
 <h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo new <span class="hljs-string">&#x27;title&#x27;</span></span><br></code></pre></td></tr></table></figure>
-<p>创建完博客之后，会自动在<font color=blue> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color=green><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
+<p>创建完博客之后，会自动在<font color="blue"> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color="green"><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
 <h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo s</span><br></code></pre></td></tr></table></figure>
 
-<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color=green><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
+<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color="green"><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
 <h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
@@ -973,7 +973,7 @@ subgraph cluster_name &#123;
 
 label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">输入：head</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<span class="hljs-string">,</span> <span class="hljs-string">k</span> <span class="hljs-string">=</span> <span class="hljs-number">2</span><br><span class="hljs-string">输出：[2,1,4,3,5]</span><br></code></pre></td></tr></table></figure>
 
 
@@ -1058,31 +1058,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-295 数据流的中位数</title>
-    <url>/2021/08/18/leetcode-295/</url>
-    <content><![CDATA[<p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
-<p>例如，</p>
-<p>[2,3,4] 的中位数是 3</p>
-<p>[2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5</p>
-<p>设计一个支持以下两种操作的数据结构：</p>
-<p>void addNum(int num) - 从数据流中添加一个整数到数据结构中。<br>double findMedian() - 返回目前所有元素的中位数。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MedianFinder</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; small;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; large;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MedianFinder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.large = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;();<br>        <span class="hljs-keyword">this</span>.small = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt;= <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">this</span>.small.add(num);<br>            <span class="hljs-keyword">this</span>.large.add(<span class="hljs-keyword">this</span>.small.poll());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">this</span>.large.add(num);<br>            <span class="hljs-keyword">this</span>.small.add(<span class="hljs-keyword">this</span>.large.poll());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedian</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.small.peek();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &lt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.large.peek();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.large.peek() + <span class="hljs-keyword">this</span>.small.peek()) / <span class="hljs-number">2.0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度困难</tag>
-        <tag>中位数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-297 二叉树的序列化与反序列化</title>
     <url>/2021/08/15/leetcode-297/</url>
     <content><![CDATA[<p>题目描述：序列化是将一个数据结构或者对象转换为连续的比特位的操作，进而可以将转换后的数据存储在一个文件或者内存中，同时也可以通过网络传输到另一个计算机环境，采取相反方式重构得到原数据。</p>
@@ -1117,6 +1092,31 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>序列化与反序列化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-295 数据流的中位数</title>
+    <url>/2021/08/18/leetcode-295/</url>
+    <content><![CDATA[<p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
+<p>例如，</p>
+<p>[2,3,4] 的中位数是 3</p>
+<p>[2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5</p>
+<p>设计一个支持以下两种操作的数据结构：</p>
+<p>void addNum(int num) - 从数据流中添加一个整数到数据结构中。<br>double findMedian() - 返回目前所有元素的中位数。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MedianFinder</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; small;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; large;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MedianFinder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.large = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;();<br>        <span class="hljs-keyword">this</span>.small = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt;= <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">this</span>.small.add(num);<br>            <span class="hljs-keyword">this</span>.large.add(<span class="hljs-keyword">this</span>.small.poll());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">this</span>.large.add(num);<br>            <span class="hljs-keyword">this</span>.small.add(<span class="hljs-keyword">this</span>.large.poll());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedian</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.small.peek();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &lt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.large.peek();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.large.peek() + <span class="hljs-keyword">this</span>.small.peek()) / <span class="hljs-number">2.0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度困难</tag>
+        <tag>中位数</tag>
       </tags>
   </entry>
   <entry>
@@ -1169,7 +1169,7 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
     <content><![CDATA[<p>题目描述：给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。</p>
 <p>实现扁平迭代器类 NestedIterator ：</p>
 <ol>
-<li>NestedIterator(List<NestedInteger> nestedList) 用嵌套列表 nestedList 初始化迭代器。</li>
+<li>NestedIterator(List<NestedInteger> nestedList) 用嵌套列表 nestedList 初始化迭代器。</NestedInteger></li>
 </ol>
 <ul>
 <li><p>int next() 返回嵌套列表的下一个整数。</p>
@@ -1823,7 +1823,7 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
 </ul>
 <a id="more"></a>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>&#96;&#96;&#96;java<br>class FreqStack {<br>    &#x2F;&#x2F; 记录 FreqStack 中元素的最大频率<br>    private int maxFreq &#x3D; 0;<br>    &#x2F;&#x2F; 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表<br>    private HashMap&lt;Integer, Integer&gt; valToFreq &#x3D; new HashMap&lt;&gt;();<br>    &#x2F;&#x2F; 记录频率 freq 对应的 val 列表，后文就称为 FV 表<br>    private HashMap&lt;Integer, Stack<Integer>&gt; freqToVals &#x3D; new HashMap&lt;&gt;();</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>&#96;&#96;&#96;java<br>class FreqStack {<br>    &#x2F;&#x2F; 记录 FreqStack 中元素的最大频率<br>    private int maxFreq &#x3D; 0;<br>    &#x2F;&#x2F; 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表<br>    private HashMap&lt;Integer, Integer&gt; valToFreq &#x3D; new HashMap&lt;&gt;();<br>    &#x2F;&#x2F; 记录频率 freq 对应的 val 列表，后文就称为 FV 表<br>    private HashMap&lt;Integer, Stack<Integer>&gt; freqToVals &#x3D; new HashMap&lt;&gt;();</Integer></p>
 <pre><code>public FreqStack() &#123;
 &#125;
 
@@ -1914,7 +1914,7 @@ subgraph cluster_name &#123;
 
 label=&lt;&lt;B&gt;图 1.1 算法示意图&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">输入：head</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<span class="hljs-string">,</span> <span class="hljs-string">left</span> <span class="hljs-string">=</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-string">right</span> <span class="hljs-string">=</span> <span class="hljs-number">4</span><br><span class="hljs-string">输出：[1,4,3,2,5]</span><br></code></pre></td></tr></table></figure>
 
 
@@ -1952,7 +1952,7 @@ subgraph cluster_name &#123;
 &#125;
 label=&lt;&lt;B&gt;图 2.1 遍历拆分链表&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <h3 id="分别处理三个子表"><a href="#分别处理三个子表" class="headerlink" title="分别处理三个子表"></a>分别处理三个子表</h3><blockquote>
 <ul>
 <li>记录左边链表的head与end，记录右边链表的head。</li>
@@ -1988,7 +1988,7 @@ subgraph cluster_name &#123;
 &#125;
 label=&lt;&lt;B&gt;图 2.2 最终结果&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseBetween</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 如果链表为空或者是单节点链表直接返回即可</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 初始化节点栈</span><br>        Stack&lt;ListNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;ListNode&gt;();<br><br>        <span class="hljs-comment">//3. 初始化左链表的end节点</span><br>        ListNode leftLinkedListEnd = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//4. 初始化右链表的start节点</span><br>        ListNode rightLinkedListStart = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 定义链表索引，并初始化为1</span><br>        <span class="hljs-keyword">int</span> idx = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-comment">//6. 循环遍历链表</span><br>        <span class="hljs-keyword">for</span> (ListNode it = head; it != <span class="hljs-keyword">null</span>; it = it.next,idx++)&#123;<br>            <span class="hljs-comment">//6.1 如果是处于[left,right]之间的节点，则存入栈中</span><br>            <span class="hljs-keyword">if</span> ( idx &gt;= left &amp;&amp; idx &lt;= right)&#123;<br>                stack.push(it);<br>            &#125;<br>            <span class="hljs-comment">//6.2 如果是处于[1,left)之间的节点，则记录其end节点</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (idx &lt; left)&#123;<br>                leftLinkedListEnd = it;<br>            &#125;<br>            <span class="hljs-comment">//6.3 如果是处于(right,n]之间的节点，则记录其start节点，并跳出循环结束遍历</span><br>            <span class="hljs-keyword">else</span> &#123;<br>                rightLinkedListStart = it;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//7. 依次弹出栈中元素反转中间链表</span><br>        ListNode midLinkedListHead = <span class="hljs-keyword">null</span>;<br>        ListNode midLinkedListEnd = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span> (!stack.empty())&#123;<br>            <span class="hljs-keyword">if</span> (midLinkedListHead == <span class="hljs-keyword">null</span>) &#123;<br>                midLinkedListHead = stack.pop();<br>                midLinkedListEnd = midLinkedListHead;<br>                midLinkedListEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                midLinkedListEnd.next = stack.pop();<br>                midLinkedListEnd = midLinkedListEnd.next;<br>                midLinkedListEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//8. 合并左链表</span><br>        <span class="hljs-keyword">if</span> (leftLinkedListEnd != <span class="hljs-keyword">null</span>)&#123;<br>            leftLinkedListEnd.next = midLinkedListHead;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            head = midLinkedListHead;<br>        &#125;<br><br>        <span class="hljs-comment">//9. 合并右链表</span><br>        <span class="hljs-keyword">if</span> (rightLinkedListStart != <span class="hljs-keyword">null</span>)&#123;<br>            midLinkedListEnd.next = rightLinkedListStart;<br>        &#125;<br><br>        <span class="hljs-comment">//10. 返回最终链表head节点</span><br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">//1. 临时节点</span><br>    <span class="hljs-keyword">private</span> ListNode node;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseBetween</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//2. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//3. 递归处理</span><br>        <span class="hljs-keyword">return</span> reverse(head, left, right);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * reverse 前n个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> head 表头</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> n    前n个元素</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 新表节点</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-comment">//1. n==1表示一个元素直接返回，并记录后区节点</span><br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">this</span>.node = head.next;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 递归得到head.next后面的反转</span><br>        ListNode end = reverse(head.next, n - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-comment">//3. 反转 head 和 end</span><br>        head.next.next = head;<br><br>        <span class="hljs-comment">//4. 新的尾节点指向保存的后驱节点</span><br>        head.next = <span class="hljs-keyword">this</span>.node;<br>        <span class="hljs-keyword">return</span> end;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * reverse 中间n个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> head  表头</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> left  左边界</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> right 有边界</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 新表节点</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 如果left == 1 递归反转前n个元素</span><br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> reverse(head, right);<br>        &#125;<br><br>        <span class="hljs-comment">//2. 递归找到待反转起始位置</span><br>        head.next = reverse(head.next, left - <span class="hljs-number">1</span>, right - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -2137,7 +2137,7 @@ subgraph cluster_name &#123;
 &#125;
 label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 设置反转后新链表表头节点</span><br>        ListNode newLinkedListHead = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//3. 设置反转前旧链表表头节点</span><br>        ListNode oldLinkedListHead = head;<br><br>        <span class="hljs-comment">//4. 设置临时节点</span><br>        ListNode tmpNode = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 遍历旧链表</span><br>        <span class="hljs-keyword">while</span> (oldLinkedListHead != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//5.1 取出当前节点到临时节点</span><br>            tmpNode = oldLinkedListHead;<br><br>            <span class="hljs-comment">//5.2 重新设置旧链表表头</span><br>            oldLinkedListHead = oldLinkedListHead.next;<br><br>            <span class="hljs-comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span><br>            <span class="hljs-keyword">if</span> (newLinkedListHead == <span class="hljs-keyword">null</span>)&#123;<br>                newLinkedListHead = tmpNode;<br>                newLinkedListHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                tmpNode.next = newLinkedListHead;<br>                newLinkedListHead = tmpNode;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//6. 返回反转后新链表</span><br>        <span class="hljs-keyword">return</span> newLinkedListHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -2632,7 +2632,7 @@ subgraph cluster_array &#123;
 
 label = &lt;&lt;B&gt;图 1.1 顺序表&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表是一种在逻辑空间上连续，但是物理空间上离散的线性表。链表前后节点使用指针相连，因此与线性表相比，链表需要更多的存储空间，但是却能更有效的利用空间，因为顺序表对存储要求必须是物理上一整块的空间。</p>
 <div><div class="graphviz">digraph list_linked {
     
@@ -2654,7 +2654,7 @@ subgraph cluster_name &#123;
 
 label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
 </code></pre>
-<p>}</div></div></p>
+<p>}</p></div></div><p></p>
 <h2 id="线性表接口"><a href="#线性表接口" class="headerlink" title="线性表接口"></a>线性表接口</h2><p>线性表的基本接口，主要定义常见的几种方法，弹出元素、添加元素、线性表大小、获取线性表第一个元素、获取线性表最后一个元素以及对线性表进行判空。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lei.payment.java.base.algorithm.list.queue;<br><br><span class="hljs-keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 线性表</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">List</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 弹出元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 弹出元素</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function">T <span class="hljs-title">pop</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 添加元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> t 添加元素</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(T t)</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回线性表大小</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 线性表大小</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回第一个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 第一个元素</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function">T <span class="hljs-title">fist</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回最后一个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 最后一个元素</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function">T <span class="hljs-title">last</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否是空线性表</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 是否是空线性表</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> AlgorithmException</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -2663,7 +2663,7 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
 <h2 id="抽象实现类"><a href="#抽象实现类" class="headerlink" title="抽象实现类"></a>抽象实现类</h2><p>统一处理异常</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lei.payment.java.base.algorithm.list;<br><br><span class="hljs-keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;<br><span class="hljs-keyword">import</span> com.lei.payment.java.base.algorithm.exception.ErrorCode4Algorithm;<br><span class="hljs-keyword">import</span> com.lei.payment.java.base.algorithm.list.queue.List;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractList</span>&lt;<span class="hljs-title">T</span>&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title">List</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">pop</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(T t)</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">fist</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">last</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> AlgorithmException </span>&#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+<h1 id><a href="#" class="headerlink" title></a></h1>]]></content>
       <categories>
         <category>数据结构与算法</category>
       </categories>
