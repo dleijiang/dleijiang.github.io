@@ -248,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.3k</span>
+              <span>5.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -267,86 +267,79 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>题目描述：给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。</p>
+        <p>题目描述：给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。</p>
 <a id="more"></a>
-
-
-
 <h2 id="原题介绍"><a href="#原题介绍" class="headerlink" title="原题介绍"></a>原题介绍</h2><h3 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h3><div><div class="graphviz">digraph leetcode_92_1 {
-    
-<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-rankdir=LR
-subgraph cluster_name &#123;
-    
-    subgraph cluster_1 &#123;
-        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled]
-        n1 [label=&quot;2&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        n2 [label=&quot;3&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        n3 [label=&quot;4&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        n4 [label=&quot;5&quot; shape=circle,color=blue,fillcolor=white,style=filled]
-        rank=same;
-        n0 -&gt; n1 -&gt; n2 -&gt; n3 -&gt; n4 
-        style=invis
-    &#125;
+    bgcolor="#f7f7f7"
 
-    subgraph cluster_2 &#123;
-        r0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled]
-        r1 [label=&quot;4&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        r2 [label=&quot;3&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        r3 [label=&quot;2&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled]
-        r4 [label=&quot;5&quot; shape=circle,color=blue,fillcolor=white,style=filled]
+    rankdir=LR
+    subgraph cluster_name {
 
-        rank=same;
-        r0 -&gt; r1 -&gt; r2 -&gt; r3 -&gt; r4 
-        style=invis
-    &#125;    
+        subgraph cluster_1 {
+            n0 [label="1" shape=circle,color=blue,fillcolor=white,style=filled]
+            n1 [label="2" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            n2 [label="3" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            n3 [label="4" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            n4 [label="5" shape=circle,color=blue,fillcolor=white,style=filled]
+            rank=same;
+            n0 -> n1 -> n2 -> n3 -> n4 
+            style=invis
+        }
 
-    n2 -&gt; r2[constraint=false,color=&quot;red&quot;,pad=30]    
+        subgraph cluster_2 {
+            r0 [label="1" shape=circle,color=blue,fillcolor=white,style=filled]
+            r1 [label="4" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            r2 [label="3" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            r3 [label="2" shape=circle,color=blue,fillcolor=lightblue,style=filled]
+            r4 [label="5" shape=circle,color=blue,fillcolor=white,style=filled]
 
-&#125;
+            rank=same;
+            r0 -> r1 -> r2 -> r3 -> r4 
+            style=invis
+        }    
 
-label=&lt;&lt;B&gt;图 1.1 算法示意图&lt;/B&gt;&gt;
-</code></pre>
-<p>}</div></div></p>
+        n2 -> r2[constraint=false,color="red",pad=30]    
+
+    }
+
+    label=<<B>图 1.1 算法示意图</B>>
+}</div></div>
+
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">输入：head</span> <span class="hljs-string">=</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<span class="hljs-string">,</span> <span class="hljs-string">left</span> <span class="hljs-string">=</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-string">right</span> <span class="hljs-string">=</span> <span class="hljs-number">4</span><br><span class="hljs-string">输出：[1,4,3,2,5]</span><br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">输入：head</span> <span class="hljs-string">=</span> [<span class="hljs-number">5</span>]<span class="hljs-string">,</span> <span class="hljs-string">left</span> <span class="hljs-string">=</span> <span class="hljs-number">1</span><span class="hljs-string">,</span> <span class="hljs-string">right</span> <span class="hljs-string">=</span> <span class="hljs-number">1</span><br><span class="hljs-string">输出：[5]</span><br></code></pre></td></tr></table></figure>
-
-
-
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="遍历拆分链表"><a href="#遍历拆分链表" class="headerlink" title="遍历拆分链表"></a>遍历拆分链表</h3><p>如下图所示，通过遍历以 <code>[left，right]</code>作为分界，把链表分为三个字表。</p>
 <div><div class="graphviz">digraph leetcode_92_1 {
-    
-<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-rankdir=LR
-subgraph cluster_name &#123;
-    subgraph cluster_1 &#123;
-        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n2 [label=&quot;left-1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n3 [label=&quot;left&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n4 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n5 [label=&quot;right&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n6 [label=&quot;right+1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n7 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n8 [label=&quot;n&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        rank=same;
-        n0 -&gt; n1 -&gt; n2
-        n2 -&gt; n3[style=dashed,color=red]
-        n3 -&gt; n4 -&gt; n5
-        n5 -&gt; n6[style=dashed,color=red]
-        n6 -&gt; n7 -&gt; n8
-        style=invis
-    &#125;
+    bgcolor="#f7f7f7"
 
-&#125;
-label=&lt;&lt;B&gt;图 2.1 遍历拆分链表&lt;/B&gt;&gt;
-</code></pre>
-<p>}</div></div></p>
+    rankdir=LR
+    subgraph cluster_name {
+        subgraph cluster_1 {
+            n0 [label="1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n1 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n2 [label="left-1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n3 [label="left" shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n4 [label="..." shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n5 [label="right" shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n6 [label="right+1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n7 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n8 [label="n" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            rank=same;
+            n0 -> n1 -> n2
+            n2 -> n3[style=dashed,color=red]
+            n3 -> n4 -> n5
+            n5 -> n6[style=dashed,color=red]
+            n6 -> n7 -> n8
+            style=invis
+        }
+
+    }
+    label=<<B>图 2.1 遍历拆分链表</B>>
+}</div></div>
+
+
+
 <h3 id="分别处理三个子表"><a href="#分别处理三个子表" class="headerlink" title="分别处理三个子表"></a>分别处理三个子表</h3><blockquote>
 <ul>
 <li>记录左边链表的head与end，记录右边链表的head。</li>
@@ -355,43 +348,36 @@ label=&lt;&lt;B&gt;图 2.1 遍历拆分链表&lt;/B&gt;&gt;
 </ul>
 </blockquote>
 <div><div class="graphviz">digraph leetcode_92_1 {
-    
-<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-rankdir=LR
-subgraph cluster_name &#123;
-    subgraph cluster_1 &#123;
-        n0 [label=&quot;1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n2 [label=&quot;left-1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n3 [label=&quot;right&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n4 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n5 [label=&quot;left&quot; shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n6 [label=&quot;right+1&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n7 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n8 [label=&quot;n&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        rank=same;
-        n0 -&gt; n1 -&gt; n2
-        n2 -&gt; n3[style=dashed,color=red]
-        n3 -&gt; n4 -&gt; n5
-        n5 -&gt; n6[style=dashed,color=red]
-        n6 -&gt; n7 -&gt; n8
-        style=invis
-    &#125;
+    bgcolor="#f7f7f7"
 
-&#125;
-label=&lt;&lt;B&gt;图 2.2 最终结果&lt;/B&gt;&gt;
-</code></pre>
-<p>}</div></div></p>
+    rankdir=LR
+    subgraph cluster_name {
+        subgraph cluster_1 {
+            n0 [label="1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n1 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n2 [label="left-1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n3 [label="right" shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n4 [label="..." shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n5 [label="left" shape=circle,color=red,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n6 [label="right+1" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n7 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n8 [label="n" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            rank=same;
+            n0 -> n1 -> n2
+            n2 -> n3[style=dashed,color=red]
+            n3 -> n4 -> n5
+            n5 -> n6[style=dashed,color=red]
+            n6 -> n7 -> n8
+            style=invis
+        }
+
+    }
+    label=<<B>图 2.2 最终结果</B>>
+}</div></div>
+
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseBetween</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 如果链表为空或者是单节点链表直接返回即可</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 初始化节点栈</span><br>        Stack&lt;ListNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;ListNode&gt;();<br><br>        <span class="hljs-comment">//3. 初始化左链表的end节点</span><br>        ListNode leftLinkedListEnd = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//4. 初始化右链表的start节点</span><br>        ListNode rightLinkedListStart = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 定义链表索引，并初始化为1</span><br>        <span class="hljs-keyword">int</span> idx = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-comment">//6. 循环遍历链表</span><br>        <span class="hljs-keyword">for</span> (ListNode it = head; it != <span class="hljs-keyword">null</span>; it = it.next,idx++)&#123;<br>            <span class="hljs-comment">//6.1 如果是处于[left,right]之间的节点，则存入栈中</span><br>            <span class="hljs-keyword">if</span> ( idx &gt;= left &amp;&amp; idx &lt;= right)&#123;<br>                stack.push(it);<br>            &#125;<br>            <span class="hljs-comment">//6.2 如果是处于[1,left)之间的节点，则记录其end节点</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (idx &lt; left)&#123;<br>                leftLinkedListEnd = it;<br>            &#125;<br>            <span class="hljs-comment">//6.3 如果是处于(right,n]之间的节点，则记录其start节点，并跳出循环结束遍历</span><br>            <span class="hljs-keyword">else</span> &#123;<br>                rightLinkedListStart = it;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//7. 依次弹出栈中元素反转中间链表</span><br>        ListNode midLinkedListHead = <span class="hljs-keyword">null</span>;<br>        ListNode midLinkedListEnd = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span> (!stack.empty())&#123;<br>            <span class="hljs-keyword">if</span> (midLinkedListHead == <span class="hljs-keyword">null</span>) &#123;<br>                midLinkedListHead = stack.pop();<br>                midLinkedListEnd = midLinkedListHead;<br>                midLinkedListEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                midLinkedListEnd.next = stack.pop();<br>                midLinkedListEnd = midLinkedListEnd.next;<br>                midLinkedListEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//8. 合并左链表</span><br>        <span class="hljs-keyword">if</span> (leftLinkedListEnd != <span class="hljs-keyword">null</span>)&#123;<br>            leftLinkedListEnd.next = midLinkedListHead;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            head = midLinkedListHead;<br>        &#125;<br><br>        <span class="hljs-comment">//9. 合并右链表</span><br>        <span class="hljs-keyword">if</span> (rightLinkedListStart != <span class="hljs-keyword">null</span>)&#123;<br>            midLinkedListEnd.next = rightLinkedListStart;<br>        &#125;<br><br>        <span class="hljs-comment">//10. 返回最终链表head节点</span><br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">//1. 临时节点</span><br>    <span class="hljs-keyword">private</span> ListNode node;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseBetween</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//2. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//3. 递归处理</span><br>        <span class="hljs-keyword">return</span> reverse(head, left, right);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * reverse 前n个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> head 表头</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> n    前n个元素</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 新表节点</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-comment">//1. n==1表示一个元素直接返回，并记录后区节点</span><br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">this</span>.node = head.next;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 递归得到head.next后面的反转</span><br>        ListNode end = reverse(head.next, n - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-comment">//3. 反转 head 和 end</span><br>        head.next.next = head;<br><br>        <span class="hljs-comment">//4. 新的尾节点指向保存的后驱节点</span><br>        head.next = <span class="hljs-keyword">this</span>.node;<br>        <span class="hljs-keyword">return</span> end;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * reverse 中间n个元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> head  表头</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> left  左边界</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> right 有边界</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 新表节点</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 如果left == 1 递归反转前n个元素</span><br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> reverse(head, right);<br>        &#125;<br><br>        <span class="hljs-comment">//2. 递归找到待反转起始位置</span><br>        head.next = reverse(head.next, left - <span class="hljs-number">1</span>, right - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/" title="原题地址">原题地址</a></p>
 
     </div>
@@ -571,12 +557,12 @@ label=&lt;&lt;B&gt;图 2.2 最终结果&lt;/B&gt;&gt;
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:30</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         
