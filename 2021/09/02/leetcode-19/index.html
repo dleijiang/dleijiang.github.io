@@ -270,9 +270,7 @@
         <p>题目描述：给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
 <p><strong>进阶：</strong>你能尝试使用一趟扫描实现吗？</p>
 <a id="more"></a>
-
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        ListNode fastNode = head;<br>        ListNode slowNode = head;<br>        <span class="hljs-keyword">while</span> (n-- != <span class="hljs-number">0</span>) &#123;<br>            fastNode = fastNode.next;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (fastNode == <span class="hljs-keyword">null</span>) &#123;<br>            slowNode = head.next;<br>            <span class="hljs-keyword">return</span> slowNode;<br>        &#125;<br>        <span class="hljs-keyword">while</span> (fastNode.next != <span class="hljs-keyword">null</span>) &#123;<br>            fastNode = fastNode.next;<br>            slowNode = slowNode.next;<br>        &#125;<br>        slowNode.next = slowNode.next.next;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -451,12 +449,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:31</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         

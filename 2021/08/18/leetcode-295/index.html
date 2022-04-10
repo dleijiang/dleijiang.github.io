@@ -247,7 +247,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>937</span>
+              <span>927</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -269,13 +269,11 @@
         <p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
 <p>例如，</p>
 <p>[2,3,4] 的中位数是 3</p>
-<p>[2,3] 的中位数是 (2 + 3) &#x2F; 2 &#x3D; 2.5</p>
+<p>[2,3] 的中位数是 (2 + 3) / 2 = 2.5</p>
 <p>设计一个支持以下两种操作的数据结构：</p>
 <p>void addNum(int num) - 从数据流中添加一个整数到数据结构中。<br>double findMedian() - 返回目前所有元素的中位数。</p>
 <a id="more"></a>
-
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MedianFinder</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; small;<br>    <span class="hljs-keyword">private</span> PriorityQueue&lt;Integer&gt; large;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MedianFinder</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.large = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;();<br>        <span class="hljs-keyword">this</span>.small = <span class="hljs-keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; b - a);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addNum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt;= <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">this</span>.small.add(num);<br>            <span class="hljs-keyword">this</span>.large.add(<span class="hljs-keyword">this</span>.small.poll());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">this</span>.large.add(num);<br>            <span class="hljs-keyword">this</span>.small.add(<span class="hljs-keyword">this</span>.large.poll());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedian</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &gt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.small.peek();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.small.size() &lt; <span class="hljs-keyword">this</span>.large.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.large.peek();<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.large.peek() + <span class="hljs-keyword">this</span>.small.peek()) / <span class="hljs-number">2.0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -453,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:31</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         

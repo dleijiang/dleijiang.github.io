@@ -266,18 +266,12 @@
       
         <p>有一种观点认为，程序等于数据结构加算法，但是懂得了数据结构与算法并不一定能写出好的程序。本文主要介绍后面文章会用到的一些基本数据结构。</p>
 <a id="more"></a>
-
 <h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>后面统一使用如下异常类，处理抛出异常。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lei.payment.java.base.algorithm.exception;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AlgorithmException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String message;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AlgorithmException</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AlgorithmException</span><span class="hljs-params">(String message)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(message);<br>        <span class="hljs-keyword">this</span>.message = message;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>错误码定义类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lei.payment.java.base.algorithm.exception;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorCode4Algorithm</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">ErrorCode4Algorithm</span><span class="hljs-params">()</span></span>&#123;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 越界异常</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String INDEX_OUT_OF_RANGE = <span class="hljs-string">&quot;INDEX_OUT_OF_RANGE&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 未重写异常</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String NOT_IMPLEMENT_EXCEPTION = <span class="hljs-string">&quot;NOT_IMPLEMENT_EXCEPTION&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h2 id="一维节点定义"><a href="#一维节点定义" class="headerlink" title="一维节点定义"></a>一维节点定义</h2><p>所有一维单链表统一如下节点进行处理。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lei.payment.java.base.algorithm.node;<br><br><span class="hljs-keyword">import</span> lombok.*;<br><span class="hljs-keyword">import</span> lombok.experimental.SuperBuilder;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 基本链表节点</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Getter</span><br><span class="hljs-meta">@Setter</span><br><span class="hljs-meta">@ToString</span><br><span class="hljs-meta">@SuperBuilder</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListNode</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 当前节点值</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> T val;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 指向下一个节点的指针</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> ListNode next;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -453,12 +447,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">97k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:31</span>
+    <span title="站点阅读时长">1:28</span>
 </div>
 
         
