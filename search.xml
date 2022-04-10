@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>冒泡排序</title>
+    <url>/2020/10/25/BubbleSort/</url>
+    <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
+<a id="more"></a>
+
+
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
+</blockquote>
+<p>原数据：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">9</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
+
+<p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
+
+<p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
+
+<p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
+</blockquote>
+<p>$$<br>(n-1) + (n-2) + (n-3) + … + 1 &#x3D; ((n-1) + 1) * (n-1) &#x2F; 2 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>less函数与exch函数参见文章排序算法序言。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubble</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N-<span class="hljs-number">1</span>; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; N-i-<span class="hljs-number">1</span>; j++)&#123;<br>            <span class="hljs-keyword">if</span>(less(c[j+<span class="hljs-number">1</span>], c[j]))&#123;<br>                exch(c, j, j+<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>冒泡排序</tag>
+        <tag>数据结构与算法</tag>
+        <tag>稳定排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CVN2是什么</title>
+    <url>/2022/04/10/CVN2%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p>cvn2全称是Card Verification Numnber 2，也即卡验证码，是银联信用卡安全码的名称，当前国际上不同的信用卡组织的叫法并不相同。</p>
+<a id="more"></a>
+
+<h2 id="一、cvn2是什么"><a href="#一、cvn2是什么" class="headerlink" title="一、cvn2是什么"></a>一、cvn2是什么</h2><blockquote>
+<p><code>VISA</code> 的安全码叫做CVV2（Card Verification Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+<p><code>MasterCard</code>的安全码叫做CVC2（Card Validation Code 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+<p><code>Discover Card</code>的安全码叫做Cardmember ID，有3位数字，平印在信用卡背面签名栏上。</p>
+<p><code>American Express</code>的安全码叫做CID（Card Identification Number），有4位数字，平印在信用卡正面信用卡卡号上方。</p>
+<p><code>China UnionPay</code>的安全码叫做CVN2（Card Validation Number 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处之后。</p>
+<p><code>Japan Credit Bureau</code>的安全码叫做CAV2（ Card Authentication Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+</blockquote>
+<p><img src="/./CVN2%E6%98%AF%E4%BB%80%E4%B9%88/visa.png" alt="visa"></p>
+]]></content>
+      <categories>
+        <category>支付</category>
+      </categories>
+      <tags>
+        <tag>支付</tag>
+        <tag>银联卡</tag>
+        <tag>支付三要素</tag>
+        <tag>信用卡</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>希尔排序</title>
     <url>/2020/10/28/HillSort/</url>
     <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
@@ -46,58 +121,9 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>数据结构与算法</tag>
         <tag>希尔排序</tag>
-        <tag>数据结构与算法</tag>
         <tag>不稳定排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>冒泡排序</title>
-    <url>/2020/10/25/BubbleSort/</url>
-    <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
-<a id="more"></a>
-
-
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
-</blockquote>
-<p>原数据：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">9</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">9</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-
-<p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">8</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
-
-<p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">7</span>] [<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
-
-<p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">[<span class="hljs-number">1</span>] [<span class="hljs-number">3</span>] [<span class="hljs-number">5</span>] [<span class="hljs-number">7</span>] [<span class="hljs-number">8</span>] [<span class="hljs-number">9</span>]<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
-</blockquote>
-<p>$$<br>(n-1) + (n-2) + (n-3) + … + 1 &#x3D; ((n-1) + 1) * (n-1) &#x2F; 2 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
-<p>less函数与exch函数参见文章排序算法序言。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubble</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; N-<span class="hljs-number">1</span>; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; N-i-<span class="hljs-number">1</span>; j++)&#123;<br>            <span class="hljs-keyword">if</span>(less(c[j+<span class="hljs-number">1</span>], c[j]))&#123;<br>                exch(c, j, j+<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构与算法</tag>
-        <tag>冒泡排序</tag>
-        <tag>稳定排序</tag>
       </tags>
   </entry>
   <entry>
@@ -184,57 +210,6 @@
       </tags>
   </entry>
   <entry>
-    <title>选择排序</title>
-    <url>/2020/10/26/SelectionSort/</url>
-    <content><![CDATA[<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
-<a id="more"></a>
-
-
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
-</blockquote>
-<p>原数据：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [8] [9] [7] [1] [3] [5]<br></code></pre></td></tr></table></figure>
-
-<p>第一步，在原始数组中找到最小元素<font color="red">[1]</font>，起始位置的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [8] [9] [7] [9] [3] [5]<br></code></pre></td></tr></table></figure>
-
-<p>第二步，在剩余未排序数组中找到最小元素<font color="red">[3]</font>与<font color="red">[8]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [9] [7] [9] [8] [5]<br></code></pre></td></tr></table></figure>
-
-<p>第三步，在剩余未排序数组中找到最小元素<font color="red">[5]</font>与索引三处的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
-
-<p>第四步，在剩余未排序数组中找到最小元素<font color="red">[7]</font>，其已经处在正确位置。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
-
-<p>第五步，在剩余未排序数组中找到最小元素<font color="red">[8]</font>，前面的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9] [9]<br></code></pre></td></tr></table></figure>
-
-<p>第六步，在剩余未排序数组中找到最小元素<font color="red">[9]</font>，其已经处在正确位置。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9] [9]<br></code></pre></td></tr></table></figure>
-
-<p>排序完毕，数组已经有序。</p>
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>从第一步就可以明显看出，两个<code>[9]</code>交换了次序，因此插入排序是不稳定的排序算法。其时间复杂度计算公式如下。可以看到选择排序最好的情况下时间复杂度为2^n，最坏的情况下时间复杂度为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
-</blockquote>
-<p>$$<br>(n-1) + (n-2) + … + 1 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
-<p>less函数与exch函数参见文章排序算法序言。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertion</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; N; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &gt; <span class="hljs-number">0</span> &amp;&amp; less(c[j], c[j-<span class="hljs-number">1</span>]); j--)&#123;<br>            exch(c, j, j-<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构与算法</tag>
-        <tag>不稳定排序</tag>
-        <tag>选择排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>快速排序</title>
     <url>/2020/10/26/QuickSort/</url>
     <content><![CDATA[<p>快速排序（英语：Quicksort），又称分区交换排序（partition-exchange sort），简称快排，一种排序算法，最早由东尼·霍尔提出。通常明显比其&gt;他算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地达成。</p>
@@ -309,6 +284,57 @@
         <tag>数据结构与算法</tag>
         <tag>不稳定排序</tag>
         <tag>快速排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>选择排序</title>
+    <url>/2020/10/26/SelectionSort/</url>
+    <content><![CDATA[<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<a id="more"></a>
+
+
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
+</blockquote>
+<p>原数据：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [8] [9] [7] [1] [3] [5]<br></code></pre></td></tr></table></figure>
+
+<p>第一步，在原始数组中找到最小元素<font color="red">[1]</font>，起始位置的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [8] [9] [7] [9] [3] [5]<br></code></pre></td></tr></table></figure>
+
+<p>第二步，在剩余未排序数组中找到最小元素<font color="red">[3]</font>与<font color="red">[8]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [9] [7] [9] [8] [5]<br></code></pre></td></tr></table></figure>
+
+<p>第三步，在剩余未排序数组中找到最小元素<font color="red">[5]</font>与索引三处的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
+
+<p>第四步，在剩余未排序数组中找到最小元素<font color="red">[7]</font>，其已经处在正确位置。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
+
+<p>第五步，在剩余未排序数组中找到最小元素<font color="red">[8]</font>，前面的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9] [9]<br></code></pre></td></tr></table></figure>
+
+<p>第六步，在剩余未排序数组中找到最小元素<font color="red">[9]</font>，其已经处在正确位置。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9] [9]<br></code></pre></td></tr></table></figure>
+
+<p>排序完毕，数组已经有序。</p>
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>从第一步就可以明显看出，两个<code>[9]</code>交换了次序，因此插入排序是不稳定的排序算法。其时间复杂度计算公式如下。可以看到选择排序最好的情况下时间复杂度为2^n，最坏的情况下时间复杂度为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
+</blockquote>
+<p>$$<br>(n-1) + (n-2) + … + 1 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>less函数与exch函数参见文章排序算法序言。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insertion</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; N; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &gt; <span class="hljs-number">0</span> &amp;&amp; less(c[j], c[j-<span class="hljs-number">1</span>]); j--)&#123;<br>            exch(c, j, j-<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构与算法</tag>
+        <tag>不稳定排序</tag>
+        <tag>选择排序</tag>
       </tags>
   </entry>
   <entry>
@@ -419,27 +445,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-1011 在 D 天内送达包裹的能力</title>
-    <url>/2021/08/28/leetcode-1011/</url>
-    <content><![CDATA[<p>题目描述：传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
-<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
-<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">shipWithinDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> days)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> minWeight = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">int</span> maxWeight = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> len = weights.length;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            maxWeight += weights[i];<br>            <span class="hljs-keyword">if</span> (weights[i] &gt; minWeight) &#123;<br>                minWeight = weights[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = minWeight;<br>        <span class="hljs-keyword">int</span> right = maxWeight;<br>        <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> currentDays = calculateDays(weights, mid);<br>            <span class="hljs-keyword">if</span> (currentDays == days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &lt; days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &gt; days) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> weight)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> days = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> tmpWeight = weight;<br>        <span class="hljs-keyword">while</span> (i &lt; weights.length) &#123;<br>            <span class="hljs-keyword">if</span> (tmpWeight &gt;= weights[i]) &#123;<br>                tmpWeight -= weights[i];<br>                i++;<br>                <span class="hljs-keyword">if</span> (i == weights.length) &#123;<br>                    days++;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                tmpWeight = weight;<br>                days++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> days;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>难度中等</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kafka命令</title>
     <url>/2021/03/27/kafka%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>kafka是一款优秀且常见的MQ，具有安装方便，使用方便，应用场景广泛等一系列优点，个人认为是最好用的MQ之一。</p>
@@ -513,12 +518,14 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-106 从中序与后续遍历序列构造二叉树</title>
-    <url>/2021/08/03/leetcode-106/</url>
-    <content><![CDATA[<p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+    <title>leetcode-1011 在 D 天内送达包裹的能力</title>
+    <url>/2021/08/28/leetcode-1011/</url>
+    <content><![CDATA[<p>题目描述：传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
+<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
+<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
 <a id="more"></a>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span>[] postorder)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> buildTree(inorder, <span class="hljs-number">0</span>, inorder.length, postorder, postorder.length - <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">int</span>[] postorder, <span class="hljs-keyword">int</span> rootIdx)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空</span><br>        <span class="hljs-keyword">if</span> (start &gt;= end) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 单个节点直接返回</span><br>        <span class="hljs-keyword">if</span> (start == end - <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[start]);<br>        &#125;<br><br>        <span class="hljs-comment">//3. 后续最后一个节点为二叉树根节点</span><br>        TreeNode root = <span class="hljs-keyword">new</span> TreeNode(postorder[rootIdx]);<br><br>        <span class="hljs-comment">//4. 寻找根节点在中序序列中的索引值</span><br>        <span class="hljs-keyword">int</span> rootIdxInOrder = start;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt; end; idx++) &#123;<br>            <span class="hljs-keyword">if</span> (inorder[idx] == root.val) &#123;<br>                rootIdxInOrder = idx;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//5. 中序序列中根节点左部分节点构成左子树</span><br>        TreeNode leftNode = buildTree(inorder, start, rootIdxInOrder, postorder, rootIdx - (end - rootIdxInOrder));<br><br>        <span class="hljs-comment">//6. 中序序列中根节点右部分节点构成右子树</span><br>        TreeNode rightNode = buildTree(inorder, rootIdxInOrder + <span class="hljs-number">1</span>, end, postorder, rootIdx - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-comment">//7. 连接左右子树</span><br>        root.left = leftNode;<br>        root.right = rightNode;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">shipWithinDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> days)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> minWeight = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">int</span> maxWeight = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> len = weights.length;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            maxWeight += weights[i];<br>            <span class="hljs-keyword">if</span> (weights[i] &gt; minWeight) &#123;<br>                minWeight = weights[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = minWeight;<br>        <span class="hljs-keyword">int</span> right = maxWeight;<br>        <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> currentDays = calculateDays(weights, mid);<br>            <span class="hljs-keyword">if</span> (currentDays == days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &lt; days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &gt; days) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> weight)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> days = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> tmpWeight = weight;<br>        <span class="hljs-keyword">while</span> (i &lt; weights.length) &#123;<br>            <span class="hljs-keyword">if</span> (tmpWeight &gt;= weights[i]) &#123;<br>                tmpWeight -= weights[i];<br>                i++;<br>                <span class="hljs-keyword">if</span> (i == weights.length) &#123;<br>                    days++;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                tmpWeight = weight;<br>                days++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> days;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -527,10 +534,8 @@
       <tags>
         <tag>Java</tag>
         <tag>leetcode</tag>
+        <tag>二分查找</tag>
         <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>中序、后序</tag>
       </tags>
   </entry>
   <entry>
@@ -552,6 +557,27 @@
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>前序、中序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-106 从中序与后续遍历序列构造二叉树</title>
+    <url>/2021/08/03/leetcode-106/</url>
+    <content><![CDATA[<p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span>[] postorder)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> buildTree(inorder, <span class="hljs-number">0</span>, inorder.length, postorder, postorder.length - <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">buildTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] inorder, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end, <span class="hljs-keyword">int</span>[] postorder, <span class="hljs-keyword">int</span> rootIdx)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空</span><br>        <span class="hljs-keyword">if</span> (start &gt;= end) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 单个节点直接返回</span><br>        <span class="hljs-keyword">if</span> (start == end - <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(inorder[start]);<br>        &#125;<br><br>        <span class="hljs-comment">//3. 后续最后一个节点为二叉树根节点</span><br>        TreeNode root = <span class="hljs-keyword">new</span> TreeNode(postorder[rootIdx]);<br><br>        <span class="hljs-comment">//4. 寻找根节点在中序序列中的索引值</span><br>        <span class="hljs-keyword">int</span> rootIdxInOrder = start;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt; end; idx++) &#123;<br>            <span class="hljs-keyword">if</span> (inorder[idx] == root.val) &#123;<br>                rootIdxInOrder = idx;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">//5. 中序序列中根节点左部分节点构成左子树</span><br>        TreeNode leftNode = buildTree(inorder, start, rootIdxInOrder, postorder, rootIdx - (end - rootIdxInOrder));<br><br>        <span class="hljs-comment">//6. 中序序列中根节点右部分节点构成右子树</span><br>        TreeNode rightNode = buildTree(inorder, rootIdxInOrder + <span class="hljs-number">1</span>, end, postorder, rootIdx - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-comment">//7. 连接左右子树</span><br>        root.left = leftNode;<br>        root.right = rightNode;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>中序、后序</tag>
       </tags>
   </entry>
   <entry>
@@ -2304,23 +2330,6 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>旅途的起点</title>
-    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
-<a id="more"></a>
-
-
-<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
-<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>成都市属事业单位《公共基础知识》考试大纲</title>
     <url>/2022/02/13/%E6%88%90%E9%83%BD%E5%B8%82%E5%B1%9E%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8D%E3%80%8A%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E3%80%8B%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B2/</url>
     <content><![CDATA[<p>《公共基础知识》总分100分，考试时间90分钟，全部为客观性试题。题型为单项选择题、多项选择题和是非判断题三种。考试内容主要包括：法律基础、中国特色社会主义理论、马克思主义哲学、应用文写作、经济与管理、公民道德建设、科技基础知识、四川省情、成都市情、时事政治等。</p>
@@ -2385,6 +2394,23 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
       <tags>
         <tag>公务员</tag>
         <tag>事业单位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旅途的起点</title>
+    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
+    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
+<a id="more"></a>
+
+
+<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
+<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
       </tags>
   </entry>
   <entry>
