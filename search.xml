@@ -39,44 +39,6 @@
       </tags>
   </entry>
   <entry>
-    <title>希尔排序</title>
-    <url>/2020/10/28/HillSort/</url>
-    <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
-<a id="more"></a>
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>假定步长为h，则把数组分为h组，从前往后间隔h的元素为一组。先在组内进行插入排序，保证每个组内是有序的，再按照步长为1进行一次全面插入排序，从而得到有序数组。</p>
-</blockquote>
-<p>原数据：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [8] [7] [1] [3] [5]<br></code></pre></td></tr></table></figure>
-<p>第一步，假设h为<code>3</code>，则根据规则原数组分为如下三组</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [1]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[8] [3]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[7] [5]<br></code></pre></td></tr></table></figure>
-<p>第二步，在三个小组内，分别进行插入排序，得到三个有序子数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[3] [8]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[5] [7]<br></code></pre></td></tr></table></figure>
-<p>第三步，三个子数组按照原来的位置存放，得到第一轮排序后的数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [9] [8] [7]<br></code></pre></td></tr></table></figure>
-<p>第四步，按照步长为<code>[1]</code>进行一次插入排序，即可得到有序数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9]<br></code></pre></td></tr></table></figure>
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>希尔排序是一个不稳定的排序算法，其最好情况下时间复杂度为<code>O(n)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>2^n</code>，空间复杂度为<code>O(!)</code>。时间复杂度计算公式如下。</p>
-</blockquote>
-<script type="math/tex; mode=display">
-待补充</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Shell</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">int</span> h = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(h &lt; N / <span class="hljs-number">3</span>)&#123;<br>        h = <span class="hljs-number">3</span> * h + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (h &gt;= <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = h; i &lt; N; i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;<br>                exch(c, j, j-h);<br>            &#125;<br>        &#125;<br>        h = h / <span class="hljs-number">3</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构与算法</tag>
-        <tag>希尔排序</tag>
-        <tag>不稳定排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>插入排序</title>
     <url>/2020/10/25/InsertSort/</url>
     <content><![CDATA[<p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐&gt;步向后挪位，为最新元素提供插入空间。</p>
@@ -124,6 +86,44 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>数据结构与算法</tag>
         <tag>稳定排序</tag>
         <tag>插入排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>希尔排序</title>
+    <url>/2020/10/28/HillSort/</url>
+    <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
+<a id="more"></a>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>假定步长为h，则把数组分为h组，从前往后间隔h的元素为一组。先在组内进行插入排序，保证每个组内是有序的，再按照步长为1进行一次全面插入排序，从而得到有序数组。</p>
+</blockquote>
+<p>原数据：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [8] [7] [1] [3] [5]<br></code></pre></td></tr></table></figure>
+<p>第一步，假设h为<code>3</code>，则根据规则原数组分为如下三组</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[9] [1]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[8] [3]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[7] [5]<br></code></pre></td></tr></table></figure>
+<p>第二步，在三个小组内，分别进行插入排序，得到三个有序子数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [9]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[3] [8]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[5] [7]<br></code></pre></td></tr></table></figure>
+<p>第三步，三个子数组按照原来的位置存放，得到第一轮排序后的数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [9] [8] [7]<br></code></pre></td></tr></table></figure>
+<p>第四步，按照步长为<code>[1]</code>进行一次插入排序，即可得到有序数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9]<br></code></pre></td></tr></table></figure>
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>希尔排序是一个不稳定的排序算法，其最好情况下时间复杂度为<code>O(n)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>2^n</code>，空间复杂度为<code>O(!)</code>。时间复杂度计算公式如下。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+待补充</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Shell</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> N = c.length;<br>    <span class="hljs-keyword">int</span> h = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(h &lt; N / <span class="hljs-number">3</span>)&#123;<br>        h = <span class="hljs-number">3</span> * h + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (h &gt;= <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = h; i &lt; N; i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;<br>                exch(c, j, j-h);<br>            &#125;<br>        &#125;<br>        h = h / <span class="hljs-number">3</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构与算法</tag>
+        <tag>希尔排序</tag>
+        <tag>不稳定排序</tag>
       </tags>
   </entry>
   <entry>
@@ -283,22 +283,23 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       </tags>
   </entry>
   <entry>
-    <title>leetcode-1011 在 D 天内送达包裹的能力</title>
-    <url>/2021/08/28/leetcode-1011/</url>
-    <content><![CDATA[<p>题目描述：传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
-<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
-<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
+    <title>hexo简单使用</title>
+    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><font color=green><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color=green><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
 <a id="more"></a>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">shipWithinDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> days)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> minWeight = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">int</span> maxWeight = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> len = weights.length;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            maxWeight += weights[i];<br>            <span class="hljs-keyword">if</span> (weights[i] &gt; minWeight) &#123;<br>                minWeight = weights[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = minWeight;<br>        <span class="hljs-keyword">int</span> right = maxWeight;<br>        <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> currentDays = calculateDays(weights, mid);<br>            <span class="hljs-keyword">if</span> (currentDays == days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &lt; days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &gt; days) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> weight)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> days = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> tmpWeight = weight;<br>        <span class="hljs-keyword">while</span> (i &lt; weights.length) &#123;<br>            <span class="hljs-keyword">if</span> (tmpWeight &gt;= weights[i]) &#123;<br>                tmpWeight -= weights[i];<br>                i++;<br>                <span class="hljs-keyword">if</span> (i == weights.length) &#123;<br>                    days++;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                tmpWeight = weight;<br>                days++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> days;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color=green><strong>Hexo</strong></font>使用命令介绍。</p>
+<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo new <span class="hljs-string">&#x27;title&#x27;</span></span><br></code></pre></td></tr></table></figure>
+<p>创建完博客之后，会自动在<font color=blue> <strong>source/_posts</strong>/</font>目录下面创建一个同名的md结尾的<font color=green><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
+<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo s</span><br></code></pre></td></tr></table></figure>
+<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color=green><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
+<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span><br></code></pre></td></tr></table></figure>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
 ]]></content>
       <categories>
-        <category>leetcode</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>二分查找</tag>
-        <tag>难度中等</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -337,6 +338,25 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>Java</tag>
         <tag>MQ</tag>
         <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-1011 在 D 天内送达包裹的能力</title>
+    <url>/2021/08/28/leetcode-1011/</url>
+    <content><![CDATA[<p>题目描述：传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。</p>
+<p>传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。</p>
+<p>返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。</p>
+<a id="more"></a>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">shipWithinDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> days)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> minWeight = Integer.MIN_VALUE;<br>        <span class="hljs-keyword">int</span> maxWeight = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> len = weights.length;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            maxWeight += weights[i];<br>            <span class="hljs-keyword">if</span> (weights[i] &gt; minWeight) &#123;<br>                minWeight = weights[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> left = minWeight;<br>        <span class="hljs-keyword">int</span> right = maxWeight;<br>        <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> currentDays = calculateDays(weights, mid);<br>            <span class="hljs-keyword">if</span> (currentDays == days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &lt; days) &#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (currentDays &gt; days) &#123;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateDays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] weights, <span class="hljs-keyword">int</span> weight)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> days = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> tmpWeight = weight;<br>        <span class="hljs-keyword">while</span> (i &lt; weights.length) &#123;<br>            <span class="hljs-keyword">if</span> (tmpWeight &gt;= weights[i]) &#123;<br>                tmpWeight -= weights[i];<br>                i++;<br>                <span class="hljs-keyword">if</span> (i == weights.length) &#123;<br>                    days++;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                tmpWeight = weight;<br>                days++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> days;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>二分查找</tag>
+        <tag>难度中等</tag>
       </tags>
   </entry>
   <entry>
@@ -399,26 +419,6 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>二叉树</tag>
         <tag>单链表</tag>
         <tag>反转</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo简单使用</title>
-    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><font color=green><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color=green><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
-<a id="more"></a>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color=green><strong>Hexo</strong></font>使用命令介绍。</p>
-<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo new <span class="hljs-string">&#x27;title&#x27;</span></span><br></code></pre></td></tr></table></figure>
-<p>创建完博客之后，会自动在<font color=blue> <strong>source/_posts</strong>/</font>目录下面创建一个同名的md结尾的<font color=green><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
-<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo s</span><br></code></pre></td></tr></table></figure>
-<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color=green><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
-<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span><br></code></pre></td></tr></table></figure>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -615,25 +615,6 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       </tags>
   </entry>
   <entry>
-    <title>leetcode-226 翻转二叉树</title>
-    <url>/2021/07/29/leetcode-226/</url>
-    <content><![CDATA[<p>题目描述：翻转一棵二叉树。</p>
-<a id="more"></a>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">invertTree</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span> || (root.left == <span class="hljs-keyword">null</span> &amp;&amp; root.right == <span class="hljs-keyword">null</span>))&#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br>        TreeNode node = invertTree(root.left);<br>        root.left = invertTree(root.right);<br>        root.right = node;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>反转</tag>
-        <tag>难度简单</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-230 二叉搜索树中第K小的元素</title>
     <url>/2021/08/05/leetcode-230/</url>
     <content><![CDATA[<p>题目描述：给定一个二叉搜索树的根节点 <code>root</code> ，和一个整数 <code>k</code> ，请你设计一个算法查找其中第 <code>k</code> 个最小元素（从 1 开始计数）。如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 <code>k</code> 小的值，你将如何优化算法？</p>
@@ -651,6 +632,25 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>oj</tag>
         <tag>二叉搜索树</tag>
         <tag>第K小元素</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-226 翻转二叉树</title>
+    <url>/2021/07/29/leetcode-226/</url>
+    <content><![CDATA[<p>题目描述：翻转一棵二叉树。</p>
+<a id="more"></a>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> TreeNode <span class="hljs-title">invertTree</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span> || (root.left == <span class="hljs-keyword">null</span> &amp;&amp; root.right == <span class="hljs-keyword">null</span>))&#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br>        TreeNode node = invertTree(root.left);<br>        root.left = invertTree(root.right);<br>        root.right = node;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>反转</tag>
+        <tag>难度简单</tag>
       </tags>
   </entry>
   <entry>
@@ -811,6 +811,23 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
       </tags>
   </entry>
   <entry>
+    <title>leetcode-283 移动零</title>
+    <url>/2021/09/13/leetcode-283/</url>
+    <content><![CDATA[<p>题目描述：给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<a id="more"></a>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; nums.length) &#123;<br>            <span class="hljs-keyword">if</span> (nums[right] == <span class="hljs-number">0</span>) &#123;<br>                right++;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            nums[left++] = nums[right++];<br>        &#125;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            nums[left++] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度简单</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-295 数据流的中位数</title>
     <url>/2021/08/18/leetcode-295/</url>
     <content><![CDATA[<p>题目描述：中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。</p>
@@ -831,23 +848,6 @@ k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</scr
         <tag>oj</tag>
         <tag>难度困难</tag>
         <tag>中位数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-283 移动零</title>
-    <url>/2021/09/13/leetcode-283/</url>
-    <content><![CDATA[<p>题目描述：给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<a id="more"></a>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; nums.length) &#123;<br>            <span class="hljs-keyword">if</span> (nums[right] == <span class="hljs-number">0</span>) &#123;<br>                right++;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            nums[left++] = nums[right++];<br>        &#125;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            nums[left++] = <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度简单</tag>
-        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -1771,6 +1771,55 @@ public int pop() &#123;
       </tags>
   </entry>
   <entry>
+    <title>反转链表</title>
+    <url>/2021/03/30/reverse-linked-list/</url>
+    <content><![CDATA[<p>单链表的反转，我们能想到反转顺序最简单的数据结构就是栈了，如果可以用栈的话，那问题就简单了。顺序遍历单链表，依次入栈直到遍历结束，然后依次出栈重新有前到后连接为一个新的单链表，则自动实现了反转功能。</p>
+<a id="more"></a>
+<h2 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 遍历链表入栈</span><br>        Stack&lt;ListNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;ListNode&gt;();<br>        ListNode node = head;<br>        <span class="hljs-keyword">while</span> (node != <span class="hljs-keyword">null</span>)&#123;<br>            stack.push(node);<br>            node = node.next;<br>        &#125;<br><br>        <span class="hljs-comment">//3. 出栈重新建立链表</span><br>        ListNode newHead = <span class="hljs-keyword">null</span>;<br>        ListNode newEnd = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span> (!stack.isEmpty())&#123;<br>            node = stack.pop();<br>            <span class="hljs-keyword">if</span> (newHead == <span class="hljs-keyword">null</span>)&#123;<br>                newHead = node;<br>                newEnd = newHead;<br>                newHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                newEnd.next = node;<br>                newEnd = newEnd.next;<br>                newEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><div><div class="graphviz">digraph leetcode_92_1 {
+
+    bgcolor="#f7f7f7"
+
+    rankdir=LR
+    subgraph cluster_name {
+        subgraph cluster_1 {
+            n0 [label="newEnd" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n1 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n2 [label="newHead" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+            n3 [label="node" shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
+            n4 [label="oldHead" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n5 [label="..." shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+            n6 [label="oldEnd" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+
+            rank=same;
+            n0 -> n1 -> n2[dir=back]
+            n2 -> n3[style=dashed,color="#f7f7f7"]
+            n3 -> n4[style=dashed,color=red]
+            n4 -> n5 -> n6
+            style=invis
+        }
+
+    }
+    label=<<B>图 1.1 遍历反转链表</B>>
+}</div></div>
+
+
+
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 设置反转后新链表表头节点</span><br>        ListNode newLinkedListHead = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//3. 设置反转前旧链表表头节点</span><br>        ListNode oldLinkedListHead = head;<br><br>        <span class="hljs-comment">//4. 设置临时节点</span><br>        ListNode tmpNode = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 遍历旧链表</span><br>        <span class="hljs-keyword">while</span> (oldLinkedListHead != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//5.1 取出当前节点到临时节点</span><br>            tmpNode = oldLinkedListHead;<br><br>            <span class="hljs-comment">//5.2 重新设置旧链表表头</span><br>            oldLinkedListHead = oldLinkedListHead.next;<br><br>            <span class="hljs-comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span><br>            <span class="hljs-keyword">if</span> (newLinkedListHead == <span class="hljs-keyword">null</span>)&#123;<br>                newLinkedListHead = tmpNode;<br>                newLinkedListHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                tmpNode.next = newLinkedListHead;<br>                newLinkedListHead = tmpNode;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//6. 返回反转后新链表</span><br>        <span class="hljs-keyword">return</span> newLinkedListHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p>递归实现的原理和栈是类似的，因为递归本身就是利用了程序栈进行了压栈处理，因此好好理解一下第一种算法与第三种算法，有助于理解递归的原理。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 获取递归得到的新表头</span><br>        ListNode newHead = reverse(head.next);<br><br>        <span class="hljs-comment">//3. 处理当前节点</span><br>        head.next.next = head;<br><br>        <span class="hljs-comment">//4. 处理完之后新的尾节点置空</span><br>        head.next = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//4. 返回新的表头节点</span><br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>难度中等</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>四川省省属事业单位公开招聘工作人员《综合知识》笔试复习大纲</title>
     <url>/2022/02/13/%E5%9B%9B%E5%B7%9D%E7%9C%81%E7%9C%81%E5%B1%9E%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8D%E5%85%AC%E5%BC%80%E6%8B%9B%E8%81%98%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E3%80%8A%E7%BB%BC%E5%90%88%E7%9F%A5%E8%AF%86%E3%80%8B%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/</url>
     <content><![CDATA[<p>四川省省属事业单位公开招聘工作人员《综合知识》笔试复习大纲</p>
@@ -2309,55 +2358,6 @@ public int pop() &#123;
         <tag>栈</tag>
         <tag>线性表</tag>
         <tag>队列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>反转链表</title>
-    <url>/2021/03/30/reverse-linked-list/</url>
-    <content><![CDATA[<p>单链表的反转，我们能想到反转顺序最简单的数据结构就是栈了，如果可以用栈的话，那问题就简单了。顺序遍历单链表，依次入栈直到遍历结束，然后依次出栈重新有前到后连接为一个新的单链表，则自动实现了反转功能。</p>
-<a id="more"></a>
-<h2 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 遍历链表入栈</span><br>        Stack&lt;ListNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;ListNode&gt;();<br>        ListNode node = head;<br>        <span class="hljs-keyword">while</span> (node != <span class="hljs-keyword">null</span>)&#123;<br>            stack.push(node);<br>            node = node.next;<br>        &#125;<br><br>        <span class="hljs-comment">//3. 出栈重新建立链表</span><br>        ListNode newHead = <span class="hljs-keyword">null</span>;<br>        ListNode newEnd = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span> (!stack.isEmpty())&#123;<br>            node = stack.pop();<br>            <span class="hljs-keyword">if</span> (newHead == <span class="hljs-keyword">null</span>)&#123;<br>                newHead = node;<br>                newEnd = newHead;<br>                newHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                newEnd.next = node;<br>                newEnd = newEnd.next;<br>                newEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><div><div class="graphviz">digraph leetcode_92_1 {
-
-    bgcolor="#f7f7f7"
-
-    rankdir=LR
-    subgraph cluster_name {
-        subgraph cluster_1 {
-            n0 [label="newEnd" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n1 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n2 [label="newHead" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n3 [label="node" shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
-            n4 [label="oldHead" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-            n5 [label="..." shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-            n6 [label="oldEnd" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-
-            rank=same;
-            n0 -> n1 -> n2[dir=back]
-            n2 -> n3[style=dashed,color="#f7f7f7"]
-            n3 -> n4[style=dashed,color=red]
-            n4 -> n5 -> n6
-            style=invis
-        }
-
-    }
-    label=<<B>图 1.1 遍历反转链表</B>>
-}</div></div>
-
-
-
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 设置反转后新链表表头节点</span><br>        ListNode newLinkedListHead = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//3. 设置反转前旧链表表头节点</span><br>        ListNode oldLinkedListHead = head;<br><br>        <span class="hljs-comment">//4. 设置临时节点</span><br>        ListNode tmpNode = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 遍历旧链表</span><br>        <span class="hljs-keyword">while</span> (oldLinkedListHead != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//5.1 取出当前节点到临时节点</span><br>            tmpNode = oldLinkedListHead;<br><br>            <span class="hljs-comment">//5.2 重新设置旧链表表头</span><br>            oldLinkedListHead = oldLinkedListHead.next;<br><br>            <span class="hljs-comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span><br>            <span class="hljs-keyword">if</span> (newLinkedListHead == <span class="hljs-keyword">null</span>)&#123;<br>                newLinkedListHead = tmpNode;<br>                newLinkedListHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                tmpNode.next = newLinkedListHead;<br>                newLinkedListHead = tmpNode;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//6. 返回反转后新链表</span><br>        <span class="hljs-keyword">return</span> newLinkedListHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p>递归实现的原理和栈是类似的，因为递归本身就是利用了程序栈进行了压栈处理，因此好好理解一下第一种算法与第三种算法，有助于理解递归的原理。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 获取递归得到的新表头</span><br>        ListNode newHead = reverse(head.next);<br><br>        <span class="hljs-comment">//3. 处理当前节点</span><br>        head.next.next = head;<br><br>        <span class="hljs-comment">//4. 处理完之后新的尾节点置空</span><br>        head.next = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//4. 返回新的表头节点</span><br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>难度中等</tag>
-        <tag>单链表</tag>
-        <tag>反转</tag>
       </tags>
   </entry>
   <entry>

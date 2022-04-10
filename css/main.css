@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d56cff;
+  background: #998e69;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2604,4 +2604,18 @@ article: {
 .sidebar a,
 .sidebar span.exturl {
   color: #f5deb3;
+}
+.gt-container .gt-avatar-github {
+  background: #fff;
+  border-radius: 50%;
+}
+.gt-container .gt-counts {
+  color: #fff;
+}
+.gt-container .gt-link-counts,
+.gt-container .gt-link-project {
+  color: #fff;
+}
+.gt-container .gt-user {
+  color: #fff;
 }
