@@ -1,3 +1,8 @@
+.gt-container .gt-btn-login {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
 :root {
   --body-bg-color: #fff;
   --content-bg-color: #fff;
@@ -1175,7 +1180,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #605924;
+  background: #9dff2e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2150,11 +2155,11 @@ ul.breadcrumb li + li:last-child {
 .gt-container .gt-ico-text {
   color: #fff;
 }
-.gt-container .gt-svg svg {
-  fill: #fff;
-}
 .gt-container .gt-comments-null {
   color: #fff;
+}
+.gt-container a {
+  color: #f5deb3;
 }
 .search-pop-overlay {
   background: rgba(0,0,0,0);
@@ -2646,4 +2651,7 @@ article: {
 }
 .gt-container .gt-meta {
   border-bottom: 1px solid #fff;
+}
+.gt-container .gt-no-init {
+  color: #fff;
 }

@@ -246,14 +246,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -267,39 +267,45 @@
       
         <p>单链表的反转，我们能想到反转顺序最简单的数据结构就是栈了，如果可以用栈的话，那问题就简单了。顺序遍历单链表，依次入栈直到遍历结束，然后依次出栈重新有前到后连接为一个新的单链表，则自动实现了反转功能。</p>
 <a id="more"></a>
+
 <h2 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 遍历链表入栈</span><br>        Stack&lt;ListNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;ListNode&gt;();<br>        ListNode node = head;<br>        <span class="hljs-keyword">while</span> (node != <span class="hljs-keyword">null</span>)&#123;<br>            stack.push(node);<br>            node = node.next;<br>        &#125;<br><br>        <span class="hljs-comment">//3. 出栈重新建立链表</span><br>        ListNode newHead = <span class="hljs-keyword">null</span>;<br>        ListNode newEnd = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span> (!stack.isEmpty())&#123;<br>            node = stack.pop();<br>            <span class="hljs-keyword">if</span> (newHead == <span class="hljs-keyword">null</span>)&#123;<br>                newHead = node;<br>                newEnd = newHead;<br>                newHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                newEnd.next = node;<br>                newEnd = newEnd.next;<br>                newEnd.next = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><div><div class="graphviz">digraph leetcode_92_1 {
+    
+<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-    bgcolor="#f7f7f7"
+rankdir=LR
+subgraph cluster_name &#123;
+    subgraph cluster_1 &#123;
+        n0 [label=&quot;newEnd&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n2 [label=&quot;newHead&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n3 [label=&quot;node&quot; shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
+        n4 [label=&quot;oldHead&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n5 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n6 [label=&quot;oldEnd&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        
+        rank=same;
+        n0 -&gt; n1 -&gt; n2[dir=back]
+        n2 -&gt; n3[style=dashed,color=&quot;#f7f7f7&quot;]
+        n3 -&gt; n4[style=dashed,color=red]
+        n4 -&gt; n5 -&gt; n6
+        style=invis
+    &#125;
 
-    rankdir=LR
-    subgraph cluster_name {
-        subgraph cluster_1 {
-            n0 [label="newEnd" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n1 [label="..." shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n2 [label="newHead" shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-            n3 [label="node" shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
-            n4 [label="oldHead" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-            n5 [label="..." shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-            n6 [label="oldEnd" shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-
-            rank=same;
-            n0 -> n1 -> n2[dir=back]
-            n2 -> n3[style=dashed,color="#f7f7f7"]
-            n3 -> n4[style=dashed,color=red]
-            n4 -> n5 -> n6
-            style=invis
-        }
-
-    }
-    label=<<B>图 1.1 遍历反转链表</B>>
-}</div></div>
-
-
-
+&#125;
+label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
+</code></pre>
+<p>}</div></div></p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 设置反转后新链表表头节点</span><br>        ListNode newLinkedListHead = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//3. 设置反转前旧链表表头节点</span><br>        ListNode oldLinkedListHead = head;<br><br>        <span class="hljs-comment">//4. 设置临时节点</span><br>        ListNode tmpNode = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//5. 遍历旧链表</span><br>        <span class="hljs-keyword">while</span> (oldLinkedListHead != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">//5.1 取出当前节点到临时节点</span><br>            tmpNode = oldLinkedListHead;<br><br>            <span class="hljs-comment">//5.2 重新设置旧链表表头</span><br>            oldLinkedListHead = oldLinkedListHead.next;<br><br>            <span class="hljs-comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span><br>            <span class="hljs-keyword">if</span> (newLinkedListHead == <span class="hljs-keyword">null</span>)&#123;<br>                newLinkedListHead = tmpNode;<br>                newLinkedListHead.next = <span class="hljs-keyword">null</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                tmpNode.next = newLinkedListHead;<br>                newLinkedListHead = tmpNode;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//6. 返回反转后新链表</span><br>        <span class="hljs-keyword">return</span> newLinkedListHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p>递归实现的原理和栈是类似的，因为递归本身就是利用了程序栈进行了压栈处理，因此好好理解一下第一种算法与第三种算法，有助于理解递归的原理。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        <span class="hljs-comment">//1. 判空处理</span><br>        <span class="hljs-keyword">if</span> (head == <span class="hljs-keyword">null</span> || head.next == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br><br>        <span class="hljs-comment">//2. 获取递归得到的新表头</span><br>        ListNode newHead = reverse(head.next);<br><br>        <span class="hljs-comment">//3. 处理当前节点</span><br>        head.next.next = head;<br><br>        <span class="hljs-comment">//4. 处理完之后新的尾节点置空</span><br>        head.next = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-comment">//4. 返回新的表头节点</span><br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -476,12 +482,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:30</span>
 </div>
 
         

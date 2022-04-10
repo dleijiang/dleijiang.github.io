@@ -270,7 +270,9 @@
         <p>题目描述：给定一个头结点为 <code>head</code> 的非空单链表，返回链表的中间结点。</p>
 <p>如果有两个中间结点，则返回第二个中间结点。</p>
 <a id="more"></a>
+
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">middleNode</span><span class="hljs-params">(ListNode head)</span> </span>&#123;<br>        ListNode fastNode = head;<br>        ListNode slowNode = head;<br>        <span class="hljs-keyword">while</span> (fastNode != <span class="hljs-keyword">null</span> &amp;&amp; fastNode.next != <span class="hljs-keyword">null</span>) &#123;<br>            fastNode = fastNode.next.next;<br>            slowNode = slowNode.next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> slowNode;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -449,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:30</span>
 </div>
 
         

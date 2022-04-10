@@ -271,7 +271,9 @@
 <li><code>1 &lt;= n &lt;= 19</code></li>
 </ul>
 <a id="more"></a>
+
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> numTrees(<span class="hljs-number">1</span>, n);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (end &lt;= start) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> idx = start; idx &lt;= end; idx++) &#123;<br>            <span class="hljs-keyword">int</span> leftTreeStart = start;<br>            <span class="hljs-keyword">int</span> leftTreeEnd = idx - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">int</span> rightTreeStart = idx + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">int</span> rightTreeEnd = end;<br>            <span class="hljs-keyword">int</span> leftNum = (leftTreeEnd - leftTreeStart &lt; <span class="hljs-number">1</span>) ? <span class="hljs-number">1</span> : numTrees(leftTreeStart, leftTreeEnd);<br>            <span class="hljs-keyword">int</span> rightNum = (rightTreeEnd - rightTreeStart &lt; <span class="hljs-number">1</span>) ? <span class="hljs-number">1</span> : numTrees(rightTreeStart, rightTreeEnd);<br>            sum += leftNum * rightNum;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -449,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">100k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:30</span>
 </div>
 
         
