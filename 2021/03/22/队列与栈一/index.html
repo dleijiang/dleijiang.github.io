@@ -247,14 +247,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -268,61 +268,61 @@
       
         <p>线性表是最基本的数据结构之一，其最终的物理结构不外乎两种，顺序表与链表。队列与栈都是线性表，只是其外在的逻辑表现形式不同而已。</p>
 <a id="more"></a>
+
 <h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><p>顺序表是一种在物理上连续存储的结构，也即顺序表的元素在内存空间里是物理上连续的。</p>
 <div><div class="graphviz">digraph array_list{
 
-    bgcolor="#f7f7f7"
+<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-    subgraph cluster_array {
-
-
-        node [shape=record, fontcolor=black,width=4.75, fixedsize=true];
-        pointers[] [label="<p0> A+0 | <p1> A+1 | <p2> A+2 | <p3> A+3 | <p4> A+4 | <p5> A+5 | <p6> A+6 | <p7> A+7", color=blue];
-        values [label="<v0> A[0] | <v1> A[1] | <v2> A[2] | <v3> A[3] | <v4> A[4] | <v5> A[5] | <v6> A[6] | <v7> A[7]", color=blue, fillcolor=lightblue, style=filled];
-        indices [label="0 | 1 | 2 | 3| 4 | 5 | 6 | 7", color="#f7f7f7"];
-
-        node [shape=plaintext, fontcolor="black",width=1 fontsize=18,fixedsize=true];
-        "Pointers:" -> "Values:" -> "Indices:"[color="#f7f7f7"];
-
-        { rank=same; "Pointers:"; pointers }
-        { rank=same; "Values:"; values }
-        { rank=same; "Indices:"; indices }   
-    }
-
-    label = <<B>图 1.1 顺序表</B>>
-}</v7></v6></v5></v4></v3></v2></v1></v0></p7></p6></p5></p4></p3></p2></p1></p0></div></div>
+subgraph cluster_array &#123;
 
 
+    node [shape=record, fontcolor=black,width=4.75, fixedsize=true];
+    pointers[] [label=&quot;&lt;p0&gt; A+0 | &lt;p1&gt; A+1 | &lt;p2&gt; A+2 | &lt;p3&gt; A+3 | &lt;p4&gt; A+4 | &lt;p5&gt; A+5 | &lt;p6&gt; A+6 | &lt;p7&gt; A+7&quot;, color=blue];
+    values [label=&quot;&lt;v0&gt; A[0] | &lt;v1&gt; A[1] | &lt;v2&gt; A[2] | &lt;v3&gt; A[3] | &lt;v4&gt; A[4] | &lt;v5&gt; A[5] | &lt;v6&gt; A[6] | &lt;v7&gt; A[7]&quot;, color=blue, fillcolor=lightblue, style=filled];
+    indices [label=&quot;0 | 1 | 2 | 3| 4 | 5 | 6 | 7&quot;, color=&quot;#f7f7f7&quot;];
 
+    node [shape=plaintext, fontcolor=&quot;black&quot;,width=1 fontsize=18,fixedsize=true];
+    &quot;Pointers:&quot; -&gt; &quot;Values:&quot; -&gt; &quot;Indices:&quot;[color=&quot;#f7f7f7&quot;];
 
+    &#123; rank=same; &quot;Pointers:&quot;; pointers &#125;
+    &#123; rank=same; &quot;Values:&quot;; values &#125;
+    &#123; rank=same; &quot;Indices:&quot;; indices &#125;   
+&#125;
+
+label = &lt;&lt;B&gt;图 1.1 顺序表&lt;/B&gt;&gt;
+</code></pre>
+<p>}</p></div></div><p></p>
 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表是一种在逻辑空间上连续，但是物理空间上离散的线性表。链表前后节点使用指针相连，因此与线性表相比，链表需要更多的存储空间，但是却能更有效的利用空间，因为顺序表对存储要求必须是物理上一整块的空间。</p>
 <div><div class="graphviz">digraph list_linked {
+    
+<pre><code>bgcolor=&quot;#f7f7f7&quot;
 
-    bgcolor="#f7f7f7"
+rankdir=LR
+subgraph cluster_name &#123;
+    n0 [label=&quot;&#123;&lt;data&gt;A[0]|&lt;next&gt;&#125;&quot; shape=record,color=blue,fillcolor=lightblue,style=filled]
+    n1 [label=&quot;&#123;&lt;data&gt;A[1]|&lt;next&gt;&#125;&quot; shape=record,color=blue,fillcolor=lightblue,style=filled]
+    n2 [label=&quot;&#123;&lt;data&gt;A[2]|&lt;next&gt;&#125;&quot; shape=record,color=blue,fillcolor=lightblue,style=filled]
+    n3 [label=&quot;&#123;&lt;data&gt;A[3]|&lt;next&gt;&#125;&quot; shape=record,color=blue,fillcolor=lightblue,style=filled]
+    n4 [label=&quot;&#123;&lt;data&gt;A[4]|&lt;next&gt;nil&#125;&quot; shape=record,color=blue,fillcolor=lightblue,style=filled]
+ 
+    n0:next:0 -&gt; n1:data [tailclip=false,solid=true]
+    n1:next:0 -&gt; n2:data [tailclip=false,solid=true]
+    n2:next:0 -&gt; n3:data [tailclip=false,solid=true]
+    n3:next:0 -&gt; n4:data [tailclip=false,solid=true]
+&#125;
 
-    rankdir=LR
-    subgraph cluster_name {
-        n0 [label="{<data>A[0]|<next>}" shape=record,color=blue,fillcolor=lightblue,style=filled]
-        n1 [label="{<data>A[1]|<next>}" shape=record,color=blue,fillcolor=lightblue,style=filled]
-        n2 [label="{<data>A[2]|<next>}" shape=record,color=blue,fillcolor=lightblue,style=filled]
-        n3 [label="{<data>A[3]|<next>}" shape=record,color=blue,fillcolor=lightblue,style=filled]
-        n4 [label="{<data>A[4]|<next>nil}" shape=record,color=blue,fillcolor=lightblue,style=filled]
-
-        n0:next:0 -> n1:data [tailclip=false,solid=true]
-        n1:next:0 -> n2:data [tailclip=false,solid=true]
-        n2:next:0 -> n3:data [tailclip=false,solid=true]
-        n3:next:0 -> n4:data [tailclip=false,solid=true]
-    }
-
-    label=<<B>图 2.1 链表</B>>
-}</next></data></next></data></next></data></next></data></next></data></div></div>
-
-
-
+label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
+</code></pre>
+<p>}</p></div></div><p></p>
 <h2 id="线性表接口"><a href="#线性表接口" class="headerlink" title="线性表接口"></a>线性表接口</h2><p>线性表的基本接口，主要定义常见的几种方法，弹出元素、添加元素、线性表大小、获取线性表第一个元素、获取线性表最后一个元素以及对线性表进行判空。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.payment.java.base.algorithm.list.queue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 弹出元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 弹出元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 添加元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(T t)</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回线性表大小</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 线性表大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回第一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 第一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">fist</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回最后一个元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 最后一个元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">T <span class="title">last</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是否是空线性表</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否是空线性表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> AlgorithmException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="抽象实现类"><a href="#抽象实现类" class="headerlink" title="抽象实现类"></a>抽象实现类</h2><p>统一处理异常</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.payment.java.base.algorithm.list;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.ErrorCode4Algorithm;</span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.list.queue.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">pop</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T t)</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">fist</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">last</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">throws</span> AlgorithmException </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(ErrorCode4Algorithm.NOT_IMPLEMENT_EXCEPTION);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id><a href="#" class="headerlink" title></a></h1>
     </div>
 
@@ -500,12 +500,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">101k</span>
+    <span title="站点总字数">103k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:31</span>
+    <span title="站点阅读时长">1:34</span>
 </div>
 
         
