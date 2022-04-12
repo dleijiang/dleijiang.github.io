@@ -268,6 +268,8 @@
       
         <p>排序算法是最常见的算法之一，常见的排序算法有<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>希尔排序</code>、<code>归并排序</code>、<code>堆排序</code>、<code>快速排序</code>。其目的是为了实现&gt;对数组中元素的排序。通常排序分为正序和倒序。</p>
 <a id="more"></a>
+
+
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><blockquote>
 <ul>
 <li>最好、最坏、平均时间复杂度</li>
@@ -286,9 +288,13 @@
 <li><code>稳定</code>的算法在排序的过程中不会改变元素彼此的位置的相对次序,反之<code>不稳定</code>的排序算法经常会改变这个次序。以某两个相等元素<code>c[i]</code>和<code>c[j]</code>为例，假如在原始待排序数组中<code>c[i] == c[j]</code>，并且<code>c[i]</code>位置在<code>c[j]</code>之前。那么如果整个排序过程中，<code>c[i]</code>均在<code>c[j]</code>之前，则说明排序算法是稳定的，反之则是不稳定的。</li>
 </ul>
 </blockquote>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs prolog">[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>][<span class="hljs-number">9</span>] .... [i] ... [j] ...<br></code></pre></td></tr></table></figure>
-<h2 id="公共函数"><a href="#公共函数" class="headerlink" title="公共函数"></a>公共函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/*比较两个元素大小*/</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">less</span><span class="hljs-params">(Comparable v, Comparable w)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> v.compareTo(w) &lt; <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-comment">/*交换两个元素*/</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exch</span><span class="hljs-params">(Comparable[] a, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>&#123;<br>    Comparable t = a[i];<br>    a[i] = a[j];<br>    a[j] = t;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">3</span>][<span class="number">4</span>][<span class="number">9</span>] .... [i] ... [j] ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="公共函数"><a href="#公共函数" class="headerlink" title="公共函数"></a>公共函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*比较两个元素大小*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> v.compareTo(w) &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*交换两个元素*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    Comparable t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -395,20 +401,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-count">93</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -466,12 +472,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">103k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:34</span>
 </div>
 
         

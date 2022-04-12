@@ -267,44 +267,67 @@
       
         <p>快速排序（英语：Quicksort），又称分区交换排序（partition-exchange sort），简称快排，一种排序算法，最早由东尼·霍尔提出。通常明显比其&gt;他算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地达成。</p>
 <a id="more"></a>
+
+
 <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>是一种分治的思想。它将一个数组分成两个子数组，两部分独立的排序。</p>
 </blockquote>
 <p>原数据：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[5] [8] [9] [7] [1] [3] [9]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[5] [8] [9] [7] [1] [3] [9]</span><br></pre></td></tr></table></figure>
+
 <p>假定第一个元素<font color="red">[5]</font>为哨兵，标记哨兵为x，使用临时变量<code>temp</code>存放哨兵的值，则原数据如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[x] [8] [9] [7] [1] [3] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [5]<br>left = 1<br>right = 6<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x] [8] [9] [7] [1] [3] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [5]</span><br><span class="line">left = 1</span><br><span class="line">right = 6</span><br></pre></td></tr></table></figure>
+
 <p>第一步：，从数组尾部开始扫描，如果当前元素<code>c[right]</code>大于哨兵的值，则索引<code>right</code>减1，继续扫描，如果当前元素<code>c[right]</code>小于哨兵的值，则交换哨兵与当前元素的值。因为<font color="red">[3]</font>小于<font color="red">[9]</font>，因此交换<font color="red">[3]</font>和哨兵<font color="red">[x]</font>，得到如下结果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [8] [9] [7] [1] [x] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [5]<br>left = 1<br>right = 5<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [8] [9] [7] [1] [x] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [5]</span><br><span class="line">left = 1</span><br><span class="line">right = 5</span><br></pre></td></tr></table></figure>
+
 <p>第二步，从数组头部开始扫描，如果当前元素<code>c[left]</code>小于哨兵的值，则索引<code>left</code>加1，继续扫描，如果当前元素<code>c[left]</code>大于哨兵的值，则交换哨兵与当前元素的值。因为<font color="red">[8]</font>大于<font color="red">[5]</font>，因此交换<font color="red">[8]</font>和哨兵<font color="red">[x]</font>，得到如下结果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [x] [9] [7] [1] [8] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [9]<br>left = 1<br>right = 5<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [x] [9] [7] [1] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [9]</span><br><span class="line">left = 1</span><br><span class="line">right = 5</span><br></pre></td></tr></table></figure>
+
 <p>第三步，继续从<code>right-1</code>处继续扫描，重复步骤一，得到结果如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [1] [9] [7] [x] [8] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [9]<br>left = 1<br>right = 4<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [1] [9] [7] [x] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [9]</span><br><span class="line">left = 1</span><br><span class="line">right = 4</span><br></pre></td></tr></table></figure>
+
 <p>第四步，继续从<code>left+1</code>处继续扫描，重复步骤二，得到结果如下。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [1] [x] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [9]<br>left = 2<br>right = 4<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [1] [x] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [9]</span><br><span class="line">left = 2</span><br><span class="line">right = 4</span><br></pre></td></tr></table></figure>
+
 <p>一直重复上面的步骤直到，<code>left</code>大于等于<code>right</code>结束扫描，最后把临时变量temp的值存入<font color="red">[x]</font>处，第一轮快速排序结束。可以得到第一轮结果如下，可以很明显看到小于<font color="red">[5]</font>的值全在左边，大于<font color="red">[5]</font>的值全在右边。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [1] [5] [7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">temp = [9]<br>left = 2<br>right = 2<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [1] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = [9]</span><br><span class="line">left = 2</span><br><span class="line">right = 2</span><br></pre></td></tr></table></figure>
+
+
 <p>第二轮，把第一轮的结果看成如下两个数组，对每个数组，重复第一轮的排序方法，直到左右数组均有序。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[3] [1]<br></code></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[7] [9] [8] [9]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [1]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
+
 <p>最终可以得到有序数组。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">[1] [3] [5] [7] [8] [9] [9]<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
 <p>快速排序是不稳定的排序算法，其时间复杂度计算公式如下，可以看到快速排序最好情况下时间复杂度为<code>O(nlogn)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>O(nlogn)</code>。</p>
 </blockquote>
-<script type="math/tex; mode=display">
-待补充</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>$$<br>待补充<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
 <p>less函数与exch函数参见文章排序算法序言。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">quick</span><span class="hljs-params">(Comparable[] c)</span></span>&#123;<br>    sort(c, <span class="hljs-number">0</span>, c.length-<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(Comparable[] c, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (end &lt;= start) &#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">int</span> j = partition(c, start, end);<br>    sort(c, start, j - <span class="hljs-number">1</span>);<br>    sort(c, j+<span class="hljs-number">1</span>, end);<br>&#125;<br></code></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(Comparable[] c, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> i = start, j = end + <span class="hljs-number">1</span>;<br>    Comparable v = c[start];<br>    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>)&#123;<br>        <span class="hljs-keyword">while</span> (less(c[++i], v))&#123;<br>            <span class="hljs-keyword">if</span>(i == end)&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">while</span> (less(v, c[--j]))&#123;<br>            <span class="hljs-keyword">if</span>(j == start)&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(i &gt;= j)&#123;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        exch(c, i, j);<br>    &#125;<br>    exch(c, start, j);<br>    <span class="hljs-keyword">return</span> j;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quick</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    sort(c, <span class="number">0</span>, c.length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] c, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (end &lt;= start) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> j = partition(c, start, end);</span><br><span class="line">    sort(c, start, j - <span class="number">1</span>);</span><br><span class="line">    sort(c, j+<span class="number">1</span>, end);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] c, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = start, j = end + <span class="number">1</span>;</span><br><span class="line">    Comparable v = c[start];</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span> (less(c[++i], v))&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == end)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (less(v, c[--j]))&#123;</span><br><span class="line">            <span class="keyword">if</span>(j == start)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &gt;= j)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        exch(c, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    exch(c, start, j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -410,20 +433,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-count">93</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -481,12 +504,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">103k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:28</span>
+    <span title="站点阅读时长">1:34</span>
 </div>
 
         
