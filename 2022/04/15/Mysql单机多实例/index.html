@@ -258,19 +258,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>mysql</code>默认端口为<code>3306</code>，因此默认一个机器上只能启动一个<code>mysql</code>实例，如果想要在一台机器上启动多个<code>mysql</code>实例，则需配置单机多实例。<strong><em>本文承接mysql安装教程。</em></strong></p>
+        <p><code>mysql</code>默认端口为<code>3306</code>，因此默认一个机器上只能启动一个<code>mysql</code>实例，如果想要在一台机器上启动多个<code>mysql</code>实例，则需配置单机多实例。<em><strong>本文承接mysql安装教程。</strong></em></p>
 <a id="more"></a>
-<h2 id="mysql主从规划"><a href="#mysql主从规划" class="headerlink" title="mysql主从规划"></a>mysql主从规划</h2><div class="table-container">
-<table>
+
+<h2 id="mysql主从规划"><a href="#mysql主从规划" class="headerlink" title="mysql主从规划"></a>mysql主从规划</h2><table>
 <thead>
 <tr>
-<th>主/从库</th>
+<th>主&#x2F;从库</th>
 <th>IP地址</th>
 <th>端口</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>primary（主库）</td>
 <td>10.10.10.1</td>
 <td>3306</td>
@@ -280,14 +279,17 @@
 <td>10.10.10.2</td>
 <td>3306</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="创建mysql目录"><a href="#创建mysql目录" class="headerlink" title="创建mysql目录"></a>创建mysql目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建mysql files文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -v /var/lib/mysql/mysql-files</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建mysql多实例数据库目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -vp /data/mysql_data&#123;1..2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建mysql sock的文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir /data/mysqlsock</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改mysqlsock文件夹的权限</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chmod 777 /data/mysqlsock/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改文件夹所有者为mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chown mysql.mysql -R /var/lib/mysql/mysql-files /data/mysql_data&#123;1..2&#125; /data/mysqlsock</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">备份配置文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mv /etc/my.cnf /etc/my.cnf.bak</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建新的配置文件，并添加如下配置</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld=/usr/sbin/mysqld</span><br><span class="line">mysqladmin=/usr/bin/mysqladmin</span><br><span class="line">log=/var/log/mysql/mysql_multi.log</span><br><span class="line"></span><br><span class="line">[mysqld1]</span><br><span class="line">datadir=/data/mysql_data1</span><br><span class="line">socket=/data/mysqlsock/mysql.sock1</span><br><span class="line">port=3306</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br><span class="line"></span><br><span class="line">[mysqld1]</span><br><span class="line">datadir=/data/mysql_data2</span><br><span class="line">socket=/data/mysqlsock/mysql.sock2</span><br><span class="line">port=3307</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br></pre></td></tr></table></figure>
+
 <h2 id="初始化mysql多实例"><a href="#初始化mysql多实例" class="headerlink" title="初始化mysql多实例"></a>初始化mysql多实例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化mysql多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">初始化mysq2多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看已经存在的mysql，并杀死已经存在的mysql教程</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux|grep mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 xxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看mysql运行情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is not running</span><br><span class="line">MySQL server from group: mysqld2 is not running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is running</span><br><span class="line">MySQL server from group: mysqld2 is running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看服务进程，可以看到前面设置的端口号均已启动</span></span><br><span class="line">ps aux | grep mysql</span><br></pre></td></tr></table></figure>
+
 <h2 id="登录mysql实例"><a href="#登录mysql实例" class="headerlink" title="登录mysql实例"></a>登录mysql实例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 登录mysql实例1，实例2</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p<span class="string">&#x27;xxx&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置实例1的密码，xxx为初始密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SET PASSWORD=PASSWORD(<span class="string">&#x27;xxx&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
 <p><code>mysql实例2</code>同样进行初始化，并设置初始密码，这样mysql单机多实例则初始化完成了</p>
 
     </div>
@@ -461,12 +463,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">105k</span>
+    <span title="站点总字数">107k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:35</span>
+    <span title="站点阅读时长">1:38</span>
 </div>
 
         
