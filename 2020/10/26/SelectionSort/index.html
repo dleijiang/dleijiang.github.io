@@ -246,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>946</span>
+              <span>939</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,38 +267,29 @@
       
         <p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
 <a id="more"></a>
-
-
 <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
 </blockquote>
 <p>原数据：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[9] [8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
 <p>第一步，在原始数组中找到最小元素<font color="red">[1]</font>，起始位置的<font color="red">[9]</font>进行交换，结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [8] [9] [7] [9] [3] [5]</span><br></pre></td></tr></table></figure>
-
 <p>第二步，在剩余未排序数组中找到最小元素<font color="red">[3]</font>与<font color="red">[8]</font>进行交换，结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [9] [7] [9] [8] [5]</span><br></pre></td></tr></table></figure>
-
 <p>第三步，在剩余未排序数组中找到最小元素<font color="red">[5]</font>与索引三处的<font color="red">[9]</font>进行交换，结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
-
 <p>第四步，在剩余未排序数组中找到最小元素<font color="red">[7]</font>，其已经处在正确位置。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
-
 <p>第五步，在剩余未排序数组中找到最小元素<font color="red">[8]</font>，前面的<font color="red">[9]</font>进行交换，结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
-
 <p>第六步，在剩余未排序数组中找到最小元素<font color="red">[9]</font>，其已经处在正确位置。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
-
 <p>排序完毕，数组已经有序。</p>
 <h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
 <p>从第一步就可以明显看出，两个<code>[9]</code>交换了次序，因此插入排序是不稳定的排序算法。其时间复杂度计算公式如下。可以看到选择排序最好的情况下时间复杂度为2^n，最坏的情况下时间复杂度为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
 </blockquote>
-<p>$$<br>(n-1) + (n-2) + … + 1 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<script type="math/tex; mode=display">
+(n-1) + (n-2) + ... + 1 = \frac{n * (n-1)}{2}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
 <p>less函数与exch函数参见文章排序算法序言。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -407,20 +398,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">96</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -478,12 +469,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">103k</span>
+    <span title="站点总字数">105k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:34</span>
+    <span title="站点阅读时长">1:35</span>
 </div>
 
         
