@@ -686,30 +686,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo简单使用</title>
-    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><font color="green"><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color="green"><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
-<a id="more"></a>
-
-
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color="green"><strong>Hexo</strong></font>使用命令介绍。</p>
-<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo new <span class="string">&#x27;title&#x27;</span></span></span><br></pre></td></tr></table></figure>
-<p>创建完博客之后，会自动在<font color="blue"> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color="green"><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
-<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo s</span></span><br></pre></td></tr></table></figure>
-
-<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color="green"><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
-<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kafka命令</title>
     <url>/2021/03/27/kafka%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>kafka是一款优秀且常见的MQ，具有安装方便，使用方便，应用场景广泛等一系列优点，个人认为是最好用的MQ之一。</p>
@@ -822,6 +798,30 @@
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>前序、中序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo简单使用</title>
+    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><font color="green"><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color="green"><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
+<a id="more"></a>
+
+
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color="green"><strong>Hexo</strong></font>使用命令介绍。</p>
+<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo new <span class="string">&#x27;title&#x27;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建完博客之后，会自动在<font color="blue"> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color="green"><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
+<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo s</span></span><br></pre></td></tr></table></figure>
+
+<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color="green"><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
+<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -971,28 +971,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-141 环形链表</title>
-    <url>/2021/08/30/leetcode-141/</url>
-    <content><![CDATA[<p>题目描述：给定一个链表，判断链表中是否有环。</p>
-<p>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。</p>
-<p>如果链表中存在环，则返回 true 。 否则，返回 false 。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode quickPoint = head.next.next;</span><br><span class="line">        ListNode slowPoint = head.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (quickPoint.next != <span class="keyword">null</span> &amp;&amp; quickPoint.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (quickPoint == slowPoint) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            quickPoint = quickPoint.next.next;</span><br><span class="line">            slowPoint = slowPoint.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>环形链表</tag>
-        <tag>难度简单</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-142 环形链表</title>
     <url>/2021/08/21/leetcode-142/</url>
     <content><![CDATA[<p>题目描述：给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
@@ -1012,6 +990,28 @@
         <tag>难度中等</tag>
         <tag>oj</tag>
         <tag>环形链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-141 环形链表</title>
+    <url>/2021/08/30/leetcode-141/</url>
+    <content><![CDATA[<p>题目描述：给定一个链表，判断链表中是否有环。</p>
+<p>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。</p>
+<p>如果链表中存在环，则返回 true 。 否则，返回 false 。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode quickPoint = head.next.next;</span><br><span class="line">        ListNode slowPoint = head.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (quickPoint.next != <span class="keyword">null</span> &amp;&amp; quickPoint.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (quickPoint == slowPoint) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            quickPoint = quickPoint.next.next;</span><br><span class="line">            slowPoint = slowPoint.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>环形链表</tag>
+        <tag>难度简单</tag>
       </tags>
   </entry>
   <entry>
@@ -1197,6 +1197,28 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-26 删除有序数组中的重复项</title>
+    <url>/2021/09/10/leetcode-26/</url>
+    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度简单</tag>
+        <tag>有序数组</tag>
+        <tag>重复项</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-25 K个一组翻转链表</title>
     <url>/2021/07/27/leetcode-25/</url>
     <content><![CDATA[<p>题目描述：给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你可以设计一个只使用常数额外空间的算法来解决此问题吗？你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
@@ -1256,28 +1278,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>单链表</tag>
         <tag>反转</tag>
         <tag>难度困难</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-26 删除有序数组中的重复项</title>
-    <url>/2021/09/10/leetcode-26/</url>
-    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>有序数组</tag>
-        <tag>重复项</tag>
       </tags>
   </entry>
   <entry>
@@ -1493,29 +1493,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-354 俄罗斯套娃信封问题</title>
-    <url>/2021/09/16/leetcode-354/</url>
-    <content><![CDATA[<p>题目描述：给你一个二维整数数组 envelopes ，其中 envelopes[i] &#x3D; [wi, hi] ，表示第 i 个信封的宽度和高度。</p>
-<p>当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。</p>
-<p>请计算 最多能有多少个 信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] envelopes)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(envelopes, (o1, o2) -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (o1[<span class="number">0</span>] == o2[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> o2[<span class="number">1</span>] - o1[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> o1[<span class="number">0</span>] - o2[<span class="number">0</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[envelopes.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; envelopes.length; i++) &#123;</span><br><span class="line">            nums[i] = envelopes[i][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lengthOfLIS(nums);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度困难</tag>
-        <tag>俄罗斯套娃</tag>
-        <tag>信封</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-355 设计推特</title>
     <url>/2021/08/22/leetcode-355/</url>
     <content><![CDATA[<p>题目描述：设计一个简化版的推特(Twitter)，可以让用户实现发送推文，关注&#x2F;取消关注其他用户，能够看见关注人（包括自己）的最近十条推文。你的设计需要支持以下的几个功能：</p>
@@ -1543,6 +1520,29 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>难度中等</tag>
         <tag>oj</tag>
         <tag>算法设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-354 俄罗斯套娃信封问题</title>
+    <url>/2021/09/16/leetcode-354/</url>
+    <content><![CDATA[<p>题目描述：给你一个二维整数数组 envelopes ，其中 envelopes[i] &#x3D; [wi, hi] ，表示第 i 个信封的宽度和高度。</p>
+<p>当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。</p>
+<p>请计算 最多能有多少个 信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] envelopes)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(envelopes, (o1, o2) -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (o1[<span class="number">0</span>] == o2[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> o2[<span class="number">1</span>] - o1[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> o1[<span class="number">0</span>] - o2[<span class="number">0</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[envelopes.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; envelopes.length; i++) &#123;</span><br><span class="line">            nums[i] = envelopes[i][<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lengthOfLIS(nums);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度困难</tag>
+        <tag>俄罗斯套娃</tag>
+        <tag>信封</tag>
       </tags>
   </entry>
   <entry>
@@ -1820,28 +1820,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-700 二叉搜索树中的搜索</title>
-    <url>/2021/08/12/leetcode-700/</url>
-    <content><![CDATA[<p>题目描述：给定二叉搜索树（BST）的根节点和一个值。 你需要在BST中找到节点值等于给定值的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 NULL。</p>
-<p>提示：</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> TreeNode searchNode;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">searchBST</span><span class="params">(TreeNode root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        search(root, val);</span><br><span class="line">        <span class="keyword">return</span> searchNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">search</span><span class="params">(TreeNode root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.val == val) &#123;</span><br><span class="line">            searchNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.val &gt; val) &#123;</span><br><span class="line">            search(root.left, val);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &lt; val) &#123;</span><br><span class="line">            search(root.right, val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>二叉搜索树</tag>
-        <tag>难度简单</tag>
-        <tag>搜索</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-701 二叉搜索树中的插入操作</title>
     <url>/2021/08/11/leetcode-701/</url>
     <content><![CDATA[<p>题目描述：给定二叉搜索树（BST）的根节点和要插入树中的值，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。</p>
@@ -1867,6 +1845,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>二叉搜索树</tag>
         <tag>插入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-700 二叉搜索树中的搜索</title>
+    <url>/2021/08/12/leetcode-700/</url>
+    <content><![CDATA[<p>题目描述：给定二叉搜索树（BST）的根节点和一个值。 你需要在BST中找到节点值等于给定值的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 NULL。</p>
+<p>提示：</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> TreeNode searchNode;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">searchBST</span><span class="params">(TreeNode root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        search(root, val);</span><br><span class="line">        <span class="keyword">return</span> searchNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">search</span><span class="params">(TreeNode root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.val == val) &#123;</span><br><span class="line">            searchNode = root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.val &gt; val) &#123;</span><br><span class="line">            search(root.left, val);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &lt; val) &#123;</span><br><span class="line">            search(root.right, val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>二叉搜索树</tag>
+        <tag>难度简单</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
