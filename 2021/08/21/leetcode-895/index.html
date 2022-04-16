@@ -246,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>309</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -272,8 +272,7 @@
 <li>pop()，它移除并返回栈中出现最频繁的元素。<br>如果最频繁的元素不只一个，则移除并返回最接近栈顶的元素。</li>
 </ul>
 <a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>&#96;&#96;&#96;java<br>class FreqStack {<br>    &#x2F;&#x2F; 记录 FreqStack 中元素的最大频率<br>    private int maxFreq &#x3D; 0;<br>    &#x2F;&#x2F; 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表<br>    private HashMap&lt;Integer, Integer&gt; valToFreq &#x3D; new HashMap&lt;&gt;();<br>    &#x2F;&#x2F; 记录频率 freq 对应的 val 列表，后文就称为 FV 表<br>    private HashMap&lt;Integer, Stack<Integer>&gt; freqToVals &#x3D; new HashMap&lt;&gt;();</Integer></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>```java<br>class FreqStack {<br>    // 记录 FreqStack 中元素的最大频率<br>    private int maxFreq = 0;<br>    // 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表<br>    private HashMap<Integer, integer> valToFreq = new HashMap&lt;&gt;();<br>    // 记录频率 freq 对应的 val 列表，后文就称为 FV 表<br>    private HashMap<Integer, stack<integer>&gt; freqToVals = new HashMap&lt;&gt;();</Integer,></Integer,></p>
 <pre><code>public FreqStack() &#123;
 &#125;
 
@@ -307,8 +306,7 @@ public int pop() &#123;
     &#125;
     return val;
 &#125;
-</code></pre>
-<p>}<br>&#96;&#96;&#96;</p>
+</code></pre><p>}<br>```</p>
 
     </div>
 

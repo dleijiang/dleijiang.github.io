@@ -246,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>942</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,73 +267,40 @@
       
         <p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐&gt;步向后挪位，为最新元素提供插入空间。</p>
 <a id="more"></a>
-
 <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>每次从剩余的未排序的元素中选取一个元素插入到前面已排序的元素中，使整体有序。下面以正序为例说明整个过程。</p>
 </blockquote>
-<p>原数据：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">9</span>] [<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
+<p>原数据：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">9</span>] [<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
 <p>第一步：选择<font color="red">[9]</font>插入到前面已排序的元素中，由于是第一个元素，已经排序好了。可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[9]</span><br></pre></td></tr></table></figure></p>
 <p>第二步：选择<font color="red">[8]</font>插入到前面已排序的元素中，<font color="red">[8]</font>比<font color="red">[9]</font>小，因此在<font color="red">[9]</font>前面，可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [1] [3] [5]</span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[8] [9]</span><br></pre></td></tr></table></figure></p>
 <p>第三步：选择<font color="red">[7]</font>插入到前面已排序的元素中，<font color="red">[7]</font>比<font color="red">[8]</font>小，因此在<font color="red">[8]</font>前面，可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [8] [9] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [8] [9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5]</span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[7] [8] [9]</span><br></pre></td></tr></table></figure></p>
 <p>第四步：选择<font color="red">[1]</font>插入到前面已排序的元素中，<font color="red">[1]</font>比<font color="red">[7]</font>小，因此在<font color="red">[7]</font>前面，可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [7] [8] [9] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3] [5]</span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [7] [8] [9]</span><br></pre></td></tr></table></figure></p>
 <p>第五步：选择<font color="red">[3]</font>插入到前面已排序的元素中，<font color="red">[3]</font>小于<font color="red">[7]</font>大于<font color="red">[1]</font>，因此<font color="red">[3]</font>在<font color="red">[1]</font>和<font color="red">[7]</font>之间，可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [7] [8] [9] [5]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[5]</span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[5]</span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [7] [8] [9]</span><br></pre></td></tr></table></figure></p>
 <p>第六步：同理插入<font color="red">[5]</font>，可以看到结果如下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-
-<p>未排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>已排序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-
+<p>未排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>已排序<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure></p>
 <p>最终得到一个正序数组。</p>
 <h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
 <p>插入排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到插入排序最好的情况时间复杂度为n，最坏的情况下时间复杂度均为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
 </blockquote>
-<p>$$<br>k1 + k2 + k3 + k4 + … kn &#x3D; \sum_{k&#x3D;1}^{n}{k_n} (1 &lt;&#x3D; k1,k2,…,kn &lt;&#x3D; n-1)<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+k1 + k2 + k3 + k4 + ... kn = \sum_{k=1}^{n}{k_n} (1 <= k1,k2,...,kn <= n-1)</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
