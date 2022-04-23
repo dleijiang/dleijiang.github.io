@@ -260,11 +260,16 @@
       
         <p><code>Mysql Replication</code>，可以实现将数据从一台数据库服务器复制到另一台或者多台数据库服务器。默认情况下属于异步复制，无需维持长连接，通过配置，可以复制所有的库或者几个甚至其中一些表，并且这些功能都是<code>mysql</code>自带的。</p>
 <a id="more"></a>
+
 <h2 id="mysql配置说明"><a href="#mysql配置说明" class="headerlink" title="mysql配置说明"></a>mysql配置说明</h2><p>下面以<code>mysql</code>实例1作为主库，<code>mysql</code>实例2作为从库，其中主库具有增删改查功能，而从库仅仅有查询功能。</p>
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主库配置</span></span><br><span class="line">server-id=1</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">从库配置</span></span><br><span class="line">server-id=10</span><br></pre></td></tr></table></figure>
+
 <h2 id="重启mysql服务"><a href="#重启mysql服务" class="headerlink" title="重启mysql服务"></a>重启mysql服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">杀死mysql服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 `ps -ef | grep mysql | grep -v grep | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查旧mysql服务是否被停止</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查mysql多实例情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="配置主库"><a href="#配置主库" class="headerlink" title="配置主库"></a>配置主库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主库mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p -uroot</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建从库链接的用户，其中xxx为从库用户密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">授权从库登录用户，同步主库日志文件的权限，其中xxx为密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> GRANT REPLICATION SLAVE ON *.* TO <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;10.10.10.1&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>；</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看主库状态，并记录File与Position的值</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show master status;</span></span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000001 |      437 |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="配置从库"><a href="#配置从库" class="headerlink" title="配置从库"></a>配置从库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从库</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock2 -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CHANGE MASTER TO MASTER_HOST=<span class="string">&#x27;10.10.10.1&#x27;</span>, MASTER_USER=<span class="string">&#x27;repl&#x27;</span>,MASTER_PASSWORD=<span class="string">&#x27;xxx&#x27;</span>,MASTER_PORT=3306,MASTER_LOG_FILE=<span class="string">&#x27;mysql-bin.000001&#x27;</span>,MASTER_LOG_POS=437;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看从库状态</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -369,20 +374,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -440,12 +445,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">109k</span>
+    <span title="站点总字数">113k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:39</span>
+    <span title="站点阅读时长">1:43</span>
 </div>
 
         

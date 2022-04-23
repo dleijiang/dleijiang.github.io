@@ -270,7 +270,9 @@
 <p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。</p>
 <p>说明：不允许修改给定的链表。</p>
 <a id="more"></a>
+
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判断是否有环</span></span><br><span class="line">        ListNode fastNode = head;</span><br><span class="line">        ListNode slowNode = head;</span><br><span class="line">        <span class="keyword">while</span> (fastNode != <span class="keyword">null</span> &amp;&amp; fastNode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            fastNode = fastNode.next.next;</span><br><span class="line">            slowNode = slowNode.next;</span><br><span class="line">            <span class="keyword">if</span> (fastNode == slowNode) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 说明没环，直接返回null</span></span><br><span class="line">        <span class="keyword">if</span> (fastNode != slowNode || fastNode == <span class="keyword">null</span> || fastNode.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 计算环大小</span></span><br><span class="line">        <span class="keyword">int</span> cycleSize = <span class="number">1</span>;</span><br><span class="line">        fastNode = fastNode.next.next;</span><br><span class="line">        slowNode = slowNode.next;</span><br><span class="line">        <span class="keyword">while</span> (fastNode != slowNode) &#123;</span><br><span class="line">            fastNode = fastNode.next.next;</span><br><span class="line">            slowNode = slowNode.next;</span><br><span class="line">            cycleSize++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 快指针先走环大小步，然后和慢指针一起走，会在环开始位置相遇</span></span><br><span class="line">        fastNode = slowNode = head;</span><br><span class="line">        <span class="keyword">while</span> (cycleSize-- != <span class="number">0</span>) &#123;</span><br><span class="line">            fastNode = fastNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (fastNode != slowNode) &#123;</span><br><span class="line">            fastNode = fastNode.next;</span><br><span class="line">            slowNode = slowNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fastNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -377,20 +379,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -448,12 +450,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">109k</span>
+    <span title="站点总字数">113k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:39</span>
+    <span title="站点阅读时长">1:43</span>
 </div>
 
         
