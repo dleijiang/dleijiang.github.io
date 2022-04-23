@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CVN2是什么</title>
+    <url>/2022/04/10/CVN2%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p>cvn2全称是Card Verification Numnber 2，也即卡验证码，是银联信用卡安全码的名称，当前国际上不同的信用卡组织的叫法并不相同。</p>
+<a id="more"></a>
+
+<h2 id="一、cvn2是什么"><a href="#一、cvn2是什么" class="headerlink" title="一、cvn2是什么"></a>一、cvn2是什么</h2><blockquote>
+<p><code>VISA</code> 的安全码叫做CVV2（Card Verification Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+<p><code>MasterCard</code>的安全码叫做CVC2（Card Validation Code 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+<p><code>Discover Card</code>的安全码叫做Cardmember ID，有3位数字，平印在信用卡背面签名栏上。</p>
+<p><code>American Express</code>的安全码叫做CID（Card Identification Number），有4位数字，平印在信用卡正面信用卡卡号上方。</p>
+<p><code>China UnionPay</code>的安全码叫做CVN2（Card Validation Number 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处之后。</p>
+<p><code>Japan Credit Bureau</code>的安全码叫做CAV2（ Card Authentication Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
+</blockquote>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/visa.png" alt="visa"></p>
+]]></content>
+      <categories>
+        <category>支付</category>
+      </categories>
+      <tags>
+        <tag>支付</tag>
+        <tag>银联卡</tag>
+        <tag>支付三要素</tag>
+        <tag>信用卡</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>冒泡排序</title>
     <url>/2020/10/25/BubbleSort/</url>
     <content><![CDATA[<p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
@@ -47,32 +73,6 @@
         <tag>冒泡排序</tag>
         <tag>数据结构与算法</tag>
         <tag>稳定排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CVN2是什么</title>
-    <url>/2022/04/10/CVN2%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<p>cvn2全称是Card Verification Numnber 2，也即卡验证码，是银联信用卡安全码的名称，当前国际上不同的信用卡组织的叫法并不相同。</p>
-<a id="more"></a>
-
-<h2 id="一、cvn2是什么"><a href="#一、cvn2是什么" class="headerlink" title="一、cvn2是什么"></a>一、cvn2是什么</h2><blockquote>
-<p><code>VISA</code> 的安全码叫做CVV2（Card Verification Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
-<p><code>MasterCard</code>的安全码叫做CVC2（Card Validation Code 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
-<p><code>Discover Card</code>的安全码叫做Cardmember ID，有3位数字，平印在信用卡背面签名栏上。</p>
-<p><code>American Express</code>的安全码叫做CID（Card Identification Number），有4位数字，平印在信用卡正面信用卡卡号上方。</p>
-<p><code>China UnionPay</code>的安全码叫做CVN2（Card Validation Number 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处之后。</p>
-<p><code>Japan Credit Bureau</code>的安全码叫做CAV2（ Card Authentication Value 2），有3位数字，平印在信用卡背面签名栏上卡号后4位处。</p>
-</blockquote>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/visa.png" alt="visa"></p>
-]]></content>
-      <categories>
-        <category>支付</category>
-      </categories>
-      <tags>
-        <tag>支付</tag>
-        <tag>银联卡</tag>
-        <tag>支付三要素</tag>
-        <tag>信用卡</tag>
       </tags>
   </entry>
   <entry>
@@ -124,6 +124,31 @@
         <tag>数据结构与算法</tag>
         <tag>希尔排序</tag>
         <tag>不稳定排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql主从配置</title>
+    <url>/2022/04/15/Mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><code>Mysql Replication</code>，可以实现将数据从一台数据库服务器复制到另一台或者多台数据库服务器。默认情况下属于异步复制，无需维持长连接，通过配置，可以复制所有的库或者几个甚至其中一些表，并且这些功能都是<code>mysql</code>自带的。</p>
+<a id="more"></a>
+
+<h2 id="mysql配置说明"><a href="#mysql配置说明" class="headerlink" title="mysql配置说明"></a>mysql配置说明</h2><p>下面以<code>mysql</code>实例1作为主库，<code>mysql</code>实例2作为从库，其中主库具有增删改查功能，而从库仅仅有查询功能。</p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主库配置</span></span><br><span class="line">server-id=1</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">从库配置</span></span><br><span class="line">server-id=10</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启mysql服务"><a href="#重启mysql服务" class="headerlink" title="重启mysql服务"></a>重启mysql服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">杀死mysql服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 `ps -ef | grep mysql | grep -v grep | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查旧mysql服务是否被停止</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查mysql多实例情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置主库"><a href="#配置主库" class="headerlink" title="配置主库"></a>配置主库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主库mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p -uroot</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建从库链接的用户，其中xxx为从库用户密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">授权从库登录用户，同步主库日志文件的权限，其中xxx为密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> GRANT REPLICATION SLAVE ON *.* TO <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;10.10.10.1&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>；</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看主库状态，并记录File与Position的值</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show master status;</span></span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000001 |      437 |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置从库"><a href="#配置从库" class="headerlink" title="配置从库"></a>配置从库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从库</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock2 -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CHANGE MASTER TO MASTER_HOST=<span class="string">&#x27;10.10.10.1&#x27;</span>, MASTER_USER=<span class="string">&#x27;repl&#x27;</span>,MASTER_PASSWORD=<span class="string">&#x27;xxx&#x27;</span>,MASTER_PORT=3306,MASTER_LOG_FILE=<span class="string">&#x27;mysql-bin.000001&#x27;</span>,MASTER_LOG_POS=437;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看从库状态</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>suse</tag>
+        <tag>主从</tag>
       </tags>
   </entry>
   <entry>
@@ -207,31 +232,6 @@
         <tag>数据结构与算法</tag>
         <tag>稳定排序</tag>
         <tag>插入排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mysql主从配置</title>
-    <url>/2022/04/15/Mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p><code>Mysql Replication</code>，可以实现将数据从一台数据库服务器复制到另一台或者多台数据库服务器。默认情况下属于异步复制，无需维持长连接，通过配置，可以复制所有的库或者几个甚至其中一些表，并且这些功能都是<code>mysql</code>自带的。</p>
-<a id="more"></a>
-
-<h2 id="mysql配置说明"><a href="#mysql配置说明" class="headerlink" title="mysql配置说明"></a>mysql配置说明</h2><p>下面以<code>mysql</code>实例1作为主库，<code>mysql</code>实例2作为从库，其中主库具有增删改查功能，而从库仅仅有查询功能。</p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主库配置</span></span><br><span class="line">server-id=1</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">从库配置</span></span><br><span class="line">server-id=10</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启mysql服务"><a href="#重启mysql服务" class="headerlink" title="重启mysql服务"></a>重启mysql服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">杀死mysql服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 `ps -ef | grep mysql | grep -v grep | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查旧mysql服务是否被停止</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查mysql多实例情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置主库"><a href="#配置主库" class="headerlink" title="配置主库"></a>配置主库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主库mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p -uroot</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建从库链接的用户，其中xxx为从库用户密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">授权从库登录用户，同步主库日志文件的权限，其中xxx为密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> GRANT REPLICATION SLAVE ON *.* TO <span class="string">&#x27;repl&#x27;</span>@<span class="string">&#x27;10.10.10.1&#x27;</span> IDENTIFIED BY <span class="string">&#x27;xxx&#x27;</span>；</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看主库状态，并记录File与Position的值</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show master status;</span></span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000001 |      437 |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置从库"><a href="#配置从库" class="headerlink" title="配置从库"></a>配置从库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从库</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock2 -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">配置从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> CHANGE MASTER TO MASTER_HOST=<span class="string">&#x27;10.10.10.1&#x27;</span>, MASTER_USER=<span class="string">&#x27;repl&#x27;</span>,MASTER_PASSWORD=<span class="string">&#x27;xxx&#x27;</span>,MASTER_PORT=3306,MASTER_LOG_FILE=<span class="string">&#x27;mysql-bin.000001&#x27;</span>,MASTER_LOG_POS=437;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动从库</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> start slave;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看从库状态</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show slave status\G;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>suse</tag>
-        <tag>主从</tag>
       </tags>
   </entry>
   <entry>
@@ -1246,6 +1246,29 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-239 滑动窗口最大值</title>
+    <url>/2021/08/25/leetcode-239/</url>
+    <content><![CDATA[<p>题目描述：给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Window</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;Integer&gt; queue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Window</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Integer e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty() &amp;&amp; queue.getLast() &lt; e) &#123;</span><br><span class="line">            queue.pollLast();</span><br><span class="line">        &#125;</span><br><span class="line">        queue.addLast(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Integer e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e.equals(queue.getFirst())) &#123;</span><br><span class="line">            queue.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getMax</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> queue.getFirst();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        Window window = <span class="keyword">new</span> Window();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            window.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k - <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            window.add(nums[i]);</span><br><span class="line">            res[i - k + <span class="number">1</span>] = window.getMax();</span><br><span class="line">            window.remove(nums[i - k + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度困难</tag>
+        <tag>最大值</tag>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-25 K个一组翻转链表</title>
     <url>/2021/07/27/leetcode-25/</url>
     <content><![CDATA[<p>题目描述：给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你可以设计一个只使用常数额外空间的算法来解决此问题吗？你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
@@ -1308,29 +1331,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-239 滑动窗口最大值</title>
-    <url>/2021/08/25/leetcode-239/</url>
-    <content><![CDATA[<p>题目描述：给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
-<p>返回滑动窗口中的最大值。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Window</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;Integer&gt; queue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Window</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Integer e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty() &amp;&amp; queue.getLast() &lt; e) &#123;</span><br><span class="line">            queue.pollLast();</span><br><span class="line">        &#125;</span><br><span class="line">        queue.addLast(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Integer e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e.equals(queue.getFirst())) &#123;</span><br><span class="line">            queue.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getMax</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> queue.getFirst();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        Window window = <span class="keyword">new</span> Window();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            window.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k - <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            window.add(nums[i]);</span><br><span class="line">            res[i - k + <span class="number">1</span>] = window.getMax();</span><br><span class="line">            window.remove(nums[i - k + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度困难</tag>
-        <tag>最大值</tag>
-        <tag>滑动窗口</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-26 删除有序数组中的重复项</title>
     <url>/2021/09/10/leetcode-26/</url>
     <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
@@ -1353,25 +1353,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-283 移动零</title>
-    <url>/2021/09/13/leetcode-283/</url>
-    <content><![CDATA[<p>题目描述：给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] == <span class="number">0</span>) &#123;</span><br><span class="line">                right++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            nums[left++] = nums[right++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            nums[left++] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度简单</tag>
-        <tag>数组</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-27 移除元素</title>
     <url>/2021/09/12/leetcode-27/</url>
     <content><![CDATA[<p>题目描述：给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。</p>
@@ -1391,6 +1372,25 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>难度简单</tag>
         <tag>重复项</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-283 移动零</title>
+    <url>/2021/09/13/leetcode-283/</url>
+    <content><![CDATA[<p>题目描述：给定一个数组 <code>nums</code>，编写一个函数将所有 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] == <span class="number">0</span>) &#123;</span><br><span class="line">                right++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            nums[left++] = nums[right++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            nums[left++] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度简单</tag>
         <tag>数组</tag>
       </tags>
   </entry>
