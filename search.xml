@@ -1203,27 +1203,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-234 回文链表</title>
-    <url>/2021/07/28/leetcode-234/</url>
-    <content><![CDATA[<p>题目描述：请判断一个链表是否为回文链表。你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历计算链表长度</span></span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 寻找中间节点</span></span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">int</span> subLen = len / <span class="number">2</span> + len % <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (subLen-- != <span class="number">0</span>) &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 反转右半链表区间剩余节点</span></span><br><span class="line">        ListNode subHead2 = reverse(node);</span><br><span class="line">        ListNode subHead1 = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 分别对比左链表区间元素与右链表区间元素</span></span><br><span class="line">        <span class="keyword">while</span> (subHead1 != <span class="keyword">null</span> &amp;&amp; subHead2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (subHead1.val != subHead2.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            subHead1 = subHead1.next;</span><br><span class="line">            subHead2 = subHead2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表反转</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head 链表头节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回反转后的链表头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>单链表</tag>
-        <tag>反转</tag>
-        <tag>难度简单</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-236 二叉树的最近公共祖先</title>
     <url>/2021/08/17/leetcode-236/</url>
     <content><![CDATA[<p>题目描述：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
@@ -1243,6 +1222,27 @@
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>最近公共祖先节点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-234 回文链表</title>
+    <url>/2021/07/28/leetcode-234/</url>
+    <content><![CDATA[<p>题目描述：请判断一个链表是否为回文链表。你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历计算链表长度</span></span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 寻找中间节点</span></span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">int</span> subLen = len / <span class="number">2</span> + len % <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (subLen-- != <span class="number">0</span>) &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 反转右半链表区间剩余节点</span></span><br><span class="line">        ListNode subHead2 = reverse(node);</span><br><span class="line">        ListNode subHead1 = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 分别对比左链表区间元素与右链表区间元素</span></span><br><span class="line">        <span class="keyword">while</span> (subHead1 != <span class="keyword">null</span> &amp;&amp; subHead2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (subHead1.val != subHead2.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            subHead1 = subHead1.next;</span><br><span class="line">            subHead2 = subHead2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表反转</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head 链表头节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回反转后的链表头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
+        <tag>难度简单</tag>
       </tags>
   </entry>
   <entry>
@@ -2012,27 +2012,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-76 最小覆盖子串</title>
-    <url>/2021/09/05/leetcode-76/</url>
-    <content><![CDATA[<p>题目描述：给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; need = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t.length(); i++) &#123;</span><br><span class="line">            need.merge(t.charAt(i), <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, start = <span class="number">0</span>, valid = <span class="number">0</span>, len = s.length() + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(right);</span><br><span class="line">            right++;</span><br><span class="line">            <span class="keyword">if</span> (need.containsKey(c)) &#123;</span><br><span class="line">                window.merge(c, <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">                <span class="keyword">if</span> (need.get(c).equals(window.get(c))) &#123;</span><br><span class="line">                    valid++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (valid == need.size()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right - left &lt; len) &#123;</span><br><span class="line">                    start = left;</span><br><span class="line">                    len = right - left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> l = s.charAt(left);</span><br><span class="line">                left++;</span><br><span class="line">                <span class="keyword">if</span> (need.containsKey(l)) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (window.get(l).equals(need.get(l))) &#123;</span><br><span class="line">                        valid--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    window.compute(l, (k, v) -&gt; --v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len == s.length() + <span class="number">1</span> ? <span class="string">&quot;&quot;</span> : s.substring(start, start + len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>字符串</tag>
-        <tag>难度困难</tag>
-        <tag>子串</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-797 所有可能的路径</title>
     <url>/2021/08/14/leetcode-797/</url>
     <content><![CDATA[<p>题目描述：给定二叉搜索树（BST）的根节点和要插入树中的值，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。提示：</p>
@@ -2056,6 +2035,27 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>有向无环图</tag>
         <tag>遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-76 最小覆盖子串</title>
+    <url>/2021/09/05/leetcode-76/</url>
+    <content><![CDATA[<p>题目描述：给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">minWindow</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; need = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t.length(); i++) &#123;</span><br><span class="line">            need.merge(t.charAt(i), <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, start = <span class="number">0</span>, valid = <span class="number">0</span>, len = s.length() + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(right);</span><br><span class="line">            right++;</span><br><span class="line">            <span class="keyword">if</span> (need.containsKey(c)) &#123;</span><br><span class="line">                window.merge(c, <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">                <span class="keyword">if</span> (need.get(c).equals(window.get(c))) &#123;</span><br><span class="line">                    valid++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (valid == need.size()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right - left &lt; len) &#123;</span><br><span class="line">                    start = left;</span><br><span class="line">                    len = right - left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> l = s.charAt(left);</span><br><span class="line">                left++;</span><br><span class="line">                <span class="keyword">if</span> (need.containsKey(l)) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (window.get(l).equals(need.get(l))) &#123;</span><br><span class="line">                        valid--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    window.compute(l, (k, v) -&gt; --v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len == s.length() + <span class="number">1</span> ? <span class="string">&quot;&quot;</span> : s.substring(start, start + len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>字符串</tag>
+        <tag>难度困难</tag>
+        <tag>子串</tag>
       </tags>
   </entry>
   <entry>
@@ -2734,23 +2734,6 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>旅途的起点</title>
-    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
-    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
-<a id="more"></a>
-
-
-<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
-<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>随记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法序言</title>
     <url>/2021/03/21/%E7%AE%97%E6%B3%95%E5%BA%8F%E8%A8%80/</url>
     <content><![CDATA[<p>有一种观点认为，程序等于数据结构加算法，但是懂得了数据结构与算法并不一定能写出好的程序。本文主要介绍后面文章会用到的一些基本数据结构。</p>
@@ -2775,6 +2758,23 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
         <tag>Java</tag>
         <tag>数据结构与算法</tag>
         <tag>序言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旅途的起点</title>
+    <url>/2020/10/24/%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/</url>
+    <content><![CDATA[<p>今天刚把博客网站初步搭建好，从学生时代，到现在工作两年，一直以来都想好好写博客，写一些生活的感悟，以及技术上的文章。</p>
+<a id="more"></a>
+
+
+<h2 id="写博客背景"><a href="#写博客背景" class="headerlink" title="写博客背景"></a>写博客背景</h2><p>之前有在csdn上写博客的经历，但那是大学时候的事情了，后来也没有坚持下来。在快毕业的时候，同学买了一个博客视频，教你如何一步一步搭建自己的博客网站，那时候感觉搭建自己的网站挺新鲜的，然后尝试了之后，依然是半途而废。毕业之后，从事互联网工作，在国内某盛名996厂，不过有些名不符实，996没有，995到时不少。平时时间并不宽裕，因此也没有太多时间写博客。可能有人要问了，那为什么在工作两年之后，突然想到开始写博客了呢？原因之一是因为这一直以来是我自己非常想做的一件事情吧。事实证明，自己想了很久而没做的事情，即使过了很久，但是只要契机到了，你依然回去做。那么我这次开始写博客的契机又是什么呢？因为工作快二年半了，工作部门最近似乎也有些变动，有些不安吧。希望能在这大半年的时间里，好好整理一下所学习的知识，为可能的改变做准备吧。</p>
+<h2 id="写博客的目的"><a href="#写博客的目的" class="headerlink" title="写博客的目的"></a>写博客的目的</h2><p>写博客主要为了记录生活的点滴，人生感悟以及作为一个技术宅的所学吧，算是对自己人生的一个整理吧。古有三十而立，想想我也是一个快而立之年的人了，总归要好好思考未来的人生道路该怎么走。平时工作忙的时候倒没觉得，但是一旦放假闲下来的时候，时常想一些奇奇怪怪的事情。人生想想还挺短暂的，也许未来还有四十年可活，也只有1万多天，如果每天能写一篇博客的话，余生还能写一万多篇博客。这未尝不是一件有趣的事情。人生嘛，说短不过几十载，说长嘛，还挺长的，总归要做一些有趣的事情，为单调重复的生活增添一些味道。博客能够帮助我们记录平凡的点滴，以及多彩的瞬间。此时正是英雄联盟S10之际，青春慢慢远去，我们的人生不能像英雄联盟一样可以随时重启，引用英雄联盟中的一句台词，我想对自己说，没有撤退可言。</p>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>随记</tag>
       </tags>
   </entry>
   <entry>
