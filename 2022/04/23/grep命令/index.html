@@ -259,14 +259,22 @@
       
         <p><code>grep</code>（<code>globally search a regular expression and print</code>，以正则表达式进行全局查找以及打印），在给出文件列表或标准输入后，<code>grep</code>会对匹配一个或多个正则表达式的文本进行搜索，并只输出匹配（或者不匹配）的行或文本。</p>
 <a id="more"></a>
+
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">options：参数选项，pattern：规则文本，files：标准输入或者文件列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep [options] pattern [files]</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><p>本文列出常见参数，如果想要看到所有参数，使用<code>man grep</code>即可查看<code>grep</code>的所有参数。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-c --count : 打印符合规则文本的行数</span><br><span class="line">-d --directories=&lt;动作&gt; : 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。</span><br><span class="line">-e --regexp=&lt;规则样式&gt; : 指定字符串作为查找文件内容的范本样式。</span><br><span class="line">-h --no-filename : 显示匹配的行，但不显示文件名</span><br><span class="line">-i --ignore-case : 忽略字符串大小写</span><br><span class="line">-l --file-with-matches : 仅仅列出文件名</span><br><span class="line">-n --line-number : 显示匹配的行和行号</span><br><span class="line">-v --revert-match : 反转查找，也即打印不匹配的行</span><br><span class="line">-e exp --regexp=exp : 指定字符串作为查找文件内容的规则表达式</span><br><span class="line">-f file --file=file : 指定正则文件</span><br><span class="line">-E --extended-regexp : 使用扩展正则表达式</span><br><span class="line">-w --word-regexp : 匹配整个单词</span><br><span class="line">-o : 只输出文件中匹配的部分</span><br><span class="line">-A n --after-context=n : 除了显示匹配的那一行之外，并显示该行之后的内容，n是显示的行数</span><br><span class="line">-B n --before-context=n : 除了显示匹配的那一行之外，并显示该行之前的内容，n是显示的行数</span><br><span class="line">-C n --context=n : 除了显示匹配的那一行之外，并显示该行之前和之后的内容，n是显示的行数</span><br><span class="line">-R/-r  --recursive : 此参数的效果和指定“-d recurse”参数相同，递归搜索。</span><br></pre></td></tr></table></figure>
+
 <h2 id="规则表达式"><a href="#规则表达式" class="headerlink" title="规则表达式"></a>规则表达式</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">^ 	     匹配行的开端    </span><br><span class="line"><span class="meta">$</span><span class="bash">        匹配行的结束</span></span><br><span class="line">.        匹配一个非换行符的字符    </span><br><span class="line">*        匹配零个或多个*号前一个字符 </span><br><span class="line">[]       匹配一个指定范围内的字符，如&#x27;[0-9]&#x27;代表0到9任意一个数字    </span><br><span class="line">[^]      匹配一个不在指定范围内的字符，如：&#x27;[^A-FH-Z]rep&#x27;匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。      </span><br><span class="line">\&lt;       匹配单词的开始，如:&#x27;\&lt;leis&#x27;匹配包含以leis开头的单词的行。    </span><br><span class="line">\&gt;       匹配单词的结束，如&#x27;leis\&gt;&#x27;匹配包含以leis结尾的单词的行。    </span><br><span class="line">x\&#123;m\&#125;   重复字符x，m次。    </span><br><span class="line">x\&#123;m,\&#125;  重复字符x,至少m次。    </span><br><span class="line">x\&#123;m,n\&#125; 重复字符x，至少m次，不多于n次。   </span><br><span class="line">\w       匹配文字和数字字符，也就是[A-Za-z0-9]。   </span><br><span class="line">\W       \w的反向选择，匹配一个或多个非单词字符，如逗号等。   </span><br><span class="line">\b       单词锁定符，如: &#x27;\bgrep\b&#x27;只匹配grep。  </span><br></pre></td></tr></table></figure>
+
 <h2 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h2><h3 id="查找多个文件"><a href="#查找多个文件" class="headerlink" title="查找多个文件"></a>查找多个文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">同时在file_1 file_2 file_3 ...搜索match_pattern</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep <span class="string">&quot;match_pattern&quot;</span> file_1 file_2 file_3 ...</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="标记查找行颜色"><a href="#标记查找行颜色" class="headerlink" title="标记查找行颜色"></a>标记查找行颜色</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">搜索match_pattern并标记颜色</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep <span class="string">&quot;match_pattern&quot;</span> file_name --color=auto</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">使用正则搜索</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep -E <span class="string">&quot;[1-9]+&quot;</span> file_name</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="递归搜索"><a href="#递归搜索" class="headerlink" title="递归搜索"></a>递归搜索</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在当前目录递归搜索text</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep <span class="string">&quot;text&quot;</span> . -r -n</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -438,12 +446,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">110k</span>
+    <span title="站点总字数">113k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:40</span>
+    <span title="站点阅读时长">1:43</span>
 </div>
 
         
