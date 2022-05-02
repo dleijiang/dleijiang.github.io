@@ -918,6 +918,32 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-114 二叉树展开为链表</title>
+    <url>/2021/07/30/leetcode-114/</url>
+    <content><![CDATA[<p>题目描述：给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
+<ul>
+<li>展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。</li>
+<li>展开后的单链表应该与二叉树 先序遍历 顺序相同。</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        convertTree2List(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">convertTree2List</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span> || (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 转换左子树</span></span><br><span class="line">        TreeNode leftHeadNode = convertTree2List(root.left);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 转换右子树</span></span><br><span class="line">        TreeNode rightHeadNode = convertTree2List(root.right);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 找到左子树的叶子节点</span></span><br><span class="line">        TreeNode leftTailNode = leftHeadNode;</span><br><span class="line">        <span class="keyword">while</span> (leftTailNode != <span class="keyword">null</span> &amp;&amp; leftTailNode.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">            leftTailNode = leftTailNode.right;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 拼接左右子树与根节点</span></span><br><span class="line">        <span class="keyword">if</span> (leftTailNode == <span class="keyword">null</span>)&#123;</span><br><span class="line">            root.right = rightHeadNode;</span><br><span class="line">            root.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            root.right = leftHeadNode;</span><br><span class="line">            leftTailNode.right = rightHeadNode;</span><br><span class="line">            root.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-1143 最长公共子序列</title>
     <url>/2021/09/18/leetcode-1143/</url>
     <content><![CDATA[<p>题目描述：给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。</p>
@@ -959,32 +985,6 @@
         <tag>难度中等</tag>
         <tag>oj</tag>
         <tag>二叉树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-114 二叉树展开为链表</title>
-    <url>/2021/07/30/leetcode-114/</url>
-    <content><![CDATA[<p>题目描述：给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
-<ul>
-<li>展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。</li>
-<li>展开后的单链表应该与二叉树 先序遍历 顺序相同。</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        convertTree2List(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">convertTree2List</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span> || (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 转换左子树</span></span><br><span class="line">        TreeNode leftHeadNode = convertTree2List(root.left);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 转换右子树</span></span><br><span class="line">        TreeNode rightHeadNode = convertTree2List(root.right);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 找到左子树的叶子节点</span></span><br><span class="line">        TreeNode leftTailNode = leftHeadNode;</span><br><span class="line">        <span class="keyword">while</span> (leftTailNode != <span class="keyword">null</span> &amp;&amp; leftTailNode.right != <span class="keyword">null</span>)&#123;</span><br><span class="line">            leftTailNode = leftTailNode.right;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 拼接左右子树与根节点</span></span><br><span class="line">        <span class="keyword">if</span> (leftTailNode == <span class="keyword">null</span>)&#123;</span><br><span class="line">            root.right = rightHeadNode;</span><br><span class="line">            root.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            root.right = leftHeadNode;</span><br><span class="line">            leftTailNode.right = rightHeadNode;</span><br><span class="line">            root.left = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>单链表</tag>
-        <tag>反转</tag>
       </tags>
   </entry>
   <entry>
@@ -1224,6 +1224,28 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-236 二叉树的最近公共祖先</title>
+    <url>/2021/08/17/leetcode-236/</url>
+    <content><![CDATA[<p>题目描述：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 为空直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//2. 等于其中一个节点则返回</span></span><br><span class="line">        <span class="keyword">if</span> (root == p || root == q) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//3. 处理左子树</span></span><br><span class="line">        TreeNode left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        <span class="comment">//4. 处理右子树</span></span><br><span class="line">        TreeNode right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        <span class="comment">//5. 处理结果</span></span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span> &amp;&amp; right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left == <span class="keyword">null</span> ? right : left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>最近公共祖先节点</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-239 滑动窗口最大值</title>
     <url>/2021/08/25/leetcode-239/</url>
     <content><![CDATA[<p>题目描述：给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
@@ -1244,28 +1266,6 @@
         <tag>难度困难</tag>
         <tag>最大值</tag>
         <tag>滑动窗口</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-26 删除有序数组中的重复项</title>
-    <url>/2021/09/10/leetcode-26/</url>
-    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>有序数组</tag>
-        <tag>重复项</tag>
       </tags>
   </entry>
   <entry>
@@ -1328,6 +1328,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>单链表</tag>
         <tag>反转</tag>
         <tag>难度困难</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-26 删除有序数组中的重复项</title>
+    <url>/2021/09/10/leetcode-26/</url>
+    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度简单</tag>
+        <tag>有序数组</tag>
+        <tag>重复项</tag>
       </tags>
   </entry>
   <entry>
@@ -1435,6 +1457,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-3 无重复字符的最长子串</title>
+    <url>/2021/09/07/leetcode-3/</url>
+    <content><![CDATA[<p>题目描述：给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; need = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, start = <span class="number">0</span>, len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(right);</span><br><span class="line">            right++;</span><br><span class="line">            need.merge(c, <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">            <span class="keyword">while</span> (need.get(c).equals(<span class="number">2</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right - <span class="number">1</span> - left &gt; len) &#123;</span><br><span class="line">                    start = left;</span><br><span class="line">                    len = right - <span class="number">1</span> - left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> l = s.charAt(left);</span><br><span class="line">                left++;</span><br><span class="line">                need.compute(l, (k, v) -&gt; --v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> right - left &gt; len ? right - left : len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>字符串</tag>
+        <tag>无重复</tag>
+        <tag>最长字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-300 最长递增子序列</title>
     <url>/2021/09/15/leetcode-300/</url>
     <content><![CDATA[<p>题目描述：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
@@ -1496,28 +1540,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>扁平化迭代器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-3 无重复字符的最长子串</title>
-    <url>/2021/09/07/leetcode-3/</url>
-    <content><![CDATA[<p>题目描述：给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; need = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, start = <span class="number">0</span>, len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(right);</span><br><span class="line">            right++;</span><br><span class="line">            need.merge(c, <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">            <span class="keyword">while</span> (need.get(c).equals(<span class="number">2</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right - <span class="number">1</span> - left &gt; len) &#123;</span><br><span class="line">                    start = left;</span><br><span class="line">                    len = right - <span class="number">1</span> - left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> l = s.charAt(left);</span><br><span class="line">                left++;</span><br><span class="line">                need.compute(l, (k, v) -&gt; --v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> right - left &gt; len ? right - left : len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>字符串</tag>
-        <tag>无重复</tag>
-        <tag>最长字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -1617,28 +1639,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-236 二叉树的最近公共祖先</title>
-    <url>/2021/08/17/leetcode-236/</url>
-    <content><![CDATA[<p>题目描述：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 为空直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//2. 等于其中一个节点则返回</span></span><br><span class="line">        <span class="keyword">if</span> (root == p || root == q) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//3. 处理左子树</span></span><br><span class="line">        TreeNode left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        <span class="comment">//4. 处理右子树</span></span><br><span class="line">        TreeNode right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        <span class="comment">//5. 处理结果</span></span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span> &amp;&amp; right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left == <span class="keyword">null</span> ? right : left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>最近公共祖先节点</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-410 分割数组的最大值</title>
     <url>/2021/08/29/leetcode-410/</url>
     <content><![CDATA[<p>题目描述：给定一个非负整数数组 <code>nums</code> 和一个整数 <code>m</code> ，你需要将这个数组分成 <code>m</code> 个非空的连续子数组。</p>
@@ -1731,6 +1731,26 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-503 下一个更大元素 II</title>
+    <url>/2021/08/24/leetcode-503/</url>
+    <content><![CDATA[<p>题目描述：给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] nextGreaterElements(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] cycle = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length * <span class="number">2</span>];</span><br><span class="line">        System.arraycopy(nums, <span class="number">0</span>, cycle, <span class="number">0</span>, nums.length);</span><br><span class="line">        System.arraycopy(nums, <span class="number">0</span>, cycle, nums.length, nums.length);</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[cycle.length];</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cycle.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &lt;= cycle[i]) &#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> nextMax = stack.isEmpty() ? -<span class="number">1</span> : stack.peek();</span><br><span class="line">            res[i] = nextMax;</span><br><span class="line">            stack.push(cycle[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOf(res,nums.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-53 最大子序和</title>
     <url>/2021/09/17/leetcode-53/</url>
     <content><![CDATA[<p>题目描述：给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
@@ -1781,26 +1801,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-503 下一个更大元素 II</title>
-    <url>/2021/08/24/leetcode-503/</url>
-    <content><![CDATA[<p>题目描述：给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] nextGreaterElements(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] cycle = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length * <span class="number">2</span>];</span><br><span class="line">        System.arraycopy(nums, <span class="number">0</span>, cycle, <span class="number">0</span>, nums.length);</span><br><span class="line">        System.arraycopy(nums, <span class="number">0</span>, cycle, nums.length, nums.length);</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[cycle.length];</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = cycle.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &lt;= cycle[i]) &#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> nextMax = stack.isEmpty() ? -<span class="number">1</span> : stack.peek();</span><br><span class="line">            res[i] = nextMax;</span><br><span class="line">            stack.push(cycle[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOf(res,nums.length);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>单调栈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-567 字符串的排列</title>
     <url>/2021/09/05/leetcode-567/</url>
     <content><![CDATA[<p>题目描述：给你两个字符串 <code>s1</code> 和 <code>s2</code> ，写一个函数来判断 <code>s2</code> 是否包含 <code>s1</code> 的排列。</p>
@@ -1844,6 +1844,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-652 寻找重复的子树</title>
+    <url>/2021/08/04/leetcode-652/</url>
+    <content><![CDATA[<p>题目描述：给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意<strong>一棵</strong>的根结点即可。</p>
+<p>两棵树重复是指它们具有相同的结构以及相同的结点值。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, Integer&gt; subTrees = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; duplicate = <span class="keyword">new</span> ArrayList&lt;TreeNode&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">findDuplicateSubtrees</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        findDuplicateSubtrees(root);</span><br><span class="line">        <span class="keyword">return</span> duplicate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">postorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;#&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String left = postorder(root.left);</span><br><span class="line">        String right = postorder(root.right);</span><br><span class="line">        String subTree = left + <span class="string">&quot;,&quot;</span> + right + <span class="string">&quot;,&quot;</span> + root.val;</span><br><span class="line">        <span class="keyword">int</span> frequency = subTrees.getOrDefault(subTree, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (frequency == <span class="number">1</span>) &#123;</span><br><span class="line">            duplicate.add(root);</span><br><span class="line">        &#125;</span><br><span class="line">        subTrees.put(subTree, frequency + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> subTree;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>重复子树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-654 最大二叉树</title>
     <url>/2021/08/01/leetcode-654/</url>
     <content><![CDATA[<p>题目描述：给定一个不含重复元素的整数数组 nums 。一个以此数组直接递归构建的 最大二叉树 定义如下：</p>
@@ -1867,28 +1889,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>难度中等</tag>
         <tag>oj</tag>
         <tag>二叉树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-652 寻找重复的子树</title>
-    <url>/2021/08/04/leetcode-652/</url>
-    <content><![CDATA[<p>题目描述：给定一棵二叉树，返回所有重复的子树。对于同一类的重复子树，你只需要返回其中任意<strong>一棵</strong>的根结点即可。</p>
-<p>两棵树重复是指它们具有相同的结构以及相同的结点值。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, Integer&gt; subTrees = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;TreeNode&gt; duplicate = <span class="keyword">new</span> ArrayList&lt;TreeNode&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">findDuplicateSubtrees</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        findDuplicateSubtrees(root);</span><br><span class="line">        <span class="keyword">return</span> duplicate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">postorder</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;#&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String left = postorder(root.left);</span><br><span class="line">        String right = postorder(root.right);</span><br><span class="line">        String subTree = left + <span class="string">&quot;,&quot;</span> + right + <span class="string">&quot;,&quot;</span> + root.val;</span><br><span class="line">        <span class="keyword">int</span> frequency = subTrees.getOrDefault(subTree, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (frequency == <span class="number">1</span>) &#123;</span><br><span class="line">            duplicate.add(root);</span><br><span class="line">        &#125;</span><br><span class="line">        subTrees.put(subTree, frequency + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> subTree;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>重复子树</tag>
       </tags>
   </entry>
   <entry>
@@ -1966,6 +1966,29 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-712 两个字符串的最小ASCII删除和</title>
+    <url>/2021/09/20/leetcode-712/</url>
+    <content><![CDATA[<p>题目描述：给定两个字符串<code>s1, s2</code>，找到使两个字符串相等所需删除字符的ASCII值的最小和。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> seqLen;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sumAsc;</span><br><span class="line">    <span class="keyword">private</span> String longestSeq;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSeqLen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seqLen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSeqLen</span><span class="params">(<span class="keyword">int</span> seqLen)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seqLen = seqLen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLongestSeq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLongestSeq</span><span class="params">(String longestSeq)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.longestSeq = longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSumAsc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sumAsc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSumAsc</span><span class="params">(<span class="keyword">int</span> sumAsc)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sumAsc = sumAsc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> seqLen, <span class="keyword">int</span> sumAsc, String longestSeq)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seqLen = seqLen;</span><br><span class="line">        <span class="keyword">this</span>.sumAsc = sumAsc;</span><br><span class="line">        <span class="keyword">this</span>.longestSeq = longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        Node maxNode = longestCommonSubsequence(s1.toCharArray(), s2.toCharArray());</span><br><span class="line">        <span class="keyword">int</span> sumS1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); i++) &#123;</span><br><span class="line">            sumS1 += s1.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> sumS2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s2.length(); i++) &#123;</span><br><span class="line">            sumS2 += s2.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> sumM = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxNode.getLongestSeq().length(); i++) &#123;</span><br><span class="line">            sumM += maxNode.getLongestSeq().charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sumS1 + sumS2 - sumM * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">longestCommonSubsequence</span><span class="params">(<span class="keyword">char</span>[] nums1, <span class="keyword">char</span> nums2[])</span> </span>&#123;</span><br><span class="line">        Node[][] dp = <span class="keyword">new</span> Node[nums1.length + <span class="number">1</span>][nums2.length + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= nums2.length; j++) &#123;</span><br><span class="line">                dp[i][j] = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= nums2.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums1[i - <span class="number">1</span>] == nums2[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    dp[i][j].setSeqLen(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getSeqLen() + <span class="number">1</span>);</span><br><span class="line">                    dp[i][j].setLongestSeq(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getLongestSeq() + nums1[i - <span class="number">1</span>]);</span><br><span class="line">                    dp[i][j].setSumAsc(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getSumAsc() + nums1[i - <span class="number">1</span>]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Node rNode = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                    Node cNode = dp[i][j - <span class="number">1</span>];</span><br><span class="line">                    Node maxNode = <span class="keyword">null</span>;</span><br><span class="line">                    <span class="keyword">if</span> (rNode.getSeqLen() == cNode.getSeqLen()) &#123;</span><br><span class="line">                        maxNode = rNode.getSumAsc() &gt; cNode.getSumAsc() ? rNode : cNode;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rNode.getSeqLen() &lt; cNode.getSeqLen()) &#123;</span><br><span class="line">                        maxNode = cNode;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        maxNode = rNode;</span><br><span class="line">                    &#125;</span><br><span class="line">                    dp[i][j] = maxNode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[nums1.length][nums2.length];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>字符串</tag>
+        <tag>最小ASCII删除和</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-72 编辑距离</title>
     <url>/2021/09/14/leetcode-72/</url>
     <content><![CDATA[<p>题目描述：给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数 。</p>
@@ -2010,14 +2033,13 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-712 两个字符串的最小ASCII删除和</title>
-    <url>/2021/09/20/leetcode-712/</url>
-    <content><![CDATA[<p>题目描述：给定两个字符串<code>s1, s2</code>，找到使两个字符串相等所需删除字符的ASCII值的最小和。</p>
+    <title>leetcode-83 删除排序链表中的重复元素</title>
+    <url>/2021/09/11/leetcode-83/</url>
+    <content><![CDATA[<p>题目描述：存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p>
+<p>返回同样按升序排列的结果链表。</p>
 <a id="more"></a>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> seqLen;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sumAsc;</span><br><span class="line">    <span class="keyword">private</span> String longestSeq;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSeqLen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seqLen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSeqLen</span><span class="params">(<span class="keyword">int</span> seqLen)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seqLen = seqLen;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLongestSeq</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLongestSeq</span><span class="params">(String longestSeq)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.longestSeq = longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSumAsc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sumAsc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSumAsc</span><span class="params">(<span class="keyword">int</span> sumAsc)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sumAsc = sumAsc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> seqLen, <span class="keyword">int</span> sumAsc, String longestSeq)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seqLen = seqLen;</span><br><span class="line">        <span class="keyword">this</span>.sumAsc = sumAsc;</span><br><span class="line">        <span class="keyword">this</span>.longestSeq = longestSeq;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        Node maxNode = longestCommonSubsequence(s1.toCharArray(), s2.toCharArray());</span><br><span class="line">        <span class="keyword">int</span> sumS1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s1.length(); i++) &#123;</span><br><span class="line">            sumS1 += s1.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> sumS2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s2.length(); i++) &#123;</span><br><span class="line">            sumS2 += s2.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> sumM = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxNode.getLongestSeq().length(); i++) &#123;</span><br><span class="line">            sumM += maxNode.getLongestSeq().charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sumS1 + sumS2 - sumM * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">longestCommonSubsequence</span><span class="params">(<span class="keyword">char</span>[] nums1, <span class="keyword">char</span> nums2[])</span> </span>&#123;</span><br><span class="line">        Node[][] dp = <span class="keyword">new</span> Node[nums1.length + <span class="number">1</span>][nums2.length + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= nums2.length; j++) &#123;</span><br><span class="line">                dp[i][j] = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= nums2.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums1[i - <span class="number">1</span>] == nums2[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    dp[i][j].setSeqLen(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getSeqLen() + <span class="number">1</span>);</span><br><span class="line">                    dp[i][j].setLongestSeq(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getLongestSeq() + nums1[i - <span class="number">1</span>]);</span><br><span class="line">                    dp[i][j].setSumAsc(dp[i - <span class="number">1</span>][j - <span class="number">1</span>].getSumAsc() + nums1[i - <span class="number">1</span>]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Node rNode = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                    Node cNode = dp[i][j - <span class="number">1</span>];</span><br><span class="line">                    Node maxNode = <span class="keyword">null</span>;</span><br><span class="line">                    <span class="keyword">if</span> (rNode.getSeqLen() == cNode.getSeqLen()) &#123;</span><br><span class="line">                        maxNode = rNode.getSumAsc() &gt; cNode.getSumAsc() ? rNode : cNode;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rNode.getSeqLen() &lt; cNode.getSeqLen()) &#123;</span><br><span class="line">                        maxNode = cNode;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        maxNode = rNode;</span><br><span class="line">                    &#125;</span><br><span class="line">                    dp[i][j] = maxNode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[nums1.length][nums2.length];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode left = head, right = head.next;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left.val != right.val) &#123;</span><br><span class="line">                left.next = right;</span><br><span class="line">                left = left.next;</span><br><span class="line">            &#125;</span><br><span class="line">            right = right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        left.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -2026,10 +2048,10 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       <tags>
         <tag>Java</tag>
         <tag>leetcode</tag>
-        <tag>难度中等</tag>
         <tag>oj</tag>
-        <tag>字符串</tag>
-        <tag>最小ASCII删除和</tag>
+        <tag>难度简单</tag>
+        <tag>重复项</tag>
+        <tag>有序链表</tag>
       </tags>
   </entry>
   <entry>
@@ -2059,13 +2081,15 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-83 删除排序链表中的重复元素</title>
-    <url>/2021/09/11/leetcode-83/</url>
-    <content><![CDATA[<p>题目描述：存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p>
-<p>返回同样按升序排列的结果链表。</p>
+    <title>leetcode-870 优势洗牌</title>
+    <url>/2021/08/26/leetcode-870/</url>
+    <content><![CDATA[<p>题目描述：给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
+<p>返回 A 的任意排列，使其相对于 B 的优势最大化。</p>
 <a id="more"></a>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode left = head, right = head.next;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left.val != right.val) &#123;</span><br><span class="line">                left.next = right;</span><br><span class="line">                left = left.next;</span><br><span class="line">            &#125;</span><br><span class="line">            right = right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        left.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Pair</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer index;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(Integer index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.index = index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(Integer value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Pair o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getValue() - o.getValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Pair <span class="title">of</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        Pair pair = <span class="keyword">new</span> Pair();</span><br><span class="line">        pair.setIndex(index);</span><br><span class="line">        pair.setValue(value);</span><br><span class="line">        <span class="keyword">return</span> pair;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums1.length;</span><br><span class="line">        PriorityQueue&lt;Pair&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;((p1, p2) -&gt; p2.compareTo(p1));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            queue.add(Pair.of(i, nums2[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"></span><br><span class="line">        Arrays.sort(nums1);</span><br><span class="line">        <span class="keyword">int</span> idx1Start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> idx1End = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            Pair maxPair = queue.poll();</span><br><span class="line">            <span class="keyword">if</span> (maxPair.getValue() &lt; nums1[idx1End]) &#123;</span><br><span class="line">                res[maxPair.getIndex()] = nums1[idx1End];</span><br><span class="line">                idx1End--;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                res[maxPair.getIndex()] = nums1[idx1Start];</span><br><span class="line">                idx1Start++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -2074,10 +2098,10 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       <tags>
         <tag>Java</tag>
         <tag>leetcode</tag>
+        <tag>难度中等</tag>
         <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>重复项</tag>
-        <tag>有序链表</tag>
+        <tag>优势洗牌</tag>
+        <tag>田忌赛马</tag>
       </tags>
   </entry>
   <entry>
@@ -2101,30 +2125,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>二分查找</tag>
         <tag>难度中等</tag>
         <tag>oj</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-870 优势洗牌</title>
-    <url>/2021/08/26/leetcode-870/</url>
-    <content><![CDATA[<p>题目描述：给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
-<p>返回 A 的任意排列，使其相对于 B 的优势最大化。</p>
-<a id="more"></a>
-
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Pair</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer index;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer value;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getIndex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(Integer index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.index = index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(Integer value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Pair o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getValue() - o.getValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Pair <span class="title">of</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        Pair pair = <span class="keyword">new</span> Pair();</span><br><span class="line">        pair.setIndex(index);</span><br><span class="line">        pair.setValue(value);</span><br><span class="line">        <span class="keyword">return</span> pair;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums1.length;</span><br><span class="line">        PriorityQueue&lt;Pair&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;((p1, p2) -&gt; p2.compareTo(p1));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            queue.add(Pair.of(i, nums2[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"></span><br><span class="line">        Arrays.sort(nums1);</span><br><span class="line">        <span class="keyword">int</span> idx1Start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> idx1End = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            Pair maxPair = queue.poll();</span><br><span class="line">            <span class="keyword">if</span> (maxPair.getValue() &lt; nums1[idx1End]) &#123;</span><br><span class="line">                res[maxPair.getIndex()] = nums1[idx1End];</span><br><span class="line">                idx1End--;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                res[maxPair.getIndex()] = nums1[idx1Start];</span><br><span class="line">                idx1Start++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>优势洗牌</tag>
-        <tag>田忌赛马</tag>
       </tags>
   </entry>
   <entry>
