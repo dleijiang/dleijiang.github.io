@@ -699,7 +699,7 @@
 <h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><p>本文列出常见参数，如果想要看到所有参数，使用<code>man grep</code>即可查看<code>grep</code>的所有参数。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-c --count : 打印符合规则文本的行数</span><br><span class="line">-d --directories=&lt;动作&gt; : 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。</span><br><span class="line">-e --regexp=&lt;规则样式&gt; : 指定字符串作为查找文件内容的范本样式。</span><br><span class="line">-h --no-filename : 显示匹配的行，但不显示文件名</span><br><span class="line">-i --ignore-case : 忽略字符串大小写</span><br><span class="line">-l --file-with-matches : 仅仅列出文件名</span><br><span class="line">-n --line-number : 显示匹配的行和行号</span><br><span class="line">-v --revert-match : 反转查找，也即打印不匹配的行</span><br><span class="line">-e exp --regexp=exp : 指定字符串作为查找文件内容的规则表达式</span><br><span class="line">-f file --file=file : 指定正则文件</span><br><span class="line">-E --extended-regexp : 使用扩展正则表达式</span><br><span class="line">-w --word-regexp : 匹配整个单词</span><br><span class="line">-o : 只输出文件中匹配的部分</span><br><span class="line">-A n --after-context=n : 除了显示匹配的那一行之外，并显示该行之后的内容，n是显示的行数</span><br><span class="line">-B n --before-context=n : 除了显示匹配的那一行之外，并显示该行之前的内容，n是显示的行数</span><br><span class="line">-C n --context=n : 除了显示匹配的那一行之外，并显示该行之前和之后的内容，n是显示的行数</span><br><span class="line">-R/-r  --recursive : 此参数的效果和指定“-d recurse”参数相同，递归搜索。</span><br></pre></td></tr></table></figure>
 
-<h2 id="规则表达式"><a href="#规则表达式" class="headerlink" title="规则表达式"></a>规则表达式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">^ 	     匹配行的开端    </span><br><span class="line"><span class="meta">$</span><span class="bash">        匹配行的结束</span></span><br><span class="line">.        匹配一个非换行符的字符    </span><br><span class="line">*        匹配零个或多个*号前一个字符 </span><br><span class="line">[]       匹配一个指定范围内的字符，如&#x27;[0-9]&#x27;代表0到9任意一个数字    </span><br><span class="line">[^]      匹配一个不在指定范围内的字符，如：&#x27;[^A-FH-Z]rep&#x27;匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。      </span><br><span class="line">\&lt;       匹配单词的开始，如:&#x27;\&lt;leis&#x27;匹配包含以leis开头的单词的行。    </span><br><span class="line">\&gt;       匹配单词的结束，如&#x27;leis\&gt;&#x27;匹配包含以leis结尾的单词的行。    </span><br><span class="line">x\&#123;m\&#125;   重复字符x，m次。    </span><br><span class="line">x\&#123;m,\&#125;  重复字符x,至少m次。    </span><br><span class="line">x\&#123;m,n\&#125; 重复字符x，至少m次，不多于n次。   </span><br><span class="line">\w       匹配文字和数字字符，也就是[A-Za-z0-9]。   </span><br><span class="line">\W       \w的反向选择，匹配一个或多个非单词字符，如逗号等。   </span><br><span class="line">\b       单词锁定符，如: &#x27;\bgrep\b&#x27;只匹配grep。  </span><br></pre></td></tr></table></figure>
+<h2 id="规则表达式"><a href="#规则表达式" class="headerlink" title="规则表达式"></a>规则表达式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">^        匹配行的开端    </span><br><span class="line"><span class="meta">$</span><span class="bash">        匹配行的结束</span></span><br><span class="line">.        匹配一个非换行符的字符    </span><br><span class="line">*        匹配零个或多个*号前一个字符 </span><br><span class="line">[]       匹配一个指定范围内的字符，如&#x27;[0-9]&#x27;代表0到9任意一个数字    </span><br><span class="line">[^]      匹配一个不在指定范围内的字符，如：&#x27;[^A-FH-Z]rep&#x27;匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。      </span><br><span class="line">\&lt;       匹配单词的开始，如:&#x27;\&lt;leis&#x27;匹配包含以leis开头的单词的行。    </span><br><span class="line">\&gt;       匹配单词的结束，如&#x27;leis\&gt;&#x27;匹配包含以leis结尾的单词的行。    </span><br><span class="line">x\&#123;m\&#125;   重复字符x，m次。    </span><br><span class="line">x\&#123;m,\&#125;  重复字符x,至少m次。    </span><br><span class="line">x\&#123;m,n\&#125; 重复字符x，至少m次，不多于n次。   </span><br><span class="line">\w       匹配文字和数字字符，也就是[A-Za-z0-9]。   </span><br><span class="line">\W       \w的反向选择，匹配一个或多个非单词字符，如逗号等。   </span><br><span class="line">\b       单词锁定符，如: &#x27;\bgrep\b&#x27;只匹配grep。  </span><br></pre></td></tr></table></figure>
 
 <h2 id="常见用法"><a href="#常见用法" class="headerlink" title="常见用法"></a>常见用法</h2><h3 id="查找多个文件"><a href="#查找多个文件" class="headerlink" title="查找多个文件"></a>查找多个文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">同时在file_1 file_2 file_3 ...搜索match_pattern</span></span><br><span class="line"><span class="meta">$</span><span class="bash">grep <span class="string">&quot;match_pattern&quot;</span> file_1 file_2 file_3 ...</span></span><br></pre></td></tr></table></figure>
 
@@ -2033,28 +2033,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-83 删除排序链表中的重复元素</title>
-    <url>/2021/09/11/leetcode-83/</url>
-    <content><![CDATA[<p>题目描述：存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p>
-<p>返回同样按升序排列的结果链表。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode left = head, right = head.next;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left.val != right.val) &#123;</span><br><span class="line">                left.next = right;</span><br><span class="line">                left = left.next;</span><br><span class="line">            &#125;</span><br><span class="line">            right = right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        left.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>重复项</tag>
-        <tag>有序链表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-797 所有可能的路径</title>
     <url>/2021/08/14/leetcode-797/</url>
     <content><![CDATA[<p>题目描述：给定二叉搜索树（BST）的根节点和要插入树中的值，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。提示：</p>
@@ -2078,6 +2056,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>有向无环图</tag>
         <tag>遍历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-83 删除排序链表中的重复元素</title>
+    <url>/2021/09/11/leetcode-83/</url>
+    <content><![CDATA[<p>题目描述：存在一个按升序排列的链表，给你这个链表的头节点 <code>head</code> ，请你删除所有重复的元素，使每个元素 <strong>只出现一次</strong> 。</p>
+<p>返回同样按升序排列的结果链表。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode left = head, right = head.next;</span><br><span class="line">        <span class="keyword">while</span> (right != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left.val != right.val) &#123;</span><br><span class="line">                left.next = right;</span><br><span class="line">                left = left.next;</span><br><span class="line">            &#125;</span><br><span class="line">            right = right.next;</span><br><span class="line">        &#125;</span><br><span class="line">        left.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度简单</tag>
+        <tag>重复项</tag>
+        <tag>有序链表</tag>
       </tags>
   </entry>
   <entry>
@@ -3062,6 +3062,29 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
         <tag>栈</tag>
         <tag>线性表</tag>
         <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面向对象设计五大原则</title>
+    <url>/2022/05/02/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%BA%94%E5%A4%A7%E5%8E%9F%E5%88%99/</url>
+    <content><![CDATA[<p>在程序设计领域， <strong>SOLID</strong>（<strong>单一职责、开闭原则、里氏替换、接口隔离</strong>以及<strong>依赖反转</strong>）是由罗伯特·C·马丁在21世纪早期引入的，指代了面向对象编程和面向对象设计的五个基本原则。</p>
+<a id="more"></a>
+
+<h2 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责"></a>单一职责</h2><p>单一职责原则（Single responsibility principle，简称SRP），规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。</p>
+<h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p>开闭原则（Open closed principle，简称OCP）,规定软件中的对象（类，模块，函数等等）应该对于扩展是开放的，但是对于修改是封闭的，这意味着一个实体是允许在不改变它的源代码的前提下变更它的行为。</p>
+<h2 id="里氏替换"><a href="#里氏替换" class="headerlink" title="里氏替换"></a>里氏替换</h2><p>里氏替换原则（Liskov substitution principle，简称LSP），描述的是派生类（子类）对象可以在程序中代替其基类（超类）对象。</p>
+<blockquote>
+<p>它由芭芭拉·利斯科夫（Barbara Liskov）在1987年在一次会议上名为“数据的抽象与层次”的演说中首先提出，原文为：Let q(x) be a property provable about objects x of type T. Then q(y) should be true for objects y of type S where S is a subtype of T.</p>
+</blockquote>
+<h2 id="接口隔离"><a href="#接口隔离" class="headerlink" title="接口隔离"></a>接口隔离</h2><p>接口隔离原则（Interface segregation principle， 简称ISP），指的是客户只需要知道他们感兴趣的方法，不应被迫使用对其而言无用的方法或功能。</p>
+<h2 id="依赖反转"><a href="#依赖反转" class="headerlink" title="依赖反转"></a>依赖反转</h2><p>依赖反转原则（Dependency inversion principle，简称DIP），高层次的模块不应该依赖于低层次的模块，两者都应该依赖于抽象接口，抽象接口不应该依赖于具体实现。而具体实现则应该依赖于抽象接口。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计原则</tag>
       </tags>
   </entry>
 </search>
