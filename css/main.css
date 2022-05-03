@@ -1183,7 +1183,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1ddf39;
+  background: #4071cd;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2657,4 +2657,7 @@ article: {
 }
 .gt-container .gt-no-init {
   color: #fff;
+}
+.post-toc ol {
+  padding: 0 2px 1px 10px;
 }
