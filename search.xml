@@ -76,57 +76,6 @@
       </tags>
   </entry>
   <entry>
-    <title>希尔排序</title>
-    <url>/2020/10/28/HillSort/</url>
-    <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
-<a id="more"></a>
-
-
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>假定步长为h，则把数组分为h组，从前往后间隔h的元素为一组。先在组内进行插入排序，保证每个组内是有序的，再按照步长为1进行一次全面插入排序，从而得到有序数组。</p>
-</blockquote>
-<p>原数据：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>第一步，假设h为<code>3</code>，则根据规则原数组分为如下三组</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [1]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[8] [3]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[7] [5]</span><br></pre></td></tr></table></figure>
-
-<p>第二步，在三个小组内，分别进行插入排序，得到三个有序子数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [9]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[3] [8]</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[5] [7]</span><br></pre></td></tr></table></figure>
-
-<p>第三步，三个子数组按照原来的位置存放，得到第一轮排序后的数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [9] [8] [7]</span><br></pre></td></tr></table></figure>
-
-<p>第四步，按照步长为<code>[1]</code>进行一次插入排序，即可得到有序数组。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>希尔排序是一个不稳定的排序算法，其最好情况下时间复杂度为<code>O(n)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>2^n</code>，空间复杂度为<code>O(!)</code>。时间复杂度计算公式如下。</p>
-</blockquote>
-<p>$$<br>待补充<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shell</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h &lt; N / <span class="number">3</span>)&#123;</span><br><span class="line">        h = <span class="number">3</span> * h + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;</span><br><span class="line">                exch(c, j, j-h);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        h = h / <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构与算法</tag>
-        <tag>希尔排序</tag>
-        <tag>不稳定排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>插入排序</title>
     <url>/2020/10/25/InsertSort/</url>
     <content><![CDATA[<p>插入排序（英语：Insertion Sort）是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐&gt;步向后挪位，为最新元素提供插入空间。</p>
@@ -210,6 +159,57 @@
       </tags>
   </entry>
   <entry>
+    <title>希尔排序</title>
+    <url>/2020/10/28/HillSort/</url>
+    <content><![CDATA[<p>希尔排序（Shellsort），也称递减增量排序算法，是插入排序的一种更高效的改进版本。根据设计者希尔（Donald Shell）的名字命名，该算法由1959年公布。</p>
+<a id="more"></a>
+
+
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>假定步长为h，则把数组分为h组，从前往后间隔h的元素为一组。先在组内进行插入排序，保证每个组内是有序的，再按照步长为1进行一次全面插入排序，从而得到有序数组。</p>
+</blockquote>
+<p>原数据：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [8] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+
+<p>第一步，假设h为<code>3</code>，则根据规则原数组分为如下三组</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [1]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[8] [3]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[7] [5]</span><br></pre></td></tr></table></figure>
+
+<p>第二步，在三个小组内，分别进行插入排序，得到三个有序子数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [9]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[3] [8]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[5] [7]</span><br></pre></td></tr></table></figure>
+
+<p>第三步，三个子数组按照原来的位置存放，得到第一轮排序后的数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [9] [8] [7]</span><br></pre></td></tr></table></figure>
+
+<p>第四步，按照步长为<code>[1]</code>进行一次插入排序，即可得到有序数组。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>希尔排序是一个不稳定的排序算法，其最好情况下时间复杂度为<code>O(n)</code>，最坏情况下时间复杂度为<code>2^n</code>，平均时间复杂度为<code>2^n</code>，空间复杂度为<code>O(!)</code>。时间复杂度计算公式如下。</p>
+</blockquote>
+<p>$$<br>待补充<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Shell</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h &lt; N / <span class="number">3</span>)&#123;</span><br><span class="line">        h = <span class="number">3</span> * h + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt;= h &amp;&amp; less(c[j], c[j-h]); j -= h)&#123;</span><br><span class="line">                exch(c, j, j-h);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        h = h / <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构与算法</tag>
+        <tag>希尔排序</tag>
+        <tag>不稳定排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mysql主从配置</title>
     <url>/2022/04/15/Mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p><code>Mysql Replication</code>，可以实现将数据从一台数据库服务器复制到另一台或者多台数据库服务器。默认情况下属于异步复制，无需维持长连接，通过配置，可以复制所有的库或者几个甚至其中一些表，并且这些功能都是<code>mysql</code>自带的。</p>
@@ -232,6 +232,52 @@
         <tag>mysql</tag>
         <tag>suse</tag>
         <tag>主从</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mysql单机多实例</title>
+    <url>/2022/04/15/Mysql%E5%8D%95%E6%9C%BA%E5%A4%9A%E5%AE%9E%E4%BE%8B/</url>
+    <content><![CDATA[<p><code>mysql</code>默认端口为<code>3306</code>，因此默认一个机器上只能启动一个<code>mysql</code>实例，如果想要在一台机器上启动多个<code>mysql</code>实例，则需配置单机多实例。<em><strong>本文承接mysql安装教程。</strong></em></p>
+<a id="more"></a>
+
+<h2 id="mysql主从规划"><a href="#mysql主从规划" class="headerlink" title="mysql主从规划"></a>mysql主从规划</h2><table>
+<thead>
+<tr>
+<th>主&#x2F;从库</th>
+<th>IP地址</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>primary（主库）</td>
+<td>10.10.10.1</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>replica（从库）</td>
+<td>10.10.10.2</td>
+<td>3306</td>
+</tr>
+</tbody></table>
+<h2 id="创建mysql目录"><a href="#创建mysql目录" class="headerlink" title="创建mysql目录"></a>创建mysql目录</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建mysql多实例数据库目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -vp /data/mysql_data&#123;1..2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建mysql sock的文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir /data/mysqlsock</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改mysqlsock文件夹的权限</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chmod 777 /data/mysqlsock/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改文件夹所有者为mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chown mysql.mysql -R /var/lib/mysql/mysql-files /data/mysql_data&#123;1..2&#125; /data/mysqlsock</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">备份配置文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mv /etc/my.cnf /etc/my.cnf.bak</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建新的配置文件，并添加如下配置</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld=/usr/sbin/mysqld</span><br><span class="line">mysqladmin=/usr/bin/mysqladmin</span><br><span class="line">log=/var/log/mysql/mysql_multi.log</span><br><span class="line"></span><br><span class="line">[mysqld1]</span><br><span class="line">datadir=/data/mysql_data1</span><br><span class="line">socket=/data/mysqlsock/mysql.sock1</span><br><span class="line">port=3306</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br><span class="line"></span><br><span class="line">[mysqld2]</span><br><span class="line">datadir=/data/mysql_data2</span><br><span class="line">socket=/data/mysqlsock/mysql.sock2</span><br><span class="line">port=3307</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化mysql多实例"><a href="#初始化mysql多实例" class="headerlink" title="初始化mysql多实例"></a>初始化mysql多实例</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化mysql多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">初始化mysq2多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看已经存在的mysql，并杀死已经存在的mysql教程</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux|grep mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 xxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看mysql运行情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is not running</span><br><span class="line">MySQL server from group: mysqld2 is not running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is running</span><br><span class="line">MySQL server from group: mysqld2 is running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看服务进程，可以看到前面设置的端口号均已启动</span></span><br><span class="line">ps aux | grep mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="登录mysql实例"><a href="#登录mysql实例" class="headerlink" title="登录mysql实例"></a>登录mysql实例</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 登录mysql实例1，实例2</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p<span class="string">&#x27;xxx&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置实例1的密码，xxx为初始密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SET PASSWORD=PASSWORD(<span class="string">&#x27;xxx&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>mysql实例2</code>同样进行初始化，并设置初始密码，这样mysql单机多实例则初始化完成了</p>
+]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>suse</tag>
+        <tag>单机多实例</tag>
       </tags>
   </entry>
   <entry>
@@ -290,107 +336,6 @@
       <tags>
         <tag>mysql</tag>
         <tag>suse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mysql单机多实例</title>
-    <url>/2022/04/15/Mysql%E5%8D%95%E6%9C%BA%E5%A4%9A%E5%AE%9E%E4%BE%8B/</url>
-    <content><![CDATA[<p><code>mysql</code>默认端口为<code>3306</code>，因此默认一个机器上只能启动一个<code>mysql</code>实例，如果想要在一台机器上启动多个<code>mysql</code>实例，则需配置单机多实例。<em><strong>本文承接mysql安装教程。</strong></em></p>
-<a id="more"></a>
-
-<h2 id="mysql主从规划"><a href="#mysql主从规划" class="headerlink" title="mysql主从规划"></a>mysql主从规划</h2><table>
-<thead>
-<tr>
-<th>主&#x2F;从库</th>
-<th>IP地址</th>
-<th>端口</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>primary（主库）</td>
-<td>10.10.10.1</td>
-<td>3306</td>
-</tr>
-<tr>
-<td>replica（从库）</td>
-<td>10.10.10.2</td>
-<td>3306</td>
-</tr>
-</tbody></table>
-<h2 id="创建mysql目录"><a href="#创建mysql目录" class="headerlink" title="创建mysql目录"></a>创建mysql目录</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建mysql多实例数据库目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -vp /data/mysql_data&#123;1..2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建mysql sock的文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir /data/mysqlsock</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改mysqlsock文件夹的权限</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chmod 777 /data/mysqlsock/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改文件夹所有者为mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chown mysql.mysql -R /var/lib/mysql/mysql-files /data/mysql_data&#123;1..2&#125; /data/mysqlsock</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">备份配置文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mv /etc/my.cnf /etc/my.cnf.bak</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建新的配置文件，并添加如下配置</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat &gt; /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld=/usr/sbin/mysqld</span><br><span class="line">mysqladmin=/usr/bin/mysqladmin</span><br><span class="line">log=/var/log/mysql/mysql_multi.log</span><br><span class="line"></span><br><span class="line">[mysqld1]</span><br><span class="line">datadir=/data/mysql_data1</span><br><span class="line">socket=/data/mysqlsock/mysql.sock1</span><br><span class="line">port=3306</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br><span class="line"></span><br><span class="line">[mysqld2]</span><br><span class="line">datadir=/data/mysql_data2</span><br><span class="line">socket=/data/mysqlsock/mysql.sock2</span><br><span class="line">port=3307</span><br><span class="line">user=mysql</span><br><span class="line">performance_schema=off</span><br><span class="line">bind_address=0.0.0.0</span><br><span class="line">skip-name-resolve=0</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化mysql多实例"><a href="#初始化mysql多实例" class="headerlink" title="初始化mysql多实例"></a>初始化mysql多实例</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化mysql多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">初始化mysq2多实例，搜索root@localhost: xxx，找到初始密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/sbin/mysqld --initialize --user=mysql --datadir=/data/mysql_data2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看已经存在的mysql，并杀死已经存在的mysql教程</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux|grep mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">kill</span> -9 xxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看mysql运行情况</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is not running</span><br><span class="line">MySQL server from group: mysqld2 is not running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动mysql多实例</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mysqld_multi start</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server from group: mysqld1 is running</span><br><span class="line">MySQL server from group: mysqld2 is running</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看服务进程，可以看到前面设置的端口号均已启动</span></span><br><span class="line">ps aux | grep mysql</span><br></pre></td></tr></table></figure>
-
-<h2 id="登录mysql实例"><a href="#登录mysql实例" class="headerlink" title="登录mysql实例"></a>登录mysql实例</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 登录mysql实例1，实例2</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/usr/bin/mysql -S /data/mysqlsock/mysql.sock1 -p<span class="string">&#x27;xxx&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置实例1的密码，xxx为初始密码</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> SET PASSWORD=PASSWORD(<span class="string">&#x27;xxx&#x27;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 退出mysql</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> <span class="built_in">exit</span>;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>mysql实例2</code>同样进行初始化，并设置初始密码，这样mysql单机多实例则初始化完成了</p>
-]]></content>
-      <categories>
-        <category>Mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>suse</tag>
-        <tag>单机多实例</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx + Keepalived高可用</title>
-    <url>/2022/04/15/Nginx-Keepalived%E9%AB%98%E5%8F%AF%E7%94%A8/</url>
-    <content><![CDATA[<p><code>nginx</code>是代理服务器，可以实现后端应用反向代理和负载均衡等功能，并且<code>nginx</code>具有应用健康检查功能，将故障节点从负载均衡池中移除，保证了后端应用的高可用。但是，如果<code>nginx</code>服务器出现问题，则无法对外提供服务。因此，我们必须要考虑到<code>nginx</code>服务的高可用性，一般采用主-主或者主-备的形式部署<code>nginx</code>服务。主机负责对外提供服务和后端应用健康检查，备机仅对后端应用进行健康检查。只有当主机出现问题时，备机才会接管工作。</p>
-<a id="more"></a>
-
-<h2 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h2><table>
-<thead>
-<tr>
-<th>IP地址</th>
-<th>虚拟IP地址</th>
-<th>节点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>10.10.10.1</td>
-<td>20.20.20.1</td>
-<td>master</td>
-</tr>
-<tr>
-<td>10.10.10.2</td>
-<td>20.20.20.2</td>
-<td>backup</td>
-</tr>
-</tbody></table>
-<h2 id="上传安装包"><a href="#上传安装包" class="headerlink" title="上传安装包"></a>上传安装包</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建临时目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p /home/tmp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">上传安装包</span></span><br><span class="line">keepalived-1.2.17.tar.gz</span><br><span class="line">nginx-1.14.0.tar.gz</span><br><span class="line">openssl-1.1.1.tar.gz</span><br><span class="line">pcre-8.42.tar.gz</span><br><span class="line">zlib-1.2.11.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解压所有安装包</span></span><br><span class="line"><span class="meta">$</span><span class="bash">find . -<span class="built_in">type</span> f | xargs -I file tar -zxvf file</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><h3 id="安装zlib依赖库"><a href="#安装zlib依赖库" class="headerlink" title="安装zlib依赖库"></a>安装zlib依赖库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入zlib目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/zlib-1.2.11</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装pcre依赖库"><a href="#安装pcre依赖库" class="headerlink" title="安装pcre依赖库"></a>安装pcre依赖库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入pcre目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/pcre-8.42</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看openssl版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash">openssl version</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果低于1.1.1版本，则需要升级</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/openssl-1.1.1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./config</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">链接升级后的动态库目录/usr/lib64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看结果</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ls -al /usr/lib64/ | grep -P <span class="string">&#x27;(libssl|libcrypto)&#x27;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装nginx-1"><a href="#安装nginx-1" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入nginx目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/nginx-1.14.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure --with-http_ssl_module --with-stream</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="验证nginx"><a href="#验证nginx" class="headerlink" title="验证nginx"></a>验证nginx</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入nginx目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./nginx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果找不到libpcre.so.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">刷新配置</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>浏览器打开<code>http://ip:80</code></p>
-<h2 id="安装keepalived"><a href="#安装keepalived" class="headerlink" title="安装keepalived"></a>安装keepalived</h2><p><code>keepalived</code>的负载均衡框架依赖于<code>Linux</code>虚拟服务器内核模块<code>IPVS</code>，如果没有安装<code>IPVS</code>模块，需要安装。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看ipvs模块是否安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">lsmod | grep ip_vs</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建ipvs安装文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p /usr/<span class="built_in">local</span>/ipvs/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/src/linux/net/netfilter/ipvs/* /usr/<span class="built_in">local</span>/ipvs/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/ipvs</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译并安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make -C /lib/modules/`uname -f`/build M=/usr/<span class="built_in">local</span>/ipvs modules</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看依赖</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modinfo ip_vs.ko</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">逐一安装依赖以及ipvs模块</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ipv6_lib</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe nf_conntrack</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe libcrc32c</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip6_tables</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip_vs.ko</span></span><br><span class="line"><span class="meta">$</span><span class="bash">depmod -a</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip_vs</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装keepalived-1"><a href="#安装keepalived-1" class="headerlink" title="安装keepalived"></a>安装keepalived</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入keepalived目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/keepalived-1.2.17</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure --prefix=/usr/<span class="built_in">local</span>/keepalived</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建程序软连接，刷新动态链接库</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/keepalived/sbin/keepalived /sbin/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ldconfig</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看keepalived是否安装成功</span></span><br><span class="line"><span class="meta">$</span><span class="bash">keepalived -v</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="将keepalived注册为服务"><a href="#将keepalived注册为服务" class="headerlink" title="将keepalived注册为服务"></a>将keepalived注册为服务</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">拷贝配置文件，启动文件，运行参数文件到系统指定目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/<span class="built_in">local</span>/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/keepalived</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp -R /usr/<span class="built_in">local</span>/keepalived/etc/keepalived /etc/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/<span class="built_in">local</span>/keepalived/etc/sysconfig/keepalived /etc/sysconfig</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改keepalived启动脚本以适配suse，修改第12行与23行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sed -i <span class="string">&quot;/init.d\/functions/s/^/\. \/lib\/lsb\/init-functions #/g&quot;</span> /etc/init.d/keepalived</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sed -i <span class="string">&quot;s/daemon //g&quot;</span> /etc/init.d/keepalived</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设置开启启动</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chkconfig keepalived on</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">至此，如果需要启动服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">service keepalived start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果需要停止服务，则执行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">service keepalived stop</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="准备配置"><a href="#准备配置" class="headerlink" title="准备配置"></a>准备配置</h2><h3 id="主节点配置"><a href="#主节点配置" class="headerlink" title="主节点配置"></a>主节点配置</h3>]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-        <tag>keepalived</tag>
-        <tag>高可用</tag>
       </tags>
   </entry>
   <entry>
@@ -468,6 +413,61 @@
         <tag>数据结构与算法</tag>
         <tag>不稳定排序</tag>
         <tag>快速排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx + Keepalived高可用</title>
+    <url>/2022/04/15/Nginx-Keepalived%E9%AB%98%E5%8F%AF%E7%94%A8/</url>
+    <content><![CDATA[<p><code>nginx</code>是代理服务器，可以实现后端应用反向代理和负载均衡等功能，并且<code>nginx</code>具有应用健康检查功能，将故障节点从负载均衡池中移除，保证了后端应用的高可用。但是，如果<code>nginx</code>服务器出现问题，则无法对外提供服务。因此，我们必须要考虑到<code>nginx</code>服务的高可用性，一般采用主-主或者主-备的形式部署<code>nginx</code>服务。主机负责对外提供服务和后端应用健康检查，备机仅对后端应用进行健康检查。只有当主机出现问题时，备机才会接管工作。</p>
+<a id="more"></a>
+
+<h2 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h2><table>
+<thead>
+<tr>
+<th>IP地址</th>
+<th>虚拟IP地址</th>
+<th>节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.10.10.1</td>
+<td>20.20.20.1</td>
+<td>master</td>
+</tr>
+<tr>
+<td>10.10.10.2</td>
+<td>20.20.20.2</td>
+<td>backup</td>
+</tr>
+</tbody></table>
+<h2 id="上传安装包"><a href="#上传安装包" class="headerlink" title="上传安装包"></a>上传安装包</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建临时目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p /home/tmp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">上传安装包</span></span><br><span class="line">keepalived-1.2.17.tar.gz</span><br><span class="line">nginx-1.14.0.tar.gz</span><br><span class="line">openssl-1.1.1.tar.gz</span><br><span class="line">pcre-8.42.tar.gz</span><br><span class="line">zlib-1.2.11.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解压所有安装包</span></span><br><span class="line"><span class="meta">$</span><span class="bash">find . -<span class="built_in">type</span> f | xargs -I file tar -zxvf file</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><h3 id="安装zlib依赖库"><a href="#安装zlib依赖库" class="headerlink" title="安装zlib依赖库"></a>安装zlib依赖库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入zlib目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/zlib-1.2.11</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装pcre依赖库"><a href="#安装pcre依赖库" class="headerlink" title="安装pcre依赖库"></a>安装pcre依赖库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入pcre目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/pcre-8.42</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="升级openssl"><a href="#升级openssl" class="headerlink" title="升级openssl"></a>升级openssl</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看openssl版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash">openssl version</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果低于1.1.1版本，则需要升级</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/openssl-1.1.1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./config</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">链接升级后的动态库目录/usr/lib64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看结果</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ls -al /usr/lib64/ | grep -P <span class="string">&#x27;(libssl|libcrypto)&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装nginx-1"><a href="#安装nginx-1" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入nginx目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/nginx-1.14.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure --with-http_ssl_module --with-stream</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="验证nginx"><a href="#验证nginx" class="headerlink" title="验证nginx"></a>验证nginx</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入nginx目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./nginx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果找不到libpcre.so.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">刷新配置</span></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>浏览器打开<code>http://ip:80</code></p>
+<h2 id="安装keepalived"><a href="#安装keepalived" class="headerlink" title="安装keepalived"></a>安装keepalived</h2><p><code>keepalived</code>的负载均衡框架依赖于<code>Linux</code>虚拟服务器内核模块<code>IPVS</code>，如果没有安装<code>IPVS</code>模块，需要安装。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看ipvs模块是否安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">lsmod | grep ip_vs</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建ipvs安装文件夹</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p /usr/<span class="built_in">local</span>/ipvs/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/src/linux/net/netfilter/ipvs/* /usr/<span class="built_in">local</span>/ipvs/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/ipvs</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译并安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make -C /lib/modules/`uname -f`/build M=/usr/<span class="built_in">local</span>/ipvs modules</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看依赖</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modinfo ip_vs.ko</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">逐一安装依赖以及ipvs模块</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ipv6_lib</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe nf_conntrack</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe libcrc32c</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip6_tables</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip_vs.ko</span></span><br><span class="line"><span class="meta">$</span><span class="bash">depmod -a</span></span><br><span class="line"><span class="meta">$</span><span class="bash">modprobe ip_vs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装keepalived-1"><a href="#安装keepalived-1" class="headerlink" title="安装keepalived"></a>安装keepalived</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入keepalived目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp/keepalived-1.2.17</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure --prefix=/usr/<span class="built_in">local</span>/keepalived</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">创建程序软连接，刷新动态链接库</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/keepalived/sbin/keepalived /sbin/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ldconfig</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看keepalived是否安装成功</span></span><br><span class="line"><span class="meta">$</span><span class="bash">keepalived -v</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="将keepalived注册为服务"><a href="#将keepalived注册为服务" class="headerlink" title="将keepalived注册为服务"></a>将keepalived注册为服务</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">拷贝配置文件，启动文件，运行参数文件到系统指定目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/<span class="built_in">local</span>/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/keepalived</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp -R /usr/<span class="built_in">local</span>/keepalived/etc/keepalived /etc/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp /usr/<span class="built_in">local</span>/keepalived/etc/sysconfig/keepalived /etc/sysconfig</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">修改keepalived启动脚本以适配suse，修改第12行与23行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sed -i <span class="string">&quot;/init.d\/functions/s/^/\. \/lib\/lsb\/init-functions #/g&quot;</span> /etc/init.d/keepalived</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sed -i <span class="string">&quot;s/daemon //g&quot;</span> /etc/init.d/keepalived</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设置开启启动</span></span><br><span class="line"><span class="meta">$</span><span class="bash">chkconfig keepalived on</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">至此，如果需要启动服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">service keepalived start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">如果需要停止服务，则执行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">service keepalived stop</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="准备配置"><a href="#准备配置" class="headerlink" title="准备配置"></a>准备配置</h2><h3 id="主节点配置"><a href="#主节点配置" class="headerlink" title="主节点配置"></a>主节点配置</h3>]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+        <tag>keepalived</tag>
+        <tag>高可用</tag>
       </tags>
   </entry>
   <entry>
@@ -758,30 +758,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo简单使用</title>
-    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><font color="green"><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color="green"><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
-<a id="more"></a>
-
-
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color="green"><strong>Hexo</strong></font>使用命令介绍。</p>
-<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo new <span class="string">&#x27;title&#x27;</span></span></span><br></pre></td></tr></table></figure>
-<p>创建完博客之后，会自动在<font color="blue"> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color="green"><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
-<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo s</span></span><br></pre></td></tr></table></figure>
-
-<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color="green"><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
-<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kafka命令</title>
     <url>/2021/03/27/kafka%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>kafka是一款优秀且常见的MQ，具有安装方便，使用方便，应用场景广泛等一系列优点，个人认为是最好用的MQ之一。</p>
@@ -852,6 +828,30 @@
         <tag>Java</tag>
         <tag>MQ</tag>
         <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo简单使用</title>
+    <url>/2021/03/18/hexo%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><font color="green"><strong>Hexo</strong></font> 是一个简单，美观，使用起来方便，支持各种二次定制的博客框架。并且支持丰富的<font color="green"><strong>Markdown</strong></font>插件，是程序员不可多得的博客框架。</p>
+<a id="more"></a>
+
+
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>基本<font color="green"><strong>Hexo</strong></font>使用命令介绍。</p>
+<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo new <span class="string">&#x27;title&#x27;</span></span></span><br></pre></td></tr></table></figure>
+<p>创建完博客之后，会自动在<font color="blue"> <strong>source&#x2F;_posts</strong>&#x2F;</font>目录下面创建一个同名的md结尾的<font color="green"><strong>Markdown</strong></font>文件，此时只需要使用markdown编辑器打开md文件撰写博客即可，例如Typora或者Atomic等等。</p>
+<h3 id="本地预览博客"><a href="#本地预览博客" class="headerlink" title="本地预览博客"></a>本地预览博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo s</span></span><br></pre></td></tr></table></figure>
+
+<p>撰写完博客之后，在正式发布到博客网站之后，可以先使用<font color="green"><strong>server</strong></font>命令本地启动博客服务器，预览博客效果，在确认没有问题之后再发布到正式网站上面。</p>
+<h3 id="正式发布博客"><a href="#正式发布博客" class="headerlink" title="正式发布博客"></a>正式发布博客</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo clean &amp;&amp; hexo g -d</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://theme-next.iissnan.com/theme-settings.html" title="Next Theme主题配置">Next Theme</a>     - next theme主题官方配置教程</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1203,6 +1203,27 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-234 回文链表</title>
+    <url>/2021/07/28/leetcode-234/</url>
+    <content><![CDATA[<p>题目描述：请判断一个链表是否为回文链表。你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历计算链表长度</span></span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 寻找中间节点</span></span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">int</span> subLen = len / <span class="number">2</span> + len % <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (subLen-- != <span class="number">0</span>) &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 反转右半链表区间剩余节点</span></span><br><span class="line">        ListNode subHead2 = reverse(node);</span><br><span class="line">        ListNode subHead1 = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 分别对比左链表区间元素与右链表区间元素</span></span><br><span class="line">        <span class="keyword">while</span> (subHead1 != <span class="keyword">null</span> &amp;&amp; subHead2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (subHead1.val != subHead2.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            subHead1 = subHead1.next;</span><br><span class="line">            subHead2 = subHead2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表反转</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head 链表头节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回反转后的链表头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
+        <tag>难度简单</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-236 二叉树的最近公共祖先</title>
     <url>/2021/08/17/leetcode-236/</url>
     <content><![CDATA[<p>题目描述：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
@@ -1222,27 +1243,6 @@
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>最近公共祖先节点</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-234 回文链表</title>
-    <url>/2021/07/28/leetcode-234/</url>
-    <content><![CDATA[<p>题目描述：请判断一个链表是否为回文链表。你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历计算链表长度</span></span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            len++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 寻找中间节点</span></span><br><span class="line">        node = head;</span><br><span class="line">        <span class="keyword">int</span> subLen = len / <span class="number">2</span> + len % <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (subLen-- != <span class="number">0</span>) &#123;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 反转右半链表区间剩余节点</span></span><br><span class="line">        ListNode subHead2 = reverse(node);</span><br><span class="line">        ListNode subHead1 = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 分别对比左链表区间元素与右链表区间元素</span></span><br><span class="line">        <span class="keyword">while</span> (subHead1 != <span class="keyword">null</span> &amp;&amp; subHead2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (subHead1.val != subHead2.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            subHead1 = subHead1.next;</span><br><span class="line">            subHead2 = subHead2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 链表反转</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> head 链表头节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回反转后的链表头节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>单链表</tag>
-        <tag>反转</tag>
-        <tag>难度简单</tag>
       </tags>
   </entry>
   <entry>
@@ -1751,6 +1751,27 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>leetcode-53 最大子序和</title>
+    <url>/2021/09/17/leetcode-53/</url>
+    <content><![CDATA[<p>题目描述：给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = Math.max(nums[i], dp[i - <span class="number">1</span>] + nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度简单</tag>
+        <tag>数组</tag>
+        <tag>子数和</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-538 把二叉搜索树转换为累加树</title>
     <url>/2021/08/06/leetcode-538/</url>
     <content><![CDATA[<p>题目描述：给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。</p>
@@ -1777,27 +1798,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>二叉搜索时树</tag>
         <tag>累加树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-53 最大子序和</title>
-    <url>/2021/09/17/leetcode-53/</url>
-    <content><![CDATA[<p>题目描述：给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = Math.max(nums[i], dp[i - <span class="number">1</span>] + nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>数组</tag>
-        <tag>子数和</tag>
       </tags>
   </entry>
   <entry>
@@ -2494,6 +2494,33 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
+    <title>代理模式</title>
+    <url>/2022/05/04/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>所谓的代理者是指一个类别可以作为其它东西的接口。代理者可以作任何东西的接口：网络连接、存储器中的大对象、文件或其它昂贵或无法复制的资源。著名的代理模式例子为引用计数（英语：reference counting）指针对象。</p>
+<a id="more"></a>
+
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/proxy_uml.png" alt="proxy_uml"></p>
+<h2 id="为别人做嫁衣"><a href="#为别人做嫁衣" class="headerlink" title="为别人做嫁衣"></a>为别人做嫁衣</h2><h3 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h3><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/proxy_example_uml.png" alt="proxy_example_uml"></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="GiveGift"><a href="#GiveGift" class="headerlink" title="GiveGift"></a>GiveGift</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GiveGift</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">giveDollar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">giveFlowers</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">giveChocolate</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="SchoolGirl"><a href="#SchoolGirl" class="headerlink" title="SchoolGirl"></a>SchoolGirl</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SchoolGirl</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SchoolGirl</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Pursuit"><a href="#Pursuit" class="headerlink" title="Pursuit"></a>Pursuit</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pursuit</span> <span class="keyword">implements</span> <span class="title">GiveGift</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> SchoolGirl mm;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pursuit</span><span class="params">(SchoolGirl mm)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mm = mm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveDollar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Give dollar.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveFlowers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Give flowers.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveChocolate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Give chocolate.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">GiveGift</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Pursuit gg;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Proxy</span><span class="params">(SchoolGirl mm)</span></span>&#123;</span><br><span class="line">        gg = <span class="keyword">new</span> Pursuit(mm);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveDollar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.gg.giveDollar();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveFlowers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.gg.giveFlowers();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">giveChocolate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.gg.giveChocolate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+        <tag>结构型模式</tag>
+        <tag>代理模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>四川省省属事业单位公开招聘工作人员《综合知识》笔试复习大纲</title>
     <url>/2022/02/13/%E5%9B%9B%E5%B7%9D%E7%9C%81%E7%9C%81%E5%B1%9E%E4%BA%8B%E4%B8%9A%E5%8D%95%E4%BD%8D%E5%85%AC%E5%BC%80%E6%8B%9B%E8%81%98%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E3%80%8A%E7%BB%BC%E5%90%88%E7%9F%A5%E8%AF%86%E3%80%8B%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/</url>
     <content><![CDATA[<p>四川省省属事业单位公开招聘工作人员《综合知识》笔试复习大纲</p>
@@ -2780,7 +2807,7 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
 <h4 id="CashFactory类"><a href="#CashFactory类" class="headerlink" title="CashFactory类"></a>CashFactory类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.strategy.simplefactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CashFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CashSuper <span class="title">createCashFactory</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        CashSuper cs = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">switch</span> (type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Normal&quot;</span>:</span><br><span class="line">                cs = <span class="keyword">new</span> CashNormal();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Rebate&quot;</span>:</span><br><span class="line">                cs = <span class="keyword">new</span> CashRebate(<span class="string">&quot;0.8&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Return&quot;</span>:</span><br><span class="line">                cs = <span class="keyword">new</span> CashReturn(<span class="string">&quot;300&quot;</span>,<span class="string">&quot;100&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(<span class="string">&quot;Not support type.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cs;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="策略实现"><a href="#策略实现" class="headerlink" title="策略实现"></a>策略实现</h2><h3 id="UML类图-2"><a href="#UML类图-2" class="headerlink" title="UML类图"></a>UML类图</h3><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/strategy_example_uml.png" alt="strategy_example_uml"></p>
-<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><h3 id="CashContext类"><a href="#CashContext类" class="headerlink" title="CashContext类"></a>CashContext类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.strategy.strategy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.strategy.CashSuper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CashContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CashSuper cs;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CashContext</span><span class="params">(CashSuper cs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cs = cs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.cs.acceptCash(money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="CashContext类"><a href="#CashContext类" class="headerlink" title="CashContext类"></a>CashContext类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.strategy.strategy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.strategy.CashSuper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CashContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CashSuper cs;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CashContext</span><span class="params">(CashSuper cs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cs = cs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.cs.acceptCash(money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="策略与工厂结合"><a href="#策略与工厂结合" class="headerlink" title="策略与工厂结合"></a>策略与工厂结合</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.strategy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.payment.java.base.algorithm.exception.AlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CashContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CashSuper cs = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CashContext</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Normal&quot;</span>:</span><br><span class="line">                <span class="keyword">this</span>.cs = <span class="keyword">new</span> CashNormal();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Rebate&quot;</span>:</span><br><span class="line">                <span class="keyword">this</span>.cs = <span class="keyword">new</span> CashRebate(<span class="string">&quot;0.8&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;Return&quot;</span>:</span><br><span class="line">                <span class="keyword">this</span>.cs = <span class="keyword">new</span> CashReturn(<span class="string">&quot;300&quot;</span>,<span class="string">&quot;100&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AlgorithmException(<span class="string">&quot;Not support type.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.cs.acceptCash(money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
