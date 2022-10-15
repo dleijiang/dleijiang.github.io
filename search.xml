@@ -649,8 +649,6 @@
     <url>/2020/10/25/SortIntroduction/</url>
     <content><![CDATA[<p>排序算法是最常见的算法之一，常见的排序算法有<code>冒泡排序</code>、<code>插入排序</code>、<code>选择排序</code>、<code>希尔排序</code>、<code>归并排序</code>、<code>堆排序</code>、<code>快速排序</code>。其目的是为了实现&gt;对数组中元素的排序。通常排序分为正序和倒序。</p>
 <a id="more"></a>
-
-
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><blockquote>
 <ul>
 <li>最好、最坏、平均时间复杂度</li>
@@ -670,11 +668,7 @@
 </ul>
 </blockquote>
 <figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line">[<span class="number">3</span>][<span class="number">4</span>][<span class="number">9</span>] .... [i] ... [j] ...</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="公共函数"><a href="#公共函数" class="headerlink" title="公共函数"></a>公共函数</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*比较两个元素大小*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable v, Comparable w)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> v.compareTo(w) &lt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*交换两个元素*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    Comparable t = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
@@ -3237,6 +3231,317 @@ label=&lt;&lt;B&gt;图 2.1 链表&lt;/B&gt;&gt;
       <tags>
         <tag>Java</tag>
         <tag>设计原则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原型模式</title>
+    <url>/2022/05/04/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>原型模式其实就是从一个对象再创建另外一个可定制的对象，而且不需要直到任何创建的细节。</p>
+<a id="more"></a>
+
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+        <tag>创建型模式</tag>
+        <tag>原型模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂方法模式</title>
+    <url>/2022/05/04/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>工厂方法模式的实质是“定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
+<a id="more"></a>
+
+<h2 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h2><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/factory_method_example_uml.png" alt="factory_method_example_uml"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="IFactory"><a href="#IFactory" class="headerlink" title="IFactory"></a>IFactory</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.factorymethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.Operation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="function">Operation <span class="title">createOperation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AddFactory"><a href="#AddFactory" class="headerlink" title="AddFactory"></a>AddFactory</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.factorymethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.Operation;</span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.OperationAdd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OperationAdd();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SubFactory"><a href="#SubFactory" class="headerlink" title="SubFactory"></a>SubFactory</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.factorymethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.Operation;</span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.OperationSub;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OperationSub();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MulFactory"><a href="#MulFactory" class="headerlink" title="MulFactory"></a>MulFactory</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.factorymethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.Operation;</span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.OperationMul;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MulFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OperationMul();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DivFactory"><a href="#DivFactory" class="headerlink" title="DivFactory"></a>DivFactory</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lei.designpatterns.factorymethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.Operation;</span><br><span class="line"><span class="keyword">import</span> com.lei.designpatterns.simplefactory.OperationDiv;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DivFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Operation <span class="title">createOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OperationDiv();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>依赖<a href="https://www.dleis.com/2022/05/03/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">简单工厂模式</a></p>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+        <tag>创建型模式</tag>
+        <tag>工厂方法模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java基础知识整理（一）</title>
+    <url>/2022/10/09/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>最近准备面试资料，针对常见的Java基础知识做出整理与复习。</p>
+<a id="more"></a>
+
+<h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><p><code>synchronized</code>是<code>java</code>提供的原子性内置锁，这种内置的并且使用者看不到的锁也被称为<strong>监视器锁</strong>，使用<code>synchronized</code>之后，会在编译之后在同步的代码块前后加上<code>monitorenter</code>和<code>monitorexit</code>字节码指令，他依赖操作系统底层互斥锁实现。他的作用主要就是实现原子性操作和解决共享变量的内存可见性问题。</p>
+<p>执行<code>monitorenter</code>指令时会尝试获取对象锁，如果对象没有被锁定或者已经获得了锁，锁的计数器<code>+1</code>。此时其他竞争锁的线程则会进入等待队列中。</p>
+<p>执行<code>monitorexit</code>指令时则会把计数器<code>-1</code>，当计数器值为<code>0</code>时，则锁释放，处于等待队列中的线程再继续竞争锁。</p>
+<p><code>synchronized</code>是排它锁，当一个线程获得锁之后，其他线程必须等待该线程释放锁后才能获得锁，而且由于Java中的线程和操作系统原生线程是一一对应的，线程被阻塞或者唤醒时时会从用户态切换到内核态，这种转换非常消耗性能。</p>
+<p>从内存语义来说，加锁的过程会清除工作内存中的共享变量，再从主内存读取，而释放锁的过程则是将工作内存中的共享变量写回主内存。</p>
+<h2 id="理解ReentrantLock原理"><a href="#理解ReentrantLock原理" class="headerlink" title="理解ReentrantLock原理"></a>理解ReentrantLock原理</h2><p>相比于<code>synchronized</code>，<code>ReentrantLock</code>需要显式的获取锁和释放锁。</p>
+<blockquote>
+<ol>
+<li>等待可中断，当持有锁的线程长时间不释放锁的时候，等待中的线程可以选择放弃等待，转而处理其他的任务。</li>
+<li>公平锁：<code>synchronized</code>和<code>ReentrantLock</code>默认都是非公平锁，但是<code>ReentrantLock</code>可以通过构造函数传参改变。只不过使用公平锁的话会导致性能急剧下降。</li>
+<li>绑定多个条件：<code>ReentrantLock</code>可以同时绑定多个<code>Condition</code>条件对象。</li>
+</ol>
+</blockquote>
+<h2 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h2><p>使用<code>volatile</code>声明的变量，可以确保值被更新的时候对其他线程立刻可见。<code>volatile</code>使用内存屏障来保证不会发生指令重排，解决了内存可见性的问题。</p>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p>ThreadLocal可以理解为线程本地变量，他会在每个线程都创建一个副本，那么在线程之间访问内部副本变量就行了，做到了线程之间互相隔离，相比于synchronized的做法是用空间来换时间。</p>
+<h2 id="Happens-Before"><a href="#Happens-Before" class="headerlink" title="Happens-Before"></a>Happens-Before</h2><center>示例一</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VolatileExample</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">boolean</span> v = <span class="keyword">false</span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    x = <span class="number">42</span>;</span><br><span class="line">    v = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (v == <span class="keyword">true</span>) &#123;</span><br><span class="line">      <span class="comment">//x的值是多少呢？</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设线程<code>A</code>执行<code>writer()</code>方法，按照<code>volatile</code>会将<code>v=true</code>写入内存；线程<code>B</code>执行<code>reader()</code>方法，按照<code>volatile</code>，线程<code>B</code>会从内存中读取变量<code>v</code>，如果线程<code>B</code>读取到的变量<code>v</code>为<code>true</code>，那么，此时的变量<code>x</code>的值是多少呢？</p>
+<p>这个示例程序给人的直觉就是<code>x</code>的值为<code>42</code>，其实，<code>x</code>的值具体是多少和<code>JDK</code>的版本有关，如果使用的<code>JDK</code>版本低于<code>1.5</code>，则x的值可能为<code>42</code>，也可能为<code>0</code>。如果使用<code>1.5</code>及<code>1.5</code>以上版本的<code>JDK</code>，则<code>x</code>的值就是<code>42</code>。</p>
+<p>看到这个，就会有人提出问题了？这是为什么呢？其实，答案就是在<code>JDK1.5</code>版本中的<code>Java</code>内存模型中引入了<code>Happens-Before</code>原则。</p>
+<center>示例二</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> initX&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123; <span class="comment">//自动加锁</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.x &lt; <span class="number">10</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.x = <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">//自动释放锁</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<center>示例三</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线程A中初始化线程B</span></span><br><span class="line">Thread threadB = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    <span class="comment">//此处的变量x的值是多少呢？答案是100</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//线程A在启动线程B之前将共享变量x的值修改为100</span></span><br><span class="line">x = <span class="number">100</span>;</span><br><span class="line"><span class="comment">//启动线程B</span></span><br><span class="line">threadB.start();</span><br></pre></td></tr></table></figure>
+
+<center>示例四</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread threadB = <span class="keyword">new</span> Thread(()-&#123;</span><br><span class="line">    <span class="comment">//在线程B中，将共享变量x的值修改为100</span></span><br><span class="line">    x = <span class="number">100</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//在线程A中启动线程B</span></span><br><span class="line">threadB.start();</span><br><span class="line"><span class="comment">//在线程A中等待线程B执行完成</span></span><br><span class="line">threadB.join();</span><br><span class="line"><span class="comment">//此处访问共享变量x的值为100</span></span><br></pre></td></tr></table></figure>
+
+<center>示例五</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在线程A中将x变量的值初始化为0</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//在线程A中初始化线程B</span></span><br><span class="line">    Thread threadB = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="comment">//线程B检测自己是否被中断</span></span><br><span class="line">        <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">            <span class="comment">//如果线程B被中断，则此时X的值为100</span></span><br><span class="line">            System.out.println(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//在线程A中启动线程B</span></span><br><span class="line">    threadB.start();</span><br><span class="line">    <span class="comment">//在线程A中将共享变量X的值修改为100</span></span><br><span class="line">    x = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">//在线程A中中断线程B</span></span><br><span class="line">    threadB.interrupt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<center>示例六</center>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;构造方法&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;对象销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> TestThread();</span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="【原则一】程序次序规则"><a href="#【原则一】程序次序规则" class="headerlink" title="【原则一】程序次序规则"></a>【原则一】程序次序规则</h3><p><strong>在一个线程中，按照代码的顺序，前面的操作<code>Happens-Before</code>于后面的任意操作。</strong></p>
+<p>同一个线程中，程序在前面对某个变量的修改一定是对后续操作可见的。例如【示例一】中的程序<code>x=42</code>会在<code>v=true</code>之前执行。</p>
+<h3 id="【原则二】volatile变量规则"><a href="#【原则二】volatile变量规则" class="headerlink" title="【原则二】volatile变量规则"></a>【原则二】<code>volatile</code>变量规则</h3><p><strong>对一个<code>volatile</code>变量的写操作，<code>Happens-Before</code>于后续对这个变量的读操作。</strong></p>
+<p>对一个使用了<code>volatile</code>变量的写操作，先行发生于后面对这个变量的读操作。</p>
+<h3 id="【原则三】传递规则"><a href="#【原则三】传递规则" class="headerlink" title="【原则三】传递规则"></a>【原则三】传递规则</h3><p><strong>如果<code>A Happens-Before B</code>，并且<code>B Happens-Before C</code>，则<code>A Happens-Before C</code>。</strong></p>
+<p>合【原则一】、【原则二】和【原则三】再来看【示例一】程序，此时，我们可以得出如下结论：</p>
+<p>（1）<code>x = 42 Happens-Before</code> 写变量<code>v = true</code>，符合【原则一】程序次序规则。</p>
+<p>（2）写变量<code>v = true Happens-Before</code> 读变量<code>v = true</code>，符合【原则二】<code>volatile</code>变量规则。</p>
+<p>再根据【原则三】传递规则，我们可以得出结论：<code>x = 42 Happens-Before</code> 读变量<code>v=true</code>。</p>
+<h3 id="【原则四】锁定规则"><a href="#【原则四】锁定规则" class="headerlink" title="【原则四】锁定规则"></a>【原则四】锁定规则</h3><p><strong>对一个锁的解锁操作 <code>Happens-Before</code>于后续对这个锁的加锁操作。</strong></p>
+<p>【示例二】，假设变量<code>x</code>的值为<code>10</code>，线程<code>A</code>执行完<code>synchronized</code>代码块之后将x变量的值修改为10，并释放<code>synchronized</code>锁。当线程<code>B</code>进入<code>synchronized</code>代码块时，能够获取到线程<code>A</code>对<code>x</code>变量的写操作，也就是说，线程<code>B</code>访问到的<code>x</code>变量的值为<code>10</code>。</p>
+<h3 id="【原则五】线程启动规则"><a href="#【原则五】线程启动规则" class="headerlink" title="【原则五】线程启动规则"></a>【原则五】线程启动规则</h3><p><strong>如果线程A调用线程B的start()方法来启动线程B，则start()操作Happens-Before于线程B中的任意操作。</strong></p>
+<p>线程A启动线程B之后，线程B能够看到线程A在启动线程B之前的操作。</p>
+<p>【示例三】线程A启动线程B之后，线程B能够看到线程A在启动线程B之前的操作，在线程B中访问到的x变量的值为100。</p>
+<h3 id="【原则六】线程终结规则"><a href="#【原则六】线程终结规则" class="headerlink" title="【原则六】线程终结规则"></a>【原则六】线程终结规则</h3><p><strong>线程<code>A</code>等待线程<code>B</code>完成（在线程A中调用线程<code>B</code>的<code>join()</code>方法实现），当线程<code>B</code>完成后（线程<code>A</code>调用线程<code>B</code>的<code>join()</code>方法返回），则线程<code>A</code>能够访问到线程<code>B</code>对共享变量的操作。</strong></p>
+<p>参见【示例四】。</p>
+<h3 id="【原则七】线程中断规则"><a href="#【原则七】线程中断规则" class="headerlink" title="【原则七】线程中断规则"></a>【原则七】线程中断规则</h3><p><strong>对线程interrupt()方法的调用Happens-Before于被中断线程的代码检测到中断事件的发生。</strong></p>
+<p>【示例五】，在线程A中中断线程B之前，将共享变量x的值修改为100，则当线程B检测到中断事件时，访问到的x变量的值为100。</p>
+<h3 id="【原则八】对象终结规则"><a href="#【原则八】对象终结规则" class="headerlink" title="【原则八】对象终结规则"></a>【原则八】对象终结规则</h3><p><strong>一个对象的初始化完成Happens-Before于它的finalize()方法的开始。</strong></p>
+<p>运行结果如下所示。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">构造方法</span><br><span class="line">对象销毁</span><br></pre></td></tr></table></figure>
+
+<h2 id="理解run-start方法"><a href="#理解run-start方法" class="headerlink" title="理解run/start方法"></a>理解<code>run/start</code>方法</h2><h3 id="start方法"><a href="#start方法" class="headerlink" title="start方法"></a><code>start</code>方法</h3><ul>
+<li>用来启动线程的方法，属于<code>Thread</code>类。</li>
+<li>调用<code>start</code>方法之后，无需等待<code>run</code>方法体代码执行完毕，直接继续执行主线程下面的代码。</li>
+<li>调用<code>start</code>方法启动一个线程，此时线程会处于就绪状态，并没有运行，一旦得到<code>cpu</code>时间片，就会开始执行线程的<code>run</code>方法，这里的<code>run</code>方法被称为线程体，它包含了要执行的线程的内容，<code>run</code>方法运行结束，线程随即终止。</li>
+</ul>
+<h3 id="run方法"><a href="#run方法" class="headerlink" title="run方法"></a><code>run</code>方法</h3><ul>
+<li><code>run</code>方法是类的一个普通方法。</li>
+<li>直接调用<code>run</code>方法，程序依旧在主线程中运行，并不会启动线程。</li>
+<li><code>run</code>方法必须是<code>public</code>访问权限，返回值为<code>void</code>的普通方法。</li>
+</ul>
+<h2 id="理解sleep-wait-notify-notifyall-countdownlatch"><a href="#理解sleep-wait-notify-notifyall-countdownlatch" class="headerlink" title="理解sleep/wait/notify/notifyall/countdownlatch"></a>理解<code>sleep/wait/notify/notifyall/countdownlatch</code></h2><h3 id="sleep方法"><a href="#sleep方法" class="headerlink" title="sleep方法"></a><code>sleep</code>方法</h3><ul>
+<li><code>sleep</code>方法属于<code>Thread</code>类的静态本地方法，调用方式为<code>Thread.sleep(long millis)</code>。</li>
+<li><code>sleep</code>方法用于当前线程休眠，并且时间到了之后，当前线程会继续执行，并且<code>sleep</code>只能自动醒来，不能被唤醒。</li>
+<li><code>sleep</code>方法一般用于当前线程的暂停或者休眠。</li>
+<li><code>sleep</code>方法不会释放锁。</li>
+<li><code>sleep</code>会让出<code>cpu</code>执行时间，强制上下文切换。</li>
+</ul>
+<h3 id="wait方法"><a href="#wait方法" class="headerlink" title="wait方法"></a><code>wait</code>方法</h3><ul>
+<li>wait方法属于Object类的本地方法，调用方式为<code>xxx.wait(long millis)</code>。</li>
+<li>wait方法必须在synchronized块中使用（解决lost wake up问题），也即wait应该在同步代码块中使用。</li>
+<li>wait一般用于多线程之间的通信。</li>
+<li>wait方法会释放锁。</li>
+</ul>
+<h3 id="notify方法"><a href="#notify方法" class="headerlink" title="notify方法"></a>notify方法</h3><ul>
+<li><p>notify方法属于Object类的本地方法，调用方式为<code>xxx.notify()</code>。</p>
+</li>
+<li><p>notify方法随机唤醒一个处于wait的线程。</p>
+</li>
+<li><p>notify方法并不会立马释放锁，必须等到synchronized方法或者代码块执行完毕之后，才会真正释放锁。</p>
+</li>
+</ul>
+<h3 id="notifyall方法"><a href="#notifyall方法" class="headerlink" title="notifyall方法"></a>notifyall方法</h3><ul>
+<li>notifyall方法属于Object类的本地方法，调用方式为<code>xxx.notifyall()</code>。</li>
+<li>notifyall方法会唤醒所有处于wait的线程，共同竞争锁，只有真正获取到锁对象的线程才能继续执行。</li>
+<li>notifyall方法并不会立马释放锁，必须等到synchronized方法或者代码块执行完毕之后，才会真正释放锁。</li>
+</ul>
+<h3 id="countdownlatch方法"><a href="#countdownlatch方法" class="headerlink" title="countdownlatch方法"></a>countdownlatch方法</h3><ul>
+<li>countdownlatch方法用于多线程之间的同步。</li>
+<li>主要有两个方法await()与countDown()。</li>
+<li>await()方法使调用线程处于等待状态，并且可以有多个线程调用await()方法，多个线程均处于等待状态，以共享模式使用同一把锁。</li>
+<li>countDown()方法用于使计数器减一，并且允许同一个线程多次调用该方法。</li>
+<li>当计数器减为0时，所有处于等待状态的线程，均被唤醒，继续执行。</li>
+</ul>
+<h3 id="join方法"><a href="#join方法" class="headerlink" title="join方法"></a>join方法</h3><ul>
+<li>属于Thread类的方法。</li>
+<li>join方法主要用于线程同步，可以让线程执行从串行变为并行。</li>
+<li>join(10)表示A线程会等待B线程执行10毫秒，join(0)等同于join()表示A线程会等待B线程执行完。</li>
+</ul>
+<h2 id="理解Java锁机制"><a href="#理解Java锁机制" class="headerlink" title="理解Java锁机制"></a>理解Java锁机制</h2><h3 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h3><h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p><strong>乐观锁</strong>：乐观锁认为自己在使用数据时不会有别的线程修改数据，所以不会添加锁，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当前线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。<code>乐观锁在Java中是通过使用无锁编程来实现，最常采用的是CAS算法，Java原子类中的递增操作就通过CAS自旋实现的。</code></p>
+<h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p><strong>悲观锁</strong>：对于数据的并发操作，悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。Java中，synchronized关键字和Lock的实现类都是悲观锁。</p>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li><p>悲观锁适合写操作多的场景，先加锁可以保证写操作时数据正确。</p>
+</li>
+<li><p>乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提升。</p>
+</li>
+</ul>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/pessimistic_locking_and_optimistic_locking.png" alt="悲观锁与乐观锁"></p>
+<h3 id="自旋锁与适应性自旋锁"><a href="#自旋锁与适应性自旋锁" class="headerlink" title="自旋锁与适应性自旋锁"></a>自旋锁与适应性自旋锁</h3><h4 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h4><p><strong>自旋锁</strong>：阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成（有可能涉及用户态与内核态的切换），这种状态转换需要耗费处理器时间。如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
+<p>在许多场景中，同步资源的锁定时间很短，为了这一小段时间去切换线程，线程挂起和恢复现场的花费可能会让系统得不偿失。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃CPU的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
+<p>而为了让当前线程“稍等一下”，我们需让当前线程进行自旋，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以不必阻塞而是直接获取同步资源，从而避免切换线程的开销。这就是自旋锁。</p>
+<p>自旋锁本身是有缺点的，它不能代替阻塞。自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白浪费处理器资源。所以，自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数（默认是10次，可以使用-XX:PreBlockSpin来更改）没有成功获得锁，就应当挂起线程。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/spin_lock.png" alt="自旋锁"></p>
+<h4 id="自适应自旋锁"><a href="#自适应自旋锁" class="headerlink" title="自适应自旋锁"></a>自适应自旋锁</h4><p><strong>自适应自旋锁</strong>：自适应意味着自旋的时间（次数）不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</p>
+<h3 id="无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁"><a href="#无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁" class="headerlink" title="无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁"></a>无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁</h3><p>这四种锁是指锁的状态，专门针对synchronized的。在介绍这四种锁状态之前还需要介绍一些额外的知识。</p>
+<p>首先为什么Synchronized能实现线程同步？在回答这个问题之前我们需要了解两个重要的概念：“Java对象头”、“Monitor”。</p>
+<h4 id="Java对象头"><a href="#Java对象头" class="headerlink" title="Java对象头"></a>Java对象头</h4><p>以Hotspot虚拟机为例，Hotspot的对象头主要包括两部分数据：Mark Word（标记字段）、Class Pointer（类型指针）。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/java_object_header.jpg" alt="java对象头"></p>
+<h4 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h4><p>无锁没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
+<p>无锁的特点就是修改操作在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。上面我们介绍的CAS原理及应用即是无锁的实现。无锁无法全面代替有锁，但无锁在某些场合下的性能是非常高的。</p>
+<h4 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h4><p>偏向锁是指一段同步代码一直被一个线程所访问，那么该线程会自动获取锁，降低获取锁的代价。</p>
+<p>在大多数情况下，锁总是由同一线程多次获得，不存在多线程竞争，所以出现了偏向锁。其目标就是在只有一个线程执行同步代码块时能够提高性能。</p>
+<p>当一个线程访问同步代码块并获取锁时，会在Mark Word里存储锁偏向的线程ID。在线程进入和退出同步块时不再通过CAS操作来加锁和解锁，而是检测Mark Word里是否存储着指向当前线程的偏向锁。引入偏向锁是为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径，因为轻量级锁的获取及释放依赖多次CAS原子指令，而偏向锁只需要在置换ThreadID的时候依赖一次CAS原子指令即可。</p>
+<p>偏向锁只有遇到其他线程尝试竞争偏向锁时，持有偏向锁的线程才会释放锁，线程不会主动释放偏向锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有字节码正在执行），它会首先暂停拥有偏向锁的线程，判断锁对象是否处于被锁定状态。撤销偏向锁后恢复到无锁（标志位为“01”）或轻量级锁（标志位为“00”）的状态。</p>
+<h4 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h4><p>当锁是偏向锁的时候，被另外的线程所访问，偏向锁就会升级为轻量级锁，其他线程会通过自旋的形式尝试获取锁，不会阻塞，从而提高性能。</p>
+<p>在代码进入同步块的时候，如果同步对象锁状态为无锁状态（锁标志位为“01”状态，是否为偏向锁为“0”），虚拟机首先将在当前线程的栈帧中建立一个名为锁记录（Lock Record）的空间，用于存储锁对象目前的Mark Word的拷贝，然后拷贝对象头中的Mark Word复制到锁记录中。</p>
+<p>拷贝成功后，虚拟机将使用CAS操作尝试将对象的Mark Word更新为指向Lock Record的指针，并将Lock Record里的owner指针指向对象的Mark Word。</p>
+<p>如果这个更新动作成功了，那么这个线程就拥有了该对象的锁，并且对象Mark Word的锁标志位设置为“00”，表示此对象处于轻量级锁定状态。</p>
+<p>如果轻量级锁的更新操作失败了，虚拟机首先会检查对象的Mark Word是否指向当前线程的栈帧，如果是就说明当前线程已经拥有了这个对象的锁，那就可以直接进入同步块继续执行，否则说明多个线程竞争锁。</p>
+<p>若当前只有一个等待线程，则该线程通过自旋进行等待。但是当自旋超过一定的次数，或者一个线程在持有锁，一个在自旋，又有第三个来访时，轻量级锁升级为重量级锁。</p>
+<h4 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h4><p>升级为重量级锁时，锁标志的状态值变为“10”，此时Mark Word中存储的是指向重量级锁的指针，此时等待锁的线程都会进入阻塞状态。</p>
+<h3 id="公平锁与非公平锁"><a href="#公平锁与非公平锁" class="headerlink" title="公平锁与非公平锁"></a>公平锁与非公平锁</h3><p><strong>公平锁</strong>：公平锁是指多个线程按照申请锁的顺序来获取锁，线程直接进入队列中排队，队列中的第一个线程才能获得锁。公平锁的优点是等待锁的线程不会饿死。缺点是整体吞吐效率相对非公平锁要低，等待队列中除第一个线程以外的所有线程都会阻塞，CPU唤醒阻塞线程的开销比非公平锁大。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/fair_lock.png" alt="公平锁"></p>
+<p><strong>非公平锁</strong>：非公平锁是多个线程加锁时直接尝试获取锁，获取不到才会到等待队列的队尾等待。但如果此时锁刚好可用，那么这个线程可以无需阻塞直接获取到锁，所以非公平锁有可能出现后申请锁的线程先获取锁的场景。非公平锁的优点是可以减少唤起线程的开销，整体的吞吐效率高，因为线程有几率不阻塞直接获得锁，CPU不必唤醒所有线程。缺点是处于等待队列中的线程可能会饿死，或者等很久才会获得锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unfair_lock.png" alt="非公平锁"></p>
+<h3 id="可重入锁与不可重入锁"><a href="#可重入锁与不可重入锁" class="headerlink" title="可重入锁与不可重入锁"></a>可重入锁与不可重入锁</h3><h4 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h4><p><strong>可重入锁</strong>：可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/reentrant_lock.png" alt="可重入锁"></p>
+<h4 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h4><p><strong>不可重入锁</strong>：不可重入锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会再次获取锁，实际上该对象锁已被当前线程所持有，且无法释放。所以此时会出现死锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unreentrant_lock.png" alt="不可重入锁"></p>
+<h3 id="互斥锁与共享锁"><a href="#互斥锁与共享锁" class="headerlink" title="互斥锁与共享锁"></a>互斥锁与共享锁</h3><h4 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h4><p><strong>互斥锁</strong>：是指该锁一次只能被一个线程所持有。如果线程获得临界资源的互斥锁之后，其它线程则不能再对临界资源加锁。获得互斥锁的线程即能读数据又能修改数据。JDK中的synchronized和JUC中Lock的实现类就是互斥锁。</p>
+<h4 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h4><p><strong>共享锁</strong>：共享锁是指该锁可被多个线程所持有。如果线程对临界资源加上共享锁后，则其他线程可以继续对临界资源加共享锁，不能加排它锁。获得共享锁的线程只能读数据，不能修改数据。</p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><h3 id="Java集合的继承关系"><a href="#Java集合的继承关系" class="headerlink" title="Java集合的继承关系"></a>Java集合的继承关系</h3><center>collection继承关系图</center>
+
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/collection_1.jpg" alt="集合继承关系图"></p>
+<center>map继承关系图</center>
+
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/collection_2.jpg" alt="map继承关系图"></p>
+<h3 id="Array与Linked"><a href="#Array与Linked" class="headerlink" title="Array与Linked"></a>Array与Linked</h3><p>形式为ArrayXXX与LinkedXXX，例如ArrayList&#x2F;LinkedList，ArrayBlockingQueue&#x2F;LinkedBlockingQueue，其中Array开头的为顺序结构，Linked开头的为链式结构。</p>
+<h3 id="RandomAccess"><a href="#RandomAccess" class="headerlink" title="RandomAccess"></a>RandomAccess</h3><p>随机访问类，继承此类的集合支持随机访问，一般底层结果为数组，也即顺序存储，因此支持随机访问。</p>
+<h3 id="Queue与Deque"><a href="#Queue与Deque" class="headerlink" title="Queue与Deque"></a>Queue与Deque</h3><p>队列与双端队列，普通队列，先进先出，队尾入队，对首出队，双端队列，两端均可入队与出队。</p>
+<h3 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h3><p>阻塞队列，常用于多线程环境，如果入队时队列已满或者出队时队列已空，则会阻塞线程，类似生产者与消费者模型。</p>
+<h3 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h3><p>延迟队列，继承了BlockingQueue，只有延迟时间到了之后，才能从队列中获取元素，并且DelayQueue没有大小限制，因此生产者不会阻塞，但是消费者会阻塞。</p>
+<h3 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h3><p>无缓冲等待队列，没有容量，是一个不存储元素的阻塞队列，会直接将任务交给消费者，必须等队列中的添加元素被消费后才能继续添加新的元素。</p>
+<h3 id="Priority"><a href="#Priority" class="headerlink" title="Priority"></a>Priority</h3><p>PriorityXXX，例如PriorityQueue与PriorityBlockingQueue，相对正常的队列，Priority队列的元素会带有优先级，出队时会根据元素优先级决定出队顺序。PriorityQueue底层是使用二叉堆实现的，根据需要可以是小根堆或者大根堆。</p>
+<h3 id="Concurrent"><a href="#Concurrent" class="headerlink" title="Concurrent"></a>Concurrent</h3><p>ConcurrentXXX，例如ConcurrentHashMap等，是Java后来引入的并发包中的集合，多用于多线程场景，解决线程安全问题。</p>
+<h3 id="CopyOnWrite"><a href="#CopyOnWrite" class="headerlink" title="CopyOnWrite"></a>CopyOnWrite</h3><p>CopyOnWriteXXX，例如CopyOnWriteArrayList与CopyOnWriteArraySet等等，主题思想是写入时复制，当有多个调用者同时去请求一个资源时，当其中一个调用者要对资源进行修改，系统会copy一个副本给该调用者，让其进行修改；而其他调用者所拥有资源并不会由于该调用者对资源的改动而发生改变。简单的理解，就是当我们往CopyOnWrite容器中添加元素时，不直接操作当前容器，而是先将容器进行Copy，然后对Copy出的新容器进行修改，修改后，再将原容器的引用指向新的容器，即完成了整个修改操作。</p>
+<h3 id="Sorted"><a href="#Sorted" class="headerlink" title="Sorted"></a>Sorted</h3><p>SortedXXX，例如SortedSet与SortedMap等等，这些一般属于排序接口或者抽象类，继承这些对象的集合一般附带顺序。</p>
+<h3 id="IdentityHashMap"><a href="#IdentityHashMap" class="headerlink" title="IdentityHashMap"></a>IdentityHashMap</h3><p>在比较Key时，HashMap一般会使用equal比较而IdentityHashMap使用&#x3D;&#x3D;比较，也即HashMap比较的是值是否相等，而IdentityHashMap比较的是引用是否相等。并且IdentityHashMap解决哈希冲突的方法不同于HashMap的链地址法，而是线性探测法。</p>
+<h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h3><p>与HashMap类似，区别在于使用弱引用关联map中存储的数据，通过该类实现缓存，在内存紧张的情况下，可以避免强引用占用大量内存。</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h3><p>内存屏障，也称内存栅栏，内存栅障，屏障指令等，是一类同步屏障指令，它使得CPU 或编译器在对内存进行操作的时候, 严格按照一定的顺序来执行, 也就是说在memory barrier 之前的指令和memory barrier之后的指令不会由于系统优化等原因而导致乱序。<br>大多数现代计算机为了提高性能而采取乱序执行，这使得内存屏障成为必须。<br>语义上，内存屏障之前的所有写操作都要写入内存；内存屏障之后的读操作都可以获得同步屏障之前的写操作的结果。因此，对于敏感的程序块，写操作之后、读操作之前可以插入内存屏障。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://tech.meituan.com/2018/11/15/java-lock.html">美团Java锁博客</a></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>面试基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>九寨沟旅游攻略</title>
+    <url>/2022/10/12/%E4%B9%9D%E5%AF%A8%E6%B2%9F%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/</url>
+    <content><![CDATA[<p>想去九寨沟玩，整理旅游攻略。</p>
+<a id="more"></a>
+<h2 id="自助游"><a href="#自助游" class="headerlink" title="自助游"></a>自助游</h2><h3 id="行程安排"><a href="#行程安排" class="headerlink" title="行程安排"></a>行程安排</h3><center>详细计划</center>
+
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/jiuzaigou.jpg" alt="行程安排"></p>
+<p>第一天：选择成都东客运站或者茶店子客运站出发，也可以在去哪儿网购买车票，有不同的选择，大概8小时左右到达九寨沟县城，距离九寨沟风景区仍然有46公里左右。此时可以选择住在九寨沟县城，也可以选择坐车去九寨沟沟口（风景区），根据预定的酒店安排即可。</p>
+<p>第二天：如果住在九寨沟沟口，直接步行到九寨沟风景区，检票进入，开始游玩即可。如果住在九寨沟县城，注意可以选择乘坐公交，出租，包车到九寨沟风景区。快则半小时，慢则1小时，贵则100，慢则10几块即可到达风景，开始游玩。</p>
+<p>第三天：根据情况选择，如果想连续游玩两天，最好选择购买二联票，第二天半价（当前没看到二联票，不知是否因为疫情，官网关闭了二联票入口），选择二联票注意规划号景点以及计划。</p>
+<p>第四天：选择从九寨沟返回成都，注意只有早上有车，需要提前购买好车票，暂时只看到去哪儿网可以购买车票。</p>
+<p>如果选择游玩三天，门票+往返车票大概800，不包含食宿费。</p>
+<p>如果在有二联票的情况下，选择游玩四天，门票+往返车票大概1000左右，不包含食宿费。</p>
+<h3 id="酒店住宿攻略"><a href="#酒店住宿攻略" class="headerlink" title="酒店住宿攻略"></a>酒店住宿攻略</h3><p> 建议直接食宿在九寨沟口即可，沟口食宿很多，入住经济型花费200左右即可。一般酒店没有一次性洗漱用品，注意需要自己携带。马蜂窝酒店评价过于老旧，无参考价值，建议在去哪儿或者携程预定即可。</p>
+<h3 id="车票预定"><a href="#车票预定" class="headerlink" title="车票预定"></a>车票预定</h3><p><a href="http://bus.qunar.com/route/route/list.html?fromStation=%E4%B9%9D%E5%AF%A8%E6%B2%9F&amp;toStation=%E6%88%90%E9%83%BD&amp;date=2022-10-28">去哪儿往返车票预定</a></p>
+<p><a href="https://www.tz12306.com/ticket/search_510100_%E6%88%90%E9%83%BD_1_513225_%E4%B9%9D%E5%AF%A8%E6%B2%9F_1.html?drvTime=2022-10-22">四川汽车票务网</a></p>
+<p><a href="https://c.abatour.com/booking/#/ticketBooking?iscenicid=4">九寨沟门票</a></p>
+<h2 id="跟团游"><a href="#跟团游" class="headerlink" title="跟团游"></a>跟团游</h2><h2 id="跟团半自助游"><a href="#跟团半自助游" class="headerlink" title="跟团半自助游"></a>跟团半自助游</h2><h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><blockquote>
+<p><strong>九寨沟沟口</strong>：九寨沟口就是人们常说的沟口，就是九寨沟景区外面的一片地方，为游客提供住宿餐饮和休闲娱乐的地方，基本上到九寨沟玩的人会选择这里住宿吃饭购物。另外这里的地理名字叫做彭丰村，所以大家所提到的彭丰也就是景区外这一片俗称沟口的区域。还有一个叫漳扎镇的地方，当地人说镇上就是指这里了，这里位于彭丰的上游与彭丰相连，也是一个住宿餐饮集中的地方。但距离景区门口较彭丰较远了一点。</p>
+<p><strong>九寨沟县城</strong>：九寨沟县是指九寨沟的县城，又叫南坪。离景区还有43公里，是当地人的居住地，没有景点和玩的地方，但旺季住宿紧张的时候那里的宾馆和小餐馆可以替景区分担一些压力。所以提醒坐长途客车来的朋友来九寨沟玩买票的时候千万注意，看准是九寨沟口还是九寨沟县，如果是买到九寨沟县的车票，下车后还要另外找车子走这几十公里的路才可以到大九寨沟景区。</p>
+</blockquote>
+<h2 id="景区游玩攻略"><a href="#景区游玩攻略" class="headerlink" title="景区游玩攻略"></a>景区游玩攻略</h2><h3 id="九寨沟简介"><a href="#九寨沟简介" class="headerlink" title="九寨沟简介"></a>九寨沟简介</h3><p><strong>布局很简单，呈现的是近似“Y”字型。</strong>如果是我们从地图上按照“上北，下南，左西，右东”去看的话，这个Y型是倒立过来的。不过景区的旅游布局地图都画成正立的Y，因为景区的入口是在Y型底部，这样绘制会比较容易识别。“Y”的三划正好是风景区里的三条“沟沟”，这里我称它们为下沟，左沟，右沟。</p>
+<p>根据图上所示，</p>
+<blockquote>
+<p>下沟是树正沟，<br>左沟是则查洼沟（“查”读“渣，终点的景点是“长海”），<br>右沟是日则沟（终点的景点是“原始森林”）。</p>
+</blockquote>
+<p>从景色来看，我对它们的惊艳程度排序为右沟 &gt;下沟 &gt;左沟。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/jiuzhaigou_fengjingqu.jpeg" alt="九寨沟风景区"></p>
+<h3 id="景区道路"><a href="#景区道路" class="headerlink" title="景区道路"></a>景区道路</h3><p>景区内有一般有三种路：</p>
+<blockquote>
+<p>公路<br>公路栈道（公路紧挨着的栈道）<br>林间栈道（远离公路的栈道）</p>
+</blockquote>
+<p>公路上会行驶观光车。</p>
+<h3 id="游玩原则"><a href="#游玩原则" class="headerlink" title="游玩原则"></a>游玩原则</h3><p>从游玩的原则来看，一般归纳为三句话：</p>
+<blockquote>
+<p><strong>(1)”下沟”尽量走公路栈道</strong></p>
+</blockquote>
+<p>不过从景区门刚走进去的那一段路，你会发现只有林间栈道和公路，如果时间充足，可以沿着林间栈道走，到了某个景点看到有一座木道桥通往右方的公路，就迅速从那里走过，到达公路栈道，继续沿着公路栈道走就行。另外，如果从“诺日朗瀑布”下行至“犀牛海”（4千米），尽量不要徒步。</p>
+<blockquote>
+<p><strong>(2)”左沟”尽量在公路上坐车</strong></p>
+</blockquote>
+<p>坐车到顶端的景点“长海”，可以向下步行到“<a href="https://www.zhihu.com/search?q=五彩池&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra={&quot;sourceType&quot;%3A&quot;answer&quot;%2C&quot;sourceId&quot;%3A74461574}">五彩池</a>”，然后就坐车回到诺日朗瀑布。</p>
+<blockquote>
+<p><strong>(3)”右沟”尽量走林间栈道。</strong></p>
+</blockquote>
+<p>以下不要徒步：</p>
+<p>“箭竹海”下行至“原始森林”（10千米），如果想看这两点景点中间的“天鹅海”，就从原始森林往下走到天鹅海，不过也有3千米。</p>
+<p>“镜海”下行至“诺日朗瀑布”</p>
+<h3 id="游玩时间"><a href="#游玩时间" class="headerlink" title="游玩时间"></a>游玩时间</h3><p>玩1天的话，尽量坐观光车，到了景点就下来看看，拍拍照，如此而已。<br>尽量把时间留给右沟“<a href="https://www.zhihu.com/search?q=五花海&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra={&quot;sourceType&quot;%3A&quot;answer&quot;%2C&quot;sourceId&quot;%3A74461574}">五花海</a>（最美的景点）”、“熊猫海（水中有无鳞冷水鱼）”等经典景色。</p>
+<p>玩2天的话，就可以悠闲点，这样的旅游团非常少，所以要玩2天一般需要你自助游。<br>这种情况下，第1天，你可以在7点左右就进入景区，趁着旅游团第一波人进来之前，先从下沟走上去，那一段景色还不错（约8千米），到了<a href="https://www.zhihu.com/search?q=树正寨&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra={&quot;sourceType&quot;%3A&quot;answer&quot;%2C&quot;sourceId&quot;%3A74461574}">树正寨</a>或犀牛海上车点（由下往上开的车，有的会在树正寨这里上客，有的不停，走到犀牛海上车点就肯定有得上车），坐车到诺日朗瀑布换乘去左沟的车（终点为“长海”），然后一路玩下来。第2天，重点玩右边的那条沟，坐车到诺日朗瀑布，换乘去右沟的车（终点为“原始森林”）。</p>
+<h2 id="景区吃喝"><a href="#景区吃喝" class="headerlink" title="景区吃喝"></a>景区吃喝</h2><p>景区的开水一般只有“诺日朗中心”那里有，景区内的餐厅也是在“诺日朗中心”那里。</p>
+<h2 id="网站导航"><a href="#网站导航" class="headerlink" title="网站导航"></a>网站导航</h2><p><a href="https://www.abatour.com/">阿坝旅游</a></p>
+<p><a href="https://www.jiuzhai.com/">九寨沟</a></p>
+<p>去哪儿/携程等</p>
+<p>九寨沟（微信公众号）</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>九寨沟属于高海拔景区，为了防止发生高反，要多吃蔬菜水果，避免剧烈的运动。</li>
+<li>秋季前来昼夜温差大，要带够充足的衣物，白天可以清凉一点，晚上就要穿薄毛衣了。</li>
+<li>九寨沟是藏区，藏族人民不吃驴肉、马肉、狗肉、有的地方还不吃鱼肉，去了之后要尊重当地的风情民俗。</li>
+<li>沟内是严禁投食喂鱼的，欣赏美景的同时也要注意环保意识。</li>
+<li>旅行是一件痛并快乐着的事情，需要长时间的坐车，备好晕车药品、感冒药品、抗高原反应药品。</li>
+<li>九寨沟居民平时以藏语为主，但随着旅游业的不断发展，中青年能够用汉语和英语进行交流。不过若是能够学会几句藏语，它可能给你的旅途带来意想不到的乐趣。</li>
+<li>九寨沟是高原气候，早晚温差极大，有时下雨，请勿穿皮鞋、高跟鞋，可带雨具。夏季去除了短袖之外还要备一件长袖或外套，秋季穿个抓绒加一件防风的外套就足够了。冬季则需要穿比较厚实的棉袄了。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>旅游</category>
+      </categories>
+      <tags>
+        <tag>九寨沟</tag>
+        <tag>旅游</tag>
+        <tag>10月秋季</tag>
       </tags>
   </entry>
 </search>
