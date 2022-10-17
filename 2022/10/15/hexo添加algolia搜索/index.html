@@ -262,14 +262,18 @@
       
         <p><font color="green"><strong>Hexo</strong></font> 默认本地搜索不够美观，功能单一，而Algolia搜索功能强大。</p>
 <a id="more"></a>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-algoliasearch --save</span><br></pre></td></tr></table></figure>
+
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo博客的<code>_config.yml</code>配置文件中添加如下配置，其中appId，appKey，adminApiKey与indexName要根据实际情况填写。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">algolia:</span></span><br><span class="line">  <span class="attr">appId:</span> <span class="string">&quot;Z7A3XW4R2I&quot;</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="string">&quot;12db1ad54372045549ef465881c17e743&quot;</span></span><br><span class="line">  <span class="attr">adminApiKey:</span> <span class="string">&quot;40321c7c207e7f73b63a19aa24c4761b&quot;</span></span><br><span class="line">  <span class="attr">chunkSize:</span> <span class="number">5000</span></span><br><span class="line">  <span class="attr">indexName:</span> <span class="string">&quot;my-hexo-blog&quot;</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">content:strip:truncate,0,500</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">excerpt:strip</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">gallery</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">permalink</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">photos</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">slug</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tags</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">title</span></span><br></pre></td></tr></table></figure>
+
 <p>其中appId, appKey, adminApiKey来源于algolia网站自动生成的配置</p>
 <p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/algolia_api_key.jpg" alt="algolia_api_key"></p>
 <p>indexName是自己创建的index名称</p>
 <p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/algolia_index_name.jpg" alt="algolia_index_name"></p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo algolia</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -293,7 +297,10 @@
     <a href="/2022/10/12/%E4%B9%9D%E5%AF%A8%E6%B2%9F%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/" rel="prev" title="九寨沟旅游攻略">
       <i class="fa fa-chevron-left"></i> 九寨沟旅游攻略
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/15/Java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" rel="next" title="Java四种引用类型">
+      Java四种引用类型 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -370,7 +377,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -441,12 +448,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:07</span>
 </div>
 
         

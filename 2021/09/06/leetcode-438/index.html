@@ -270,7 +270,9 @@
         <p>题目描述：给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
 <p>异位词 指字母相同，但排列不同的字符串。</p>
 <a id="more"></a>
+
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findAnagrams</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; need = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;Character, Integer&gt; window = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; p.length(); i++) &#123;</span><br><span class="line">            need.merge(p.charAt(i), <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, valid = <span class="number">0</span>;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">char</span> r = s.charAt(right);</span><br><span class="line">            right++;</span><br><span class="line">            <span class="keyword">if</span> (need.containsKey(r)) &#123;</span><br><span class="line">                window.merge(r, <span class="number">1</span>, (oldVal, newVal) -&gt; ++oldVal);</span><br><span class="line">                <span class="keyword">if</span> (window.get(r).equals(need.get(r))) &#123;</span><br><span class="line">                    valid++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (right - left == p.length()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (valid == need.size()) &#123;</span><br><span class="line">                    res.add(left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> l = s.charAt(left);</span><br><span class="line">                left++;</span><br><span class="line">                <span class="keyword">if</span> (need.containsKey(l)) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (window.get(l).equals(need.get(l))) &#123;</span><br><span class="line">                        valid--;</span><br><span class="line">                    &#125;</span><br><span class="line">                    window.compute(l, (k, v) -&gt; --v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -378,7 +380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -449,12 +451,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:07</span>
 </div>
 
         

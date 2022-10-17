@@ -246,7 +246,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,25 +267,36 @@
       
         <p>冒泡排序（英语：Bubble Sort）又称为泡式排序，是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误&gt;就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢”浮”&gt;到数列的顶端。</p>
 <a id="more"></a>
+
+
 <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
 <p>依次比较两个相邻的元素，如果它们顺序错误，则交换，最终大数会沉向尾部。重复上面的步骤知道数组有序，下面以正序为例进行详细说明整个过程。</p>
 </blockquote>
-<p>原数据：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">9</span>] [<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
+<p>原数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">9</span>] [<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
 <p>第一步：比较<font color="red">[9]</font>和<font color="red">[8]</font>，由于<font color="red">[9]</font>大于<font color="red">[8]</font>，按照正序逻辑<font color="red">[9]</font>在后面，因此需要交换它们的位置，得到新的数组如下所示。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">8</span>] [<span class="number">9</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
 <p>第二步：比较比较<font color="red">[9]</font>和<font color="red">[7]</font>，同理需要交换它们的位置，得到新的数组如下所示。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">9</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
 <p>依次比较原理同上，直到最后一组元素相邻元素比较之后，我们可以得到第一轮冒泡之后的结果，如下所示，可以很明显看到元素<font color="red">[9]</font>最终沉到了尾部，因为它是正序里面最大的结果。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">8</span>] [<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>] [<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
 <p>同理我们进行第二轮冒泡，会将<font color="red">[8]</font>沉到元素尾部，得到如下结果，这里需要注意，由于第一轮冒泡，已经把最大的元素<font color="red">[9]</font>放到了最后一个位置，第二轮冒泡则无需和<font color="red">[9]</font>进行比较，就可以把<font color="red">[8]</font>放到倒数第二的位置。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">7</span>] [<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>] [<span class="number">8</span>] [<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
 <p>最终在经过了n-1轮冒泡之后（n为元素个数），我们可以最终得到一个有序的数组。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>] [<span class="number">3</span>] [<span class="number">5</span>] [<span class="number">7</span>] [<span class="number">8</span>] [<span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
 <p>冒泡排序是稳定的排序算法，其时间复杂度计算公式如下。可以看到冒泡排序，最好的情况与最坏的情况下，时间复杂度均为2^n，空间复杂度为1，平均时间复杂度为2^n。</p>
 </blockquote>
-<script type="math/tex; mode=display">
-(n-1) + (n-2) + (n-3) + ... + 1 = ((n-1) + 1) * (n-1) / 2 = \frac{n * (n-1)}{2}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>$$<br>(n-1) + (n-2) + (n-3) + … + 1 &#x3D; ((n-1) + 1) * (n-1) &#x2F; 2 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
 <p>less函数与exch函数参见文章排序算法序言。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubble</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N-i-<span class="number">1</span>; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(less(c[j+<span class="number">1</span>], c[j]))&#123;</span><br><span class="line">                exch(c, j, j+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -394,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -465,12 +476,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:07</span>
 </div>
 
         

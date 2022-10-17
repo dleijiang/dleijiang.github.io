@@ -265,10 +265,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>RabbitMQ</code>是使用<code>Erlang</code>语言开发的开源消息队列系统，基于<code>AMQP</code>协议来实现。<code>AMQP</code>的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。</p>
+        <p><code>RabbitMQ</code>是使用<code>Erlang</code>语言开发的开源消息队列系统，基于<code>AMQP</code>协议来实现。<code>AMQP</code>的主要特征是面向消息、队列、路由（包括点对点和发布&#x2F;订阅）、可靠性、安全。</p>
 <a id="more"></a>
-<h2 id="RabbitMQ集群规划"><a href="#RabbitMQ集群规划" class="headerlink" title="RabbitMQ集群规划"></a>RabbitMQ集群规划</h2><div class="table-container">
-<table>
+
+<h2 id="RabbitMQ集群规划"><a href="#RabbitMQ集群规划" class="headerlink" title="RabbitMQ集群规划"></a>RabbitMQ集群规划</h2><table>
 <thead>
 <tr>
 <th>IP地址</th>
@@ -279,8 +279,7 @@
 <th>节点类型</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>10.10.10.1</td>
 <td>SZ001</td>
 <td>5672</td>
@@ -296,9 +295,7 @@
 <td>admin</td>
 <td>从节点</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><blockquote>
 <p><strong>Suse</strong>:    <code>SUSE Linux Enterprise Server 11 ( x86_64 )</code></p>
 <p><strong>RabbitMQ</strong>:    <code>3.7.14</code></p>
@@ -314,35 +311,69 @@
 <h2 id="安装Erlang"><a href="#安装Erlang" class="headerlink" title="安装Erlang"></a>安装Erlang</h2><p>查看RabbitMQ所需要的Erlang版本</p>
 <p><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/which-erlang.html">https://www.rabbitmq.com/which-erlang.html</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入安装包所在目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解压Erlang安装包</span></span><br><span class="line"><span class="meta">$</span><span class="bash">tar -zxvf otp_src_21.3.tar.gz</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">进入解压目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> otp_src_21.3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装依赖包</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./otp_build autoconf</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译Erlang</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>配置Erlang环境变量<code>/etc/profile</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/lib/erlang/bin</span><br></pre></td></tr></table></figure>
+
+
+
 <p>刷新配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">source</span> /etc/profile</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>测试Erlang，出现如下情况说明安装成功</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">erl -version</span></span><br><span class="line">Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 10.3</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>查看当前openssl版本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">openssl version</span></span><br><span class="line">OpenSSL 0.9.8j-fips 07 Jan 2009</span><br></pre></td></tr></table></figure>
+
 <p>如果低于<code>1.1.1</code>版本，需要升级，进入包所在目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压openssl</span></span><br><span class="line"><span class="meta">$</span><span class="bash">tar -zxvf openssl-1.1.1.tar.gz</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">进入openssl所在目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> openssl-1.1.1/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">编译</span></span><br><span class="line"><span class="meta">$</span><span class="bash">./config</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash">make &amp;&amp; make install</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">链接升级后的动态库到库目录/usr/lib64/</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ln -s /usr/<span class="built_in">local</span>/lib64/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span></span><br></pre></td></tr></table></figure>
+
 <p>查看结果</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ls -la /usr/lib64/ | grep -P <span class="string">&#x27;(libssl|libcrypto)&#x27;</span></span></span><br><span class="line">-r-xr-xr-x  1 root root 1685176	Mar 25	2013 libcrypto.so.0.9.8</span><br><span class="line">lrwxrwxrwx  1 root root      33 Sep 18	2018 libcrypto.so.1.1 -&gt; /usr/local/lib64/libcrypto.so.1.1</span><br><span class="line">-r-xr-xr-x  1 root root  351360 Mar 25	2013 libssl.so.0.9.8</span><br><span class="line">lrwxrwxrwx  1 root root      30 Sep 18	2018 libssl.so.1.1 -&gt; /usr/local/lib64/libssl.so.1.1</span><br><span class="line">-rwxr-xr-x  1 root root  283640 May 11	2013 libssl3.so</span><br></pre></td></tr></table></figure>
+
 <p>退出<code>suse</code>，然后再次登录，查看openssl版本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">openssl version</span></span><br><span class="line">OpenSSL 1.1.1 11 Sep 2018</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入包安装目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/tmp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解压RabbitMQ文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">tar -xvf rabbitmq-server-generic-unix-3.7.14.tar</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">拷贝解压文件到安装目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash">mkdir -p /home/rabbitmq</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cp -r rabbitmq_server-3.7.14 /home/rabbitmq</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>配置环境变量<code>/etc/profile</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/lib/erlang/bin:/home/rabbitmq/rabbitmq_server-3.7.14/sbin</span><br></pre></td></tr></table></figure>
+
+
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">刷新配置</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">source</span> /etc/profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">进入rabbitmq安装目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"><span class="built_in">cd</span> /home/rabbitmq/rabbitmq_server-3.7.14</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动RabbitMQ</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmq-server detached &amp;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看RabbitMQ进程</span></span><br><span class="line"><span class="meta">$</span><span class="bash">ps aux | grep rabbitmq</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动插件管理</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmq-plugins <span class="built_in">enable</span> rabbitmq_management</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">添加用户</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl add_user admin admin</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl set_user_tags admin administrator</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>访问<code>http://[IP]:15672</code>，可以看到RabbitMQ登录页面，至此RabbitMQ单机安装完成</p>
 <h2 id="安装RabbitMQ集群"><a href="#安装RabbitMQ集群" class="headerlink" title="安装RabbitMQ集群"></a>安装RabbitMQ集群</h2><p>在另一台主机安装单机RabbitMQ</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">停止RabbitMQ主节点</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl stop</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">停止RabbitMQ从节点</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl stop</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看两个节点的.erlang.cookie文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">cat /root/.erlang.cookie</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">复制主节点的.erlang.cookie文件给从节点，覆盖从节点的.erlang.cookie文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash">scp -r /root/.erlang.cookie root@10.10.10.2:/root/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在从节点上执行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl stop_app</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl reset</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl start_app</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在主节点执行</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl stop_app</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl reset</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">把从节点加入主节点,SZX002是主机名</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl join_cluster rabbit@SZ002</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>如果报错误，<code>Error: unable to perform an operation on node &#39;rabbit@SZ002&#39;</code>，修改主节点与从节点的<code>/etc/hosts</code>文件。</p>
 <blockquote>
 <p>10.10.10.1 SZ001</p>
 <p>10.10.10.2 SZ002</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">重启主从节点网络服务</span></span><br><span class="line"><span class="meta">$</span><span class="bash">/etc/init.d/network restart</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">再次执行添加从节点命令</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl join_cluster rabbit@SZ002</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动RabbitMQ主节点</span></span><br><span class="line">rabbitmqctl start_app</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看集群状态，可以看到两个节点均处于运行状态</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl cluster_status</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设定镜像集群</span></span><br><span class="line"><span class="meta">$</span><span class="bash">rabbitmqctl set_policy ha-all <span class="string">&quot;&quot;</span> <span class="string">&#x27;&#123;&quot;ha-mode&quot;:&quot;all&quot;,&quot;ha-sync-mode&quot;:&quot;automatic&quot;&#125;&#x27;</span> --vhost TestVirtualHost</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>登录RabbitMQ管理页面，创建一个队列发现Feature是ha-all说明已经是高可用镜像集群。</p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#复制延迟交换机插件到插件目录</span></span><br><span class="line"><span class="variable">$cp</span> -r rabbitmq_delayed_message_exchange-20171201-3.7.x.ez /home/rabbitmq/rabbitmq_server-3.7.14/plugins/</span><br><span class="line"></span><br><span class="line"><span class="comment">#启用延迟交换机插件</span></span><br><span class="line"><span class="variable">$rabbitmq</span>-plugins <span class="built_in">enable</span> rabbitmq_delayed_message_exchange</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -448,7 +479,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -519,12 +550,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:07</span>
 </div>
 
         

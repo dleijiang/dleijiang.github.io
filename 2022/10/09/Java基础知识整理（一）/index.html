@@ -275,6 +275,7 @@
       
         <p>最近准备面试资料，针对常见的Java基础知识做出整理与复习。</p>
 <a id="more"></a>
+
 <h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><p><code>synchronized</code>是<code>java</code>提供的原子性内置锁，这种内置的并且使用者看不到的锁也被称为<strong>监视器锁</strong>，使用<code>synchronized</code>之后，会在编译之后在同步的代码块前后加上<code>monitorenter</code>和<code>monitorexit</code>字节码指令，他依赖操作系统底层互斥锁实现。他的作用主要就是实现原子性操作和解决共享变量的内存可见性问题。</p>
 <p>执行<code>monitorenter</code>指令时会尝试获取对象锁，如果对象没有被锁定或者已经获得了锁，锁的计数器<code>+1</code>。此时其他竞争锁的线程则会进入等待队列中。</p>
 <p>执行<code>monitorexit</code>指令时则会把计数器<code>-1</code>，当计数器值为<code>0</code>时，则锁释放，处于等待队列中的线程再继续竞争锁。</p>
@@ -293,24 +294,30 @@
 <h2 id="Happens-Before"><a href="#Happens-Before" class="headerlink" title="Happens-Before"></a>Happens-Before</h2><center>示例一</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VolatileExample</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">volatile</span> <span class="keyword">boolean</span> v = <span class="keyword">false</span>;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    x = <span class="number">42</span>;</span><br><span class="line">    v = <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (v == <span class="keyword">true</span>) &#123;</span><br><span class="line">      <span class="comment">//x的值是多少呢？</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>假设线程<code>A</code>执行<code>writer()</code>方法，按照<code>volatile</code>会将<code>v=true</code>写入内存；线程<code>B</code>执行<code>reader()</code>方法，按照<code>volatile</code>，线程<code>B</code>会从内存中读取变量<code>v</code>，如果线程<code>B</code>读取到的变量<code>v</code>为<code>true</code>，那么，此时的变量<code>x</code>的值是多少呢？</p>
 <p>这个示例程序给人的直觉就是<code>x</code>的值为<code>42</code>，其实，<code>x</code>的值具体是多少和<code>JDK</code>的版本有关，如果使用的<code>JDK</code>版本低于<code>1.5</code>，则x的值可能为<code>42</code>，也可能为<code>0</code>。如果使用<code>1.5</code>及<code>1.5</code>以上版本的<code>JDK</code>，则<code>x</code>的值就是<code>42</code>。</p>
 <p>看到这个，就会有人提出问题了？这是为什么呢？其实，答案就是在<code>JDK1.5</code>版本中的<code>Java</code>内存模型中引入了<code>Happens-Before</code>原则。</p>
 <center>示例二</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> initX&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123; <span class="comment">//自动加锁</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.x &lt; <span class="number">10</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.x = <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">//自动释放锁</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center>示例三</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在线程A中初始化线程B</span></span><br><span class="line">Thread threadB = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">    <span class="comment">//此处的变量x的值是多少呢？答案是100</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//线程A在启动线程B之前将共享变量x的值修改为100</span></span><br><span class="line">x = <span class="number">100</span>;</span><br><span class="line"><span class="comment">//启动线程B</span></span><br><span class="line">threadB.start();</span><br></pre></td></tr></table></figure>
+
 <center>示例四</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread threadB = <span class="keyword">new</span> Thread(()-&#123;</span><br><span class="line">    <span class="comment">//在线程B中，将共享变量x的值修改为100</span></span><br><span class="line">    x = <span class="number">100</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//在线程A中启动线程B</span></span><br><span class="line">threadB.start();</span><br><span class="line"><span class="comment">//在线程A中等待线程B执行完成</span></span><br><span class="line">threadB.join();</span><br><span class="line"><span class="comment">//此处访问共享变量x的值为100</span></span><br></pre></td></tr></table></figure>
+
 <center>示例五</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在线程A中将x变量的值初始化为0</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//在线程A中初始化线程B</span></span><br><span class="line">    Thread threadB = <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="comment">//线程B检测自己是否被中断</span></span><br><span class="line">        <span class="keyword">if</span> (Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">            <span class="comment">//如果线程B被中断，则此时X的值为100</span></span><br><span class="line">            System.out.println(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//在线程A中启动线程B</span></span><br><span class="line">    threadB.start();</span><br><span class="line">    <span class="comment">//在线程A中将共享变量X的值修改为100</span></span><br><span class="line">    x = <span class="number">100</span>;</span><br><span class="line">    <span class="comment">//在线程A中中断线程B</span></span><br><span class="line">    threadB.interrupt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <center>示例六</center>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;构造方法&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;对象销毁&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> TestThread();</span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="【原则一】程序次序规则"><a href="#【原则一】程序次序规则" class="headerlink" title="【原则一】程序次序规则"></a>【原则一】程序次序规则</h3><p><strong>在一个线程中，按照代码的顺序，前面的操作<code>Happens-Before</code>于后面的任意操作。</strong></p>
 <p>同一个线程中，程序在前面对某个变量的修改一定是对后续操作可见的。例如【示例一】中的程序<code>x=42</code>会在<code>v=true</code>之前执行。</p>
 <h3 id="【原则二】volatile变量规则"><a href="#【原则二】volatile变量规则" class="headerlink" title="【原则二】volatile变量规则"></a>【原则二】<code>volatile</code>变量规则</h3><p><strong>对一个<code>volatile</code>变量的写操作，<code>Happens-Before</code>于后续对这个变量的读操作。</strong></p>
@@ -332,6 +339,7 @@
 <h3 id="【原则八】对象终结规则"><a href="#【原则八】对象终结规则" class="headerlink" title="【原则八】对象终结规则"></a>【原则八】对象终结规则</h3><p><strong>一个对象的初始化完成Happens-Before于它的finalize()方法的开始。</strong></p>
 <p>运行结果如下所示。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造方法</span><br><span class="line">对象销毁</span><br></pre></td></tr></table></figure>
+
 <h2 id="理解run-start方法"><a href="#理解run-start方法" class="headerlink" title="理解run/start方法"></a>理解<code>run/start</code>方法</h2><h3 id="start方法"><a href="#start方法" class="headerlink" title="start方法"></a><code>start</code>方法</h3><ul>
 <li>用来启动线程的方法，属于<code>Thread</code>类。</li>
 <li>调用<code>start</code>方法之后，无需等待<code>run</code>方法体代码执行完毕，直接继续执行主线程下面的代码。</li>
@@ -360,7 +368,8 @@
 </li>
 <li><p>notify方法随机唤醒一个处于wait的线程。</p>
 </li>
-<li>notify方法并不会立马释放锁，必须等到synchronized方法或者代码块执行完毕之后，才会真正释放锁。</li>
+<li><p>notify方法并不会立马释放锁，必须等到synchronized方法或者代码块执行完毕之后，才会真正释放锁。</p>
+</li>
 </ul>
 <h3 id="notifyall方法"><a href="#notifyall方法" class="headerlink" title="notifyall方法"></a>notifyall方法</h3><ul>
 <li>notifyall方法属于Object类的本地方法，调用方式为<code>xxx.notifyall()</code>。</li>
@@ -427,7 +436,7 @@
 <center>map继承关系图</center>
 
 <p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/collection_2.jpg" alt="map继承关系图"></p>
-<h3 id="Array与Linked"><a href="#Array与Linked" class="headerlink" title="Array与Linked"></a>Array与Linked</h3><p>形式为ArrayXXX与LinkedXXX，例如ArrayList/LinkedList，ArrayBlockingQueue/LinkedBlockingQueue，其中Array开头的为顺序结构，Linked开头的为链式结构。</p>
+<h3 id="Array与Linked"><a href="#Array与Linked" class="headerlink" title="Array与Linked"></a>Array与Linked</h3><p>形式为ArrayXXX与LinkedXXX，例如ArrayList&#x2F;LinkedList，ArrayBlockingQueue&#x2F;LinkedBlockingQueue，其中Array开头的为顺序结构，Linked开头的为链式结构。</p>
 <h3 id="RandomAccess"><a href="#RandomAccess" class="headerlink" title="RandomAccess"></a>RandomAccess</h3><p>随机访问类，继承此类的集合支持随机访问，一般底层结果为数组，也即顺序存储，因此支持随机访问。</p>
 <h3 id="Queue与Deque"><a href="#Queue与Deque" class="headerlink" title="Queue与Deque"></a>Queue与Deque</h3><p>队列与双端队列，普通队列，先进先出，队尾入队，对首出队，双端队列，两端均可入队与出队。</p>
 <h3 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h3><p>阻塞队列，常用于多线程环境，如果入队时队列已满或者出队时队列已空，则会阻塞线程，类似生产者与消费者模型。</p>
@@ -437,7 +446,7 @@
 <h3 id="Concurrent"><a href="#Concurrent" class="headerlink" title="Concurrent"></a>Concurrent</h3><p>ConcurrentXXX，例如ConcurrentHashMap等，是Java后来引入的并发包中的集合，多用于多线程场景，解决线程安全问题。</p>
 <h3 id="CopyOnWrite"><a href="#CopyOnWrite" class="headerlink" title="CopyOnWrite"></a>CopyOnWrite</h3><p>CopyOnWriteXXX，例如CopyOnWriteArrayList与CopyOnWriteArraySet等等，主题思想是写入时复制，当有多个调用者同时去请求一个资源时，当其中一个调用者要对资源进行修改，系统会copy一个副本给该调用者，让其进行修改；而其他调用者所拥有资源并不会由于该调用者对资源的改动而发生改变。简单的理解，就是当我们往CopyOnWrite容器中添加元素时，不直接操作当前容器，而是先将容器进行Copy，然后对Copy出的新容器进行修改，修改后，再将原容器的引用指向新的容器，即完成了整个修改操作。</p>
 <h3 id="Sorted"><a href="#Sorted" class="headerlink" title="Sorted"></a>Sorted</h3><p>SortedXXX，例如SortedSet与SortedMap等等，这些一般属于排序接口或者抽象类，继承这些对象的集合一般附带顺序。</p>
-<h3 id="IdentityHashMap"><a href="#IdentityHashMap" class="headerlink" title="IdentityHashMap"></a>IdentityHashMap</h3><p>在比较Key时，HashMap一般会使用equal比较而IdentityHashMap使用==比较，也即HashMap比较的是值是否相等，而IdentityHashMap比较的是引用是否相等。并且IdentityHashMap解决哈希冲突的方法不同于HashMap的链地址法，而是线性探测法。</p>
+<h3 id="IdentityHashMap"><a href="#IdentityHashMap" class="headerlink" title="IdentityHashMap"></a>IdentityHashMap</h3><p>在比较Key时，HashMap一般会使用equal比较而IdentityHashMap使用&#x3D;&#x3D;比较，也即HashMap比较的是值是否相等，而IdentityHashMap比较的是引用是否相等。并且IdentityHashMap解决哈希冲突的方法不同于HashMap的链地址法，而是线性探测法。</p>
 <h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h3><p>与HashMap类似，区别在于使用弱引用关联map中存储的数据，通过该类实现缓存，在内存紧张的情况下，可以避免强引用占用大量内存。</p>
 <h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h3><p>内存屏障，也称内存栅栏，内存栅障，屏障指令等，是一类同步屏障指令，它使得CPU 或编译器在对内存进行操作的时候, 严格按照一定的顺序来执行, 也就是说在memory barrier 之前的指令和memory barrier之后的指令不会由于系统优化等原因而导致乱序。<br>大多数现代计算机为了提高性能而采取乱序执行，这使得内存屏障成为必须。<br>语义上，内存屏障之前的所有写操作都要写入内存；内存屏障之后的读操作都可以获得同步屏障之前的写操作的结果。因此，对于敏感的程序块，写操作之后、读操作之前可以插入内存屏障。</p>
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/11/15/java-lock.html">美团Java锁博客</a></p>
@@ -545,7 +554,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -616,12 +625,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:03</span>
+    <span title="站点阅读时长">2:07</span>
 </div>
 
         
