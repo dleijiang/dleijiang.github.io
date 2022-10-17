@@ -303,64 +303,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java锁机制</title>
-    <url>/2022/10/17/Java%E9%94%81%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<p>Java提供了种类丰富的锁，每种锁因其特性的不同，在适当的场景下能够展现出非常高的效率。</p>
-<a id="more"></a>
-
-<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/java_lock_1.jpg" alt="java_lock"></p>
-<h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p><strong>乐观锁</strong>：乐观锁认为自己在使用数据时不会有别的线程修改数据，所以不会添加锁，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当前线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。<code>乐观锁在Java中是通过使用无锁编程来实现，最常采用的是CAS算法，Java原子类中的递增操作就通过CAS自旋实现的。</code></p>
-<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p><strong>悲观锁</strong>：对于数据的并发操作，悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。Java中，synchronized关键字和Lock的实现类都是悲观锁。</p>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
-<li><p>悲观锁适合写操作多的场景，先加锁可以保证写操作时数据正确。</p>
-</li>
-<li><p>乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提升。</p>
-</li>
-</ul>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/pessimistic_locking_and_optimistic_locking.png" alt="悲观锁与乐观锁"></p>
-<h2 id="自旋锁与适应性自旋锁"><a href="#自旋锁与适应性自旋锁" class="headerlink" title="自旋锁与适应性自旋锁"></a>自旋锁与适应性自旋锁</h2><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p><strong>自旋锁</strong>：阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成（有可能涉及用户态与内核态的切换），这种状态转换需要耗费处理器时间。如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
-<p>在许多场景中，同步资源的锁定时间很短，为了这一小段时间去切换线程，线程挂起和恢复现场的花费可能会让系统得不偿失。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃CPU的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
-<p>而为了让当前线程“稍等一下”，我们需让当前线程进行自旋，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以不必阻塞而是直接获取同步资源，从而避免切换线程的开销。这就是自旋锁。</p>
-<p>自旋锁本身是有缺点的，它不能代替阻塞。自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白浪费处理器资源。所以，自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数（默认是10次，可以使用-XX:PreBlockSpin来更改）没有成功获得锁，就应当挂起线程。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/spin_lock.png" alt="自旋锁"></p>
-<h3 id="自适应自旋锁"><a href="#自适应自旋锁" class="headerlink" title="自适应自旋锁"></a>自适应自旋锁</h3><p><strong>自适应自旋锁</strong>：自适应意味着自旋的时间（次数）不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</p>
-<h2 id="无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁"><a href="#无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁" class="headerlink" title="无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁"></a>无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁</h2><p>这四种锁是指锁的状态，专门针对synchronized的。在介绍这四种锁状态之前还需要介绍一些额外的知识。</p>
-<p>首先为什么Synchronized能实现线程同步？在回答这个问题之前我们需要了解两个重要的概念：“Java对象头”、“Monitor”。</p>
-<h3 id="Java对象头"><a href="#Java对象头" class="headerlink" title="Java对象头"></a>Java对象头</h3><p>以Hotspot虚拟机为例，Hotspot的对象头主要包括两部分数据：Mark Word（标记字段）、Class Pointer（类型指针）。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/java_object_header.jpg" alt="java对象头"></p>
-<h3 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h3><p>无锁没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
-<p>无锁的特点就是修改操作在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。上面我们介绍的CAS原理及应用即是无锁的实现。无锁无法全面代替有锁，但无锁在某些场合下的性能是非常高的。</p>
-<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p>偏向锁是指一段同步代码一直被一个线程所访问，那么该线程会自动获取锁，降低获取锁的代价。</p>
-<p>在大多数情况下，锁总是由同一线程多次获得，不存在多线程竞争，所以出现了偏向锁。其目标就是在只有一个线程执行同步代码块时能够提高性能。</p>
-<p>当一个线程访问同步代码块并获取锁时，会在Mark Word里存储锁偏向的线程ID。在线程进入和退出同步块时不再通过CAS操作来加锁和解锁，而是检测Mark Word里是否存储着指向当前线程的偏向锁。引入偏向锁是为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径，因为轻量级锁的获取及释放依赖多次CAS原子指令，而偏向锁只需要在置换ThreadID的时候依赖一次CAS原子指令即可。</p>
-<p>偏向锁只有遇到其他线程尝试竞争偏向锁时，持有偏向锁的线程才会释放锁，线程不会主动释放偏向锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有字节码正在执行），它会首先暂停拥有偏向锁的线程，判断锁对象是否处于被锁定状态。撤销偏向锁后恢复到无锁（标志位为“01”）或轻量级锁（标志位为“00”）的状态。</p>
-<h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>当锁是偏向锁的时候，被另外的线程所访问，偏向锁就会升级为轻量级锁，其他线程会通过自旋的形式尝试获取锁，不会阻塞，从而提高性能。</p>
-<p>在代码进入同步块的时候，如果同步对象锁状态为无锁状态（锁标志位为“01”状态，是否为偏向锁为“0”），虚拟机首先将在当前线程的栈帧中建立一个名为锁记录（Lock Record）的空间，用于存储锁对象目前的Mark Word的拷贝，然后拷贝对象头中的Mark Word复制到锁记录中。</p>
-<p>拷贝成功后，虚拟机将使用CAS操作尝试将对象的Mark Word更新为指向Lock Record的指针，并将Lock Record里的owner指针指向对象的Mark Word。</p>
-<p>如果这个更新动作成功了，那么这个线程就拥有了该对象的锁，并且对象Mark Word的锁标志位设置为“00”，表示此对象处于轻量级锁定状态。</p>
-<p>如果轻量级锁的更新操作失败了，虚拟机首先会检查对象的Mark Word是否指向当前线程的栈帧，如果是就说明当前线程已经拥有了这个对象的锁，那就可以直接进入同步块继续执行，否则说明多个线程竞争锁。</p>
-<p>若当前只有一个等待线程，则该线程通过自旋进行等待。但是当自旋超过一定的次数，或者一个线程在持有锁，一个在自旋，又有第三个来访时，轻量级锁升级为重量级锁。</p>
-<h3 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h3><p>升级为重量级锁时，锁标志的状态值变为“10”，此时Mark Word中存储的是指向重量级锁的指针，此时等待锁的线程都会进入阻塞状态。</p>
-<h2 id="公平锁与非公平锁"><a href="#公平锁与非公平锁" class="headerlink" title="公平锁与非公平锁"></a>公平锁与非公平锁</h2><h3 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h3><p><strong>公平锁</strong>：公平锁是指多个线程按照申请锁的顺序来获取锁，线程直接进入队列中排队，队列中的第一个线程才能获得锁。公平锁的优点是等待锁的线程不会饿死。缺点是整体吞吐效率相对非公平锁要低，等待队列中除第一个线程以外的所有线程都会阻塞，CPU唤醒阻塞线程的开销比非公平锁大。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/fair_lock.png" alt="公平锁"></p>
-<h3 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h3><p><strong>非公平锁</strong>：非公平锁是多个线程加锁时直接尝试获取锁，获取不到才会到等待队列的队尾等待。但如果此时锁刚好可用，那么这个线程可以无需阻塞直接获取到锁，所以非公平锁有可能出现后申请锁的线程先获取锁的场景。非公平锁的优点是可以减少唤起线程的开销，整体的吞吐效率高，因为线程有几率不阻塞直接获得锁，CPU不必唤醒所有线程。缺点是处于等待队列中的线程可能会饿死，或者等很久才会获得锁。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unfair_lock.png" alt="非公平锁"></p>
-<h2 id="可重入锁与不可重入锁"><a href="#可重入锁与不可重入锁" class="headerlink" title="可重入锁与不可重入锁"></a>可重入锁与不可重入锁</h2><h3 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h3><p><strong>可重入锁</strong>：可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/reentrant_lock.png" alt="可重入锁"></p>
-<h3 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h3><p><strong>不可重入锁</strong>：不可重入锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会再次获取锁，实际上该对象锁已被当前线程所持有，且无法释放。所以此时会出现死锁。</p>
-<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unreentrant_lock.png" alt="不可重入锁"></p>
-<h2 id="互斥锁与共享锁"><a href="#互斥锁与共享锁" class="headerlink" title="互斥锁与共享锁"></a>互斥锁与共享锁</h2><h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><p><strong>互斥锁</strong>：是指该锁一次只能被一个线程所持有。如果线程获得临界资源的互斥锁之后，其它线程则不能再对临界资源加锁。获得互斥锁的线程即能读数据又能修改数据。JDK中的synchronized和JUC中Lock的实现类就是互斥锁。</p>
-<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p><strong>共享锁</strong>：共享锁是指该锁可被多个线程所持有。如果线程对临界资源加上共享锁后，则其他线程可以继续对临界资源加共享锁，不能加排它锁。获得共享锁的线程只能读数据，不能修改数据。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>锁</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java集合（一）</title>
     <url>/2022/10/17/Java%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<p>集合类主要负责保存、盛装其他数据，因此集合类也被称为容器类。所以的集合类都位于java.util包下，后来为了处理多线程环境下的并发安全问题，java5还在java.util.concurrent包下提供了一些多线程支持的集合类。</p>
@@ -416,6 +358,64 @@
         <tag>mysql</tag>
         <tag>suse</tag>
         <tag>主从</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java锁机制</title>
+    <url>/2022/10/17/Java%E9%94%81%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<p>Java提供了种类丰富的锁，每种锁因其特性的不同，在适当的场景下能够展现出非常高的效率。</p>
+<a id="more"></a>
+
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/java_lock_1.jpg" alt="java_lock"></p>
+<h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p><strong>乐观锁</strong>：乐观锁认为自己在使用数据时不会有别的线程修改数据，所以不会添加锁，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当前线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。<code>乐观锁在Java中是通过使用无锁编程来实现，最常采用的是CAS算法，Java原子类中的递增操作就通过CAS自旋实现的。</code></p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p><strong>悲观锁</strong>：对于数据的并发操作，悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。Java中，synchronized关键字和Lock的实现类都是悲观锁。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li><p>悲观锁适合写操作多的场景，先加锁可以保证写操作时数据正确。</p>
+</li>
+<li><p>乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提升。</p>
+</li>
+</ul>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/pessimistic_locking_and_optimistic_locking.png" alt="悲观锁与乐观锁"></p>
+<h2 id="自旋锁与适应性自旋锁"><a href="#自旋锁与适应性自旋锁" class="headerlink" title="自旋锁与适应性自旋锁"></a>自旋锁与适应性自旋锁</h2><h3 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h3><p><strong>自旋锁</strong>：阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成（有可能涉及用户态与内核态的切换），这种状态转换需要耗费处理器时间。如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
+<p>在许多场景中，同步资源的锁定时间很短，为了这一小段时间去切换线程，线程挂起和恢复现场的花费可能会让系统得不偿失。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃CPU的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
+<p>而为了让当前线程“稍等一下”，我们需让当前线程进行自旋，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以不必阻塞而是直接获取同步资源，从而避免切换线程的开销。这就是自旋锁。</p>
+<p>自旋锁本身是有缺点的，它不能代替阻塞。自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白浪费处理器资源。所以，自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数（默认是10次，可以使用-XX:PreBlockSpin来更改）没有成功获得锁，就应当挂起线程。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/spin_lock.png" alt="自旋锁"></p>
+<h3 id="自适应自旋锁"><a href="#自适应自旋锁" class="headerlink" title="自适应自旋锁"></a>自适应自旋锁</h3><p><strong>自适应自旋锁</strong>：自适应意味着自旋的时间（次数）不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</p>
+<h2 id="无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁"><a href="#无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁" class="headerlink" title="无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁"></a>无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁</h2><p>这四种锁是指锁的状态，专门针对synchronized的。在介绍这四种锁状态之前还需要介绍一些额外的知识。</p>
+<p>首先为什么Synchronized能实现线程同步？在回答这个问题之前我们需要了解两个重要的概念：“Java对象头”、“Monitor”。</p>
+<h3 id="Java对象头"><a href="#Java对象头" class="headerlink" title="Java对象头"></a>Java对象头</h3><p>以Hotspot虚拟机为例，Hotspot的对象头主要包括两部分数据：Mark Word（标记字段）、Class Pointer（类型指针）。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/java_object_header.jpg" alt="java对象头"></p>
+<h3 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h3><p>无锁没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
+<p>无锁的特点就是修改操作在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。上面我们介绍的CAS原理及应用即是无锁的实现。无锁无法全面代替有锁，但无锁在某些场合下的性能是非常高的。</p>
+<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p>偏向锁是指一段同步代码一直被一个线程所访问，那么该线程会自动获取锁，降低获取锁的代价。</p>
+<p>在大多数情况下，锁总是由同一线程多次获得，不存在多线程竞争，所以出现了偏向锁。其目标就是在只有一个线程执行同步代码块时能够提高性能。</p>
+<p>当一个线程访问同步代码块并获取锁时，会在Mark Word里存储锁偏向的线程ID。在线程进入和退出同步块时不再通过CAS操作来加锁和解锁，而是检测Mark Word里是否存储着指向当前线程的偏向锁。引入偏向锁是为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径，因为轻量级锁的获取及释放依赖多次CAS原子指令，而偏向锁只需要在置换ThreadID的时候依赖一次CAS原子指令即可。</p>
+<p>偏向锁只有遇到其他线程尝试竞争偏向锁时，持有偏向锁的线程才会释放锁，线程不会主动释放偏向锁。偏向锁的撤销，需要等待全局安全点（在这个时间点上没有字节码正在执行），它会首先暂停拥有偏向锁的线程，判断锁对象是否处于被锁定状态。撤销偏向锁后恢复到无锁（标志位为“01”）或轻量级锁（标志位为“00”）的状态。</p>
+<h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>当锁是偏向锁的时候，被另外的线程所访问，偏向锁就会升级为轻量级锁，其他线程会通过自旋的形式尝试获取锁，不会阻塞，从而提高性能。</p>
+<p>在代码进入同步块的时候，如果同步对象锁状态为无锁状态（锁标志位为“01”状态，是否为偏向锁为“0”），虚拟机首先将在当前线程的栈帧中建立一个名为锁记录（Lock Record）的空间，用于存储锁对象目前的Mark Word的拷贝，然后拷贝对象头中的Mark Word复制到锁记录中。</p>
+<p>拷贝成功后，虚拟机将使用CAS操作尝试将对象的Mark Word更新为指向Lock Record的指针，并将Lock Record里的owner指针指向对象的Mark Word。</p>
+<p>如果这个更新动作成功了，那么这个线程就拥有了该对象的锁，并且对象Mark Word的锁标志位设置为“00”，表示此对象处于轻量级锁定状态。</p>
+<p>如果轻量级锁的更新操作失败了，虚拟机首先会检查对象的Mark Word是否指向当前线程的栈帧，如果是就说明当前线程已经拥有了这个对象的锁，那就可以直接进入同步块继续执行，否则说明多个线程竞争锁。</p>
+<p>若当前只有一个等待线程，则该线程通过自旋进行等待。但是当自旋超过一定的次数，或者一个线程在持有锁，一个在自旋，又有第三个来访时，轻量级锁升级为重量级锁。</p>
+<h3 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h3><p>升级为重量级锁时，锁标志的状态值变为“10”，此时Mark Word中存储的是指向重量级锁的指针，此时等待锁的线程都会进入阻塞状态。</p>
+<h2 id="公平锁与非公平锁"><a href="#公平锁与非公平锁" class="headerlink" title="公平锁与非公平锁"></a>公平锁与非公平锁</h2><h3 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h3><p><strong>公平锁</strong>：公平锁是指多个线程按照申请锁的顺序来获取锁，线程直接进入队列中排队，队列中的第一个线程才能获得锁。公平锁的优点是等待锁的线程不会饿死。缺点是整体吞吐效率相对非公平锁要低，等待队列中除第一个线程以外的所有线程都会阻塞，CPU唤醒阻塞线程的开销比非公平锁大。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/fair_lock.png" alt="公平锁"></p>
+<h3 id="非公平锁"><a href="#非公平锁" class="headerlink" title="非公平锁"></a>非公平锁</h3><p><strong>非公平锁</strong>：非公平锁是多个线程加锁时直接尝试获取锁，获取不到才会到等待队列的队尾等待。但如果此时锁刚好可用，那么这个线程可以无需阻塞直接获取到锁，所以非公平锁有可能出现后申请锁的线程先获取锁的场景。非公平锁的优点是可以减少唤起线程的开销，整体的吞吐效率高，因为线程有几率不阻塞直接获得锁，CPU不必唤醒所有线程。缺点是处于等待队列中的线程可能会饿死，或者等很久才会获得锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unfair_lock.png" alt="非公平锁"></p>
+<h2 id="可重入锁与不可重入锁"><a href="#可重入锁与不可重入锁" class="headerlink" title="可重入锁与不可重入锁"></a>可重入锁与不可重入锁</h2><h3 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h3><p><strong>可重入锁</strong>：可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/reentrant_lock.png" alt="可重入锁"></p>
+<h3 id="不可重入锁"><a href="#不可重入锁" class="headerlink" title="不可重入锁"></a>不可重入锁</h3><p><strong>不可重入锁</strong>：不可重入锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会再次获取锁，实际上该对象锁已被当前线程所持有，且无法释放。所以此时会出现死锁。</p>
+<p><img src="https://lei-my-hexo-blog.oss-cn-beijing.aliyuncs.com/my-hexo-blog/2022/unreentrant_lock.png" alt="不可重入锁"></p>
+<h2 id="互斥锁与共享锁"><a href="#互斥锁与共享锁" class="headerlink" title="互斥锁与共享锁"></a>互斥锁与共享锁</h2><h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><p><strong>互斥锁</strong>：是指该锁一次只能被一个线程所持有。如果线程获得临界资源的互斥锁之后，其它线程则不能再对临界资源加锁。获得互斥锁的线程即能读数据又能修改数据。JDK中的synchronized和JUC中Lock的实现类就是互斥锁。</p>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p><strong>共享锁</strong>：共享锁是指该锁可被多个线程所持有。如果线程对临界资源加上共享锁后，则其他线程可以继续对临界资源加共享锁，不能加排它锁。获得共享锁的线程只能读数据，不能修改数据。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>锁</tag>
       </tags>
   </entry>
   <entry>
@@ -655,6 +655,57 @@
       </tags>
   </entry>
   <entry>
+    <title>选择排序</title>
+    <url>/2020/10/26/SelectionSort/</url>
+    <content><![CDATA[<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<a id="more"></a>
+
+
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
+<p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
+</blockquote>
+<p>原数据：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
+
+<p>第一步，在原始数组中找到最小元素<font color="red">[1]</font>，起始位置的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [8] [9] [7] [9] [3] [5]</span><br></pre></td></tr></table></figure>
+
+<p>第二步，在剩余未排序数组中找到最小元素<font color="red">[3]</font>与<font color="red">[8]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [9] [7] [9] [8] [5]</span><br></pre></td></tr></table></figure>
+
+<p>第三步，在剩余未排序数组中找到最小元素<font color="red">[5]</font>与索引三处的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<p>第四步，在剩余未排序数组中找到最小元素<font color="red">[7]</font>，其已经处在正确位置。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
+
+<p>第五步，在剩余未排序数组中找到最小元素<font color="red">[8]</font>，前面的<font color="red">[9]</font>进行交换，结果如下。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
+
+<p>第六步，在剩余未排序数组中找到最小元素<font color="red">[9]</font>，其已经处在正确位置。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
+
+<p>排序完毕，数组已经有序。</p>
+<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
+<p>从第一步就可以明显看出，两个<code>[9]</code>交换了次序，因此插入排序是不稳定的排序算法。其时间复杂度计算公式如下。可以看到选择排序最好的情况下时间复杂度为2^n，最坏的情况下时间复杂度为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
+</blockquote>
+<p>$$<br>(n-1) + (n-2) + … + 1 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>less函数与exch函数参见文章排序算法序言。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>排序算法</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>数据结构与算法</tag>
+        <tag>不稳定排序</tag>
+        <tag>选择排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RabbtMQ安装教程</title>
     <url>/2022/04/12/RabbtMQ%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p><code>RabbitMQ</code>是使用<code>Erlang</code>语言开发的开源消息队列系统，基于<code>AMQP</code>协议来实现。<code>AMQP</code>的主要特征是面向消息、队列、路由（包括点对点和发布&#x2F;订阅）、可靠性、安全。</p>
@@ -775,57 +826,6 @@
         <tag>MQ</tag>
         <tag>RabbitMQ</tag>
         <tag>Suse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>选择排序</title>
-    <url>/2020/10/26/SelectionSort/</url>
-    <content><![CDATA[<p>选择排序（Selection sort）是一种简单直观的排序算法。它的工作原理如下。首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
-<a id="more"></a>
-
-
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><blockquote>
-<p>每次在未排序的数组中，找到最大或者最小的元素，放到已排序数组的末尾，依次进行，直到数组全部有序。</p>
-</blockquote>
-<p>原数据：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[9] [8] [9] [7] [1] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>第一步，在原始数组中找到最小元素<font color="red">[1]</font>，起始位置的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [8] [9] [7] [9] [3] [5]</span><br></pre></td></tr></table></figure>
-
-<p>第二步，在剩余未排序数组中找到最小元素<font color="red">[3]</font>与<font color="red">[8]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [9] [7] [9] [8] [5]</span><br></pre></td></tr></table></figure>
-
-<p>第三步，在剩余未排序数组中找到最小元素<font color="red">[5]</font>与索引三处的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
-
-<p>第四步，在剩余未排序数组中找到最小元素<font color="red">[7]</font>，其已经处在正确位置。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [9] [8] [9]</span><br></pre></td></tr></table></figure>
-
-<p>第五步，在剩余未排序数组中找到最小元素<font color="red">[8]</font>，前面的<font color="red">[9]</font>进行交换，结果如下。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
-
-<p>第六步，在剩余未排序数组中找到最小元素<font color="red">[9]</font>，其已经处在正确位置。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">[1] [3] [5] [7] [8] [9] [9]</span><br></pre></td></tr></table></figure>
-
-<p>排序完毕，数组已经有序。</p>
-<h2 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h2><blockquote>
-<p>从第一步就可以明显看出，两个<code>[9]</code>交换了次序，因此插入排序是不稳定的排序算法。其时间复杂度计算公式如下。可以看到选择排序最好的情况下时间复杂度为2^n，最坏的情况下时间复杂度为2^n，空间复杂度为O(1)，平均时间复杂度为2^n。</p>
-</blockquote>
-<p>$$<br>(n-1) + (n-2) + … + 1 &#x3D; \frac{n * (n-1)}{2}<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
-<p>less函数与exch函数参见文章排序算法序言。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertion</span><span class="params">(Comparable[] c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = c.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(c[j], c[j-<span class="number">1</span>]); j--)&#123;</span><br><span class="line">            exch(c, j, j-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>排序算法</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构与算法</tag>
-        <tag>不稳定排序</tag>
-        <tag>选择排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1107,6 +1107,27 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode-106 从中序与后续遍历序列构造二叉树</title>
+    <url>/2021/08/03/leetcode-106/</url>
+    <content><![CDATA[<p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> buildTree(inorder, <span class="number">0</span>, inorder.length, postorder, postorder.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span>[] postorder, <span class="keyword">int</span> rootIdx)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 单个节点直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (start == end - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(inorder[start]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 后续最后一个节点为二叉树根节点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(postorder[rootIdx]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 寻找根节点在中序序列中的索引值</span></span><br><span class="line">        <span class="keyword">int</span> rootIdxInOrder = start;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> idx = start; idx &lt; end; idx++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inorder[idx] == root.val) &#123;</span><br><span class="line">                rootIdxInOrder = idx;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 中序序列中根节点左部分节点构成左子树</span></span><br><span class="line">        TreeNode leftNode = buildTree(inorder, start, rootIdxInOrder, postorder, rootIdx - (end - rootIdxInOrder));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 中序序列中根节点右部分节点构成右子树</span></span><br><span class="line">        TreeNode rightNode = buildTree(inorder, rootIdxInOrder + <span class="number">1</span>, end, postorder, rootIdx - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7. 连接左右子树</span></span><br><span class="line">        root.left = leftNode;</span><br><span class="line">        root.right = rightNode;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>二叉树</tag>
+        <tag>中序、后序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>leetcode-114 二叉树展开为链表</title>
     <url>/2021/07/30/leetcode-114/</url>
     <content><![CDATA[<p>题目描述：给你二叉树的根结点 root ，请你将它展开为一个单链表：</p>
@@ -1130,27 +1151,6 @@
         <tag>二叉树</tag>
         <tag>单链表</tag>
         <tag>反转</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode-106 从中序与后续遍历序列构造二叉树</title>
-    <url>/2021/08/03/leetcode-106/</url>
-    <content><![CDATA[<p>题目描述：根据一棵树的中序遍历与后序遍历构造二叉树。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> buildTree(inorder, <span class="number">0</span>, inorder.length, postorder, postorder.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span>[] postorder, <span class="keyword">int</span> rootIdx)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空</span></span><br><span class="line">        <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 单个节点直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (start == end - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(inorder[start]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 后续最后一个节点为二叉树根节点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(postorder[rootIdx]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 寻找根节点在中序序列中的索引值</span></span><br><span class="line">        <span class="keyword">int</span> rootIdxInOrder = start;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> idx = start; idx &lt; end; idx++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inorder[idx] == root.val) &#123;</span><br><span class="line">                rootIdxInOrder = idx;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 中序序列中根节点左部分节点构成左子树</span></span><br><span class="line">        TreeNode leftNode = buildTree(inorder, start, rootIdxInOrder, postorder, rootIdx - (end - rootIdxInOrder));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 中序序列中根节点右部分节点构成右子树</span></span><br><span class="line">        TreeNode rightNode = buildTree(inorder, rootIdxInOrder + <span class="number">1</span>, end, postorder, rootIdx - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//7. 连接左右子树</span></span><br><span class="line">        root.left = leftNode;</span><br><span class="line">        root.right = rightNode;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>二叉树</tag>
-        <tag>中序、后序</tag>
       </tags>
   </entry>
   <entry>
@@ -1223,28 +1223,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-141 环形链表</title>
-    <url>/2021/08/30/leetcode-141/</url>
-    <content><![CDATA[<p>题目描述：给定一个链表，判断链表中是否有环。</p>
-<p>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。</p>
-<p>如果链表中存在环，则返回 true 。 否则，返回 false 。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode quickPoint = head.next.next;</span><br><span class="line">        ListNode slowPoint = head.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (quickPoint.next != <span class="keyword">null</span> &amp;&amp; quickPoint.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (quickPoint == slowPoint) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            quickPoint = quickPoint.next.next;</span><br><span class="line">            slowPoint = slowPoint.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>环形链表</tag>
-        <tag>难度简单</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-1373 二叉搜索子树的最大键值和</title>
     <url>/2021/08/09/leetcode-1373/</url>
     <content><![CDATA[<p>题目描述：给你一棵以 root 为根的 二叉树 ，请你返回 任意 二叉搜索子树的最大键值和。</p>
@@ -1272,6 +1250,28 @@
         <tag>难度困难</tag>
         <tag>子树</tag>
         <tag>最大键值和</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-141 环形链表</title>
+    <url>/2021/08/30/leetcode-141/</url>
+    <content><![CDATA[<p>题目描述：给定一个链表，判断链表中是否有环。</p>
+<p>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。</p>
+<p>如果链表中存在环，则返回 true 。 否则，返回 false 。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || head.next.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode quickPoint = head.next.next;</span><br><span class="line">        ListNode slowPoint = head.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (quickPoint.next != <span class="keyword">null</span> &amp;&amp; quickPoint.next.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (quickPoint == slowPoint) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            quickPoint = quickPoint.next.next;</span><br><span class="line">            slowPoint = slowPoint.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>环形链表</tag>
+        <tag>难度简单</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,28 +1479,6 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode-26 删除有序数组中的重复项</title>
-    <url>/2021/09/10/leetcode-26/</url>
-    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>oj</tag>
-        <tag>难度简单</tag>
-        <tag>有序数组</tag>
-        <tag>重复项</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-25 K个一组翻转链表</title>
     <url>/2021/07/27/leetcode-25/</url>
     <content><![CDATA[<p>题目描述：给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你可以设计一个只使用常数额外空间的算法来解决此问题吗？你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
@@ -1560,6 +1538,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>单链表</tag>
         <tag>反转</tag>
         <tag>难度困难</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-26 删除有序数组中的重复项</title>
+    <url>/2021/09/10/leetcode-26/</url>
+    <content><![CDATA[<p>题目描述：给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right] != nums[left]) &#123;</span><br><span class="line">                nums[++left] = nums[right];</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>oj</tag>
+        <tag>难度简单</tag>
+        <tag>有序数组</tag>
+        <tag>重复项</tag>
       </tags>
   </entry>
   <entry>
@@ -1689,28 +1689,6 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>leetcode-300 最长递增子序列</title>
-    <url>/2021/09/15/leetcode-300/</url>
-    <content><![CDATA[<p>题目描述：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
-<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p>
-<a id="more"></a>
-
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>leetcode</tag>
-        <tag>难度中等</tag>
-        <tag>oj</tag>
-        <tag>递增子序列</tag>
-        <tag>最长</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>leetcode-341 扁平化嵌套列表迭代器</title>
     <url>/2021/08/16/leetcode-341/</url>
     <content><![CDATA[<p>题目描述：给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。</p>
@@ -1750,6 +1728,28 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>oj</tag>
         <tag>二叉树</tag>
         <tag>扁平化迭代器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode-300 最长递增子序列</title>
+    <url>/2021/09/15/leetcode-300/</url>
+    <content><![CDATA[<p>题目描述：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
+<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p>
+<a id="more"></a>
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nums.length;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            dp[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            res = Math.max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>leetcode</tag>
+        <tag>难度中等</tag>
+        <tag>oj</tag>
+        <tag>递增子序列</tag>
+        <tag>最长</tag>
       </tags>
   </entry>
   <entry>
@@ -2118,8 +2118,8 @@ label=&lt;&lt;B&gt;图 1.1 示例一&lt;/B&gt;&gt;
         <tag>Java</tag>
         <tag>leetcode</tag>
         <tag>oj</tag>
-        <tag>难度简单</tag>
         <tag>二叉搜索树</tag>
+        <tag>难度简单</tag>
         <tag>搜索</tag>
       </tags>
   </entry>
@@ -2649,61 +2649,6 @@ label=&lt;&lt;B&gt;图 2.2 最终结果&lt;/B&gt;&gt;
       </tags>
   </entry>
   <entry>
-    <title>反转链表</title>
-    <url>/2021/03/30/reverse-linked-list/</url>
-    <content><![CDATA[<p>单链表的反转，我们能想到反转顺序最简单的数据结构就是栈了，如果可以用栈的话，那问题就简单了。顺序遍历单链表，依次入栈直到遍历结束，然后依次出栈重新有前到后连接为一个新的单链表，则自动实现了反转功能。</p>
-<a id="more"></a>
-
-<h2 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历链表入栈</span></span><br><span class="line">        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(node);</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 出栈重新建立链表</span></span><br><span class="line">        ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode newEnd = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            node = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (newHead == <span class="keyword">null</span>)&#123;</span><br><span class="line">                newHead = node;</span><br><span class="line">                newEnd = newHead;</span><br><span class="line">                newHead.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                newEnd.next = node;</span><br><span class="line">                newEnd = newEnd.next;</span><br><span class="line">                newEnd.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><div><div class="graphviz">digraph leetcode_92_1 {
-    
-<pre><code>bgcolor=&quot;#f7f7f7&quot;
-
-rankdir=LR
-subgraph cluster_name &#123;
-    subgraph cluster_1 &#123;
-        n0 [label=&quot;newEnd&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n2 [label=&quot;newHead&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
-        n3 [label=&quot;node&quot; shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
-        n4 [label=&quot;oldHead&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n5 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        n6 [label=&quot;oldEnd&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
-        
-        rank=same;
-        n0 -&gt; n1 -&gt; n2[dir=back]
-        n2 -&gt; n3[style=dashed,color=&quot;#f7f7f7&quot;]
-        n3 -&gt; n4[style=dashed,color=red]
-        n4 -&gt; n5 -&gt; n6
-        style=invis
-    &#125;
-
-&#125;
-label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
-</code></pre>
-<p>}</p></div></div><p></p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 设置反转后新链表表头节点</span></span><br><span class="line">        ListNode newLinkedListHead = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 设置反转前旧链表表头节点</span></span><br><span class="line">        ListNode oldLinkedListHead = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 设置临时节点</span></span><br><span class="line">        ListNode tmpNode = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 遍历旧链表</span></span><br><span class="line">        <span class="keyword">while</span> (oldLinkedListHead != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//5.1 取出当前节点到临时节点</span></span><br><span class="line">            tmpNode = oldLinkedListHead;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//5.2 重新设置旧链表表头</span></span><br><span class="line">            oldLinkedListHead = oldLinkedListHead.next;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span></span><br><span class="line">            <span class="keyword">if</span> (newLinkedListHead == <span class="keyword">null</span>)&#123;</span><br><span class="line">                newLinkedListHead = tmpNode;</span><br><span class="line">                newLinkedListHead.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                tmpNode.next = newLinkedListHead;</span><br><span class="line">                newLinkedListHead = tmpNode;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//6. 返回反转后新链表</span></span><br><span class="line">        <span class="keyword">return</span> newLinkedListHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p>递归实现的原理和栈是类似的，因为递归本身就是利用了程序栈进行了压栈处理，因此好好理解一下第一种算法与第三种算法，有助于理解递归的原理。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 获取递归得到的新表头</span></span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 处理当前节点</span></span><br><span class="line">        head.next.next = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 处理完之后新的尾节点置空</span></span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 返回新的表头节点</span></span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>难度中等</tag>
-        <tag>单链表</tag>
-        <tag>反转</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>九寨沟旅游攻略</title>
     <url>/2022/10/12/%E4%B9%9D%E5%AF%A8%E6%B2%9F%E6%97%85%E6%B8%B8%E6%94%BB%E7%95%A5/</url>
     <content><![CDATA[<p>想去九寨沟玩，整理旅游攻略。</p>
@@ -2779,6 +2724,61 @@ label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
         <tag>九寨沟</tag>
         <tag>旅游</tag>
         <tag>10月秋季</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>反转链表</title>
+    <url>/2021/03/30/reverse-linked-list/</url>
+    <content><![CDATA[<p>单链表的反转，我们能想到反转顺序最简单的数据结构就是栈了，如果可以用栈的话，那问题就简单了。顺序遍历单链表，依次入栈直到遍历结束，然后依次出栈重新有前到后连接为一个新的单链表，则自动实现了反转功能。</p>
+<a id="more"></a>
+
+<h2 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历链表入栈</span></span><br><span class="line">        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;ListNode&gt;();</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(node);</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 出栈重新建立链表</span></span><br><span class="line">        ListNode newHead = <span class="keyword">null</span>;</span><br><span class="line">        ListNode newEnd = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            node = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (newHead == <span class="keyword">null</span>)&#123;</span><br><span class="line">                newHead = node;</span><br><span class="line">                newEnd = newHead;</span><br><span class="line">                newHead.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                newEnd.next = node;</span><br><span class="line">                newEnd = newEnd.next;</span><br><span class="line">                newEnd.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="遍历实现"><a href="#遍历实现" class="headerlink" title="遍历实现"></a>遍历实现</h2><h3 id="原理详解"><a href="#原理详解" class="headerlink" title="原理详解"></a>原理详解</h3><div><div class="graphviz">digraph leetcode_92_1 {
+    
+<pre><code>bgcolor=&quot;#f7f7f7&quot;
+
+rankdir=LR
+subgraph cluster_name &#123;
+    subgraph cluster_1 &#123;
+        n0 [label=&quot;newEnd&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n1 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n2 [label=&quot;newHead&quot; shape=circle,color=blue,fillcolor=white,style=filled,width=0.8,fixedsize=true]
+        n3 [label=&quot;node&quot; shape=circle,color=red,style=dashed,width=0.8,fixedsize=true]
+        n4 [label=&quot;oldHead&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n5 [label=&quot;...&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        n6 [label=&quot;oldEnd&quot; shape=circle,color=blue,fillcolor=lightblue,style=filled,width=0.8,fixedsize=true]
+        
+        rank=same;
+        n0 -&gt; n1 -&gt; n2[dir=back]
+        n2 -&gt; n3[style=dashed,color=&quot;#f7f7f7&quot;]
+        n3 -&gt; n4[style=dashed,color=red]
+        n4 -&gt; n5 -&gt; n6
+        style=invis
+    &#125;
+
+&#125;
+label=&lt;&lt;B&gt;图 1.1 遍历反转链表&lt;/B&gt;&gt;
+</code></pre>
+<p>}</p></div></div><p></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 设置反转后新链表表头节点</span></span><br><span class="line">        ListNode newLinkedListHead = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 设置反转前旧链表表头节点</span></span><br><span class="line">        ListNode oldLinkedListHead = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 设置临时节点</span></span><br><span class="line">        ListNode tmpNode = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 遍历旧链表</span></span><br><span class="line">        <span class="keyword">while</span> (oldLinkedListHead != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//5.1 取出当前节点到临时节点</span></span><br><span class="line">            tmpNode = oldLinkedListHead;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//5.2 重新设置旧链表表头</span></span><br><span class="line">            oldLinkedListHead = oldLinkedListHead.next;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//5.3 把取出的临时节点添加到反转后新链表的表头</span></span><br><span class="line">            <span class="keyword">if</span> (newLinkedListHead == <span class="keyword">null</span>)&#123;</span><br><span class="line">                newLinkedListHead = tmpNode;</span><br><span class="line">                newLinkedListHead.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                tmpNode.next = newLinkedListHead;</span><br><span class="line">                newLinkedListHead = tmpNode;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//6. 返回反转后新链表</span></span><br><span class="line">        <span class="keyword">return</span> newLinkedListHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h2><p>递归实现的原理和栈是类似的，因为递归本身就是利用了程序栈进行了压栈处理，因此好好理解一下第一种算法与第三种算法，有助于理解递归的原理。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判空处理</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 获取递归得到的新表头</span></span><br><span class="line">        ListNode newHead = reverse(head.next);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 处理当前节点</span></span><br><span class="line">        head.next.next = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 处理完之后新的尾节点置空</span></span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 返回新的表头节点</span></span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>难度中等</tag>
+        <tag>单链表</tag>
+        <tag>反转</tag>
       </tags>
   </entry>
   <entry>
